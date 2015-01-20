@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Swiftmoment by akosma</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Swiftmoment</h1>
+        <p>A time and calendar manipulation library for iOS 8+ written in Swift</p>
+
+        <p class="view"><a href="https://github.com/akosma/SwiftMoment">View the Project on GitHub <small>akosma/SwiftMoment</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/akosma/SwiftMoment/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/akosma/SwiftMoment/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/akosma/SwiftMoment">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="swift-moment" class="anchor" href="#swift-moment" aria-hidden="true"><span class="octicon octicon-link"></span></a>Swift Moment</h1>
+
+<p>This framework is inspired by <a href="http://momentjs.com">Moment.js</a>. Its
+objectives are the following:</p>
+
+<ul>
+<li>Simplify the manipulation and readability of date and interval values.</li>
+<li>Provide help when parsing dates from various string representations.</li>
+<li>Simplifying the formatting of date information into strings.</li>
+<li>Streamlining getting date components (day, month, etc.) from dates and
+time intervals.</li>
+</ul>
+
+<p>This framework targets iOS 8 and later exclusively.</p>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Hopefully at some point there will be a Cocoapods module for this
+library. At the moment, just use the Framework as is in your own
+application.</p>
+
+<h2>
+<a id="architecture" class="anchor" href="#architecture" aria-hidden="true"><span class="octicon octicon-link"></span></a>Architecture</h2>
+
+<p>The two most important components of this library are the <code>Moment</code> and
+<code>Duration</code> structures. <code>Moment</code> wraps an <code>NSDate</code> instance, while
+<code>Duration</code> wraps an <code>NSTimeInterval</code> value.</p>
+
+<p>There is also an extension to the <code>Int</code> type in Swift, used to create
+<code>Duration</code> values directly from an integer value:</p>
+
+<div class="highlight highlight-Swift"><pre><span class="pl-st">let</span> duration <span class="pl-k">=</span> <span class="pl-c1">5</span><span class="pl-k">.</span>hours <span class="pl-k">+</span> <span class="pl-c1">56</span><span class="pl-k">.</span>minutes</pre></div>
+
+<p>Both <code>Moment</code> and <code>Duration</code> comply with the <code>Comparable</code> protocols, and
+include all the required operators. In addition, <code>Moment</code> instances can
+be substracted from one another (which yields a <code>Duration</code>) and
+<code>Duration</code> instances can be added to <code>Moments</code> to create new moments.</p>
+
+<p><code>Moments</code> and <code>Durations</code> are made as immutable as possible.</p>
+
+<p>To create new <code>Moment</code> values, use the family of <code>moment()</code> functions.
+See below for examples.</p>
+
+<h2>
+<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Examples</h2>
+
+<p>To use this library, just <code>import SwiftMoment</code> in your application.</p>
+
+<p>To create new moment instances:</p>
+
+<div class="highlight highlight-Swift"><pre><span class="pl-st">let</span> now <span class="pl-k">=</span> moment()
+<span class="pl-st">let</span> yesterday <span class="pl-k">=</span> moment(<span class="pl-s1"><span class="pl-pds">"</span>2015-01-19<span class="pl-pds">"</span></span>)</pre></div>
+
+<p>By default, moments are initialized with the current date and time. You
+can create moments for any... moment in the future or the past; you can
+do that by passing strings in different formats:</p>
+
+<div class="highlight highlight-Swift"><pre><span class="pl-st">let</span> yesterday <span class="pl-k">=</span> moment(<span class="pl-s1"><span class="pl-pds">"</span>2015-01-19<span class="pl-pds">"</span></span>)</pre></div>
+
+<p>You can also do it by directly specifying the components manually:</p>
+
+<div class="highlight highlight-Swift"><pre><span class="pl-st">let</span> today <span class="pl-k">=</span> moment([<span class="pl-c1">2015</span>, <span class="pl-c1">01</span>, <span class="pl-c1">19</span>, <span class="pl-c1">20</span>, <span class="pl-c1">45</span>, <span class="pl-c1">34</span>])</pre></div>
+
+<p>You can also use a dictionary with the following keys:</p>
+
+<div class="highlight highlight-Swift"><pre><span class="pl-st">let</span> obj <span class="pl-k">=</span> moment([<span class="pl-s1"><span class="pl-pds">"</span>year<span class="pl-pds">"</span></span>: <span class="pl-c1">2015</span>,
+                    <span class="pl-s1"><span class="pl-pds">"</span>second<span class="pl-pds">"</span></span>: <span class="pl-c1">34</span>,
+                    <span class="pl-s1"><span class="pl-pds">"</span>month<span class="pl-pds">"</span></span>: <span class="pl-c1">01</span>,
+                    <span class="pl-s1"><span class="pl-pds">"</span>minute<span class="pl-pds">"</span></span>: <span class="pl-c1">45</span>,
+                    <span class="pl-s1"><span class="pl-pds">"</span>hour<span class="pl-pds">"</span></span>: <span class="pl-c1">20</span>,
+                    <span class="pl-s1"><span class="pl-pds">"</span>day<span class="pl-pds">"</span></span>: <span class="pl-c1">19</span>
+                ])</pre></div>
+
+<p>When using a <code>[String: Int]</code> dictionary, the order of the keys does not
+matter. Moreover, only the keys above are taken into account, and any
+other information is ignored.</p>
+
+<h2>
+<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Documentation</h2>
+
+<p>The documentation of the code is extracted using
+<a href="https://github.com/realm/jazzy">Jazzy</a>.</p>
+
+<h2>
+<a id="tests" class="anchor" href="#tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tests</h2>
+
+<p>Swift Moment includes a suite of tests showing how to use the different
+functions of the framework.</p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>This project is distributed under a BSD license. See the LICENSE file
+for details.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/akosma">akosma</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>

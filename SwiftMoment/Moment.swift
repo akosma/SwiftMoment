@@ -27,6 +27,16 @@ public func utc() -> Moment {
     return moment(timeZone: zone)
 }
 
+var dateFormatter : NSDateFormatter {
+    struct Static {
+        static let instance : NSDateFormatter = {
+            let dateFormatter = NSDateFormatter()
+            return dateFormatter
+        }()
+    }
+    return Static.instance
+}
+
 /**
 Returns an Optional wrapping a Moment structure, representing the
 current instant in time. If the string passed as parameter cannot be
@@ -40,7 +50,7 @@ parsed by the function, the Optional wraps a nil value.
 public func moment(stringDate: String
     , timeZone: NSTimeZone = NSTimeZone.defaultTimeZone()
     , locale: NSLocale = NSLocale.autoupdatingCurrentLocale()) -> Moment? {
-    let formatter = NSDateFormatter()
+    let formatter = dateFormatter
     formatter.timeZone = timeZone
     let isoFormat = "yyyy-MM-ddTHH:mm:ssZ"
 
@@ -82,7 +92,7 @@ public func moment(stringDate: String
     , dateFormat: String
     , timeZone: NSTimeZone = NSTimeZone.defaultTimeZone()
     , locale: NSLocale = NSLocale.autoupdatingCurrentLocale()) -> Moment? {
-    let formatter = NSDateFormatter()
+    let formatter = dateFormatter
     formatter.dateFormat = dateFormat
     formatter.timeZone = timeZone
     if let date = formatter.dateFromString(stringDate) {
@@ -260,7 +270,7 @@ public struct Moment: Comparable {
 
     /// Returns the name of the month of the current instance, in the current locale.
     public var monthName: String {
-        let formatter = NSDateFormatter()
+        let formatter = dateFormatter
         formatter.locale = locale
         return formatter.monthSymbols[month - 1] as String
     }
@@ -298,7 +308,7 @@ public struct Moment: Comparable {
     }
 
     public var weekDay: String {
-        let formatter = NSDateFormatter()
+        let formatter = dateFormatter
         formatter.locale = locale
         formatter.dateFormat = "EEEE"
         formatter.timeZone = timeZone
@@ -360,7 +370,7 @@ public struct Moment: Comparable {
     }
 
     public func format(dateFormat: String = "yyyy-MM-dd HH:mm:SS ZZZZ") -> String {
-        let formatter = NSDateFormatter()
+        let formatter = dateFormatter
         formatter.dateFormat = dateFormat
         formatter.timeZone = timeZone
         formatter.locale = locale

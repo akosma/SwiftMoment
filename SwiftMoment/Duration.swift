@@ -67,6 +67,10 @@ public struct Duration: Equatable {
 extension Duration: Printable {
     public var description: String {
         let formatter = NSDateComponentsFormatter()
-        return formatter.stringFromTimeInterval(self.interval)!
+        formatter.allowedUnits = .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitWeekOfMonth | .CalendarUnitDay | .CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitSecond
+
+        let referenceDate = NSDate(timeIntervalSinceReferenceDate: 0)
+        let intervalDate = NSDate(timeInterval: self.interval, sinceDate: referenceDate)
+        return formatter.stringFromDate(referenceDate, toDate: intervalDate)!
     }
 }

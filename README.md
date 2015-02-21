@@ -84,9 +84,6 @@ be substracted from one another (which yields a `Duration`) and
 
 `Moments` and `Durations` are made as immutable as possible.
 
-To create new `Moment` values, use the family of `moment()` functions.
-See below for examples.
-
 Documentation
 -------------
 
@@ -103,7 +100,9 @@ Contributors
 ------------
 
 Lots of people are actively helping in the development of this library;
-please check the CONTRIBUTORS file for the full list! Thanks to all :)
+please check the
+[CONTRIBUTORS](https://github.com/akosma/SwiftMoment/blob/master/CONTRIBUTORS.md)
+file for the full list! Thanks to all :)
 
 License
 -------

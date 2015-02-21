@@ -21,30 +21,6 @@ With [CocoaPods](http://cocoapods.org/), just add this to your Podfile:
 pod 'SwiftMoment'
 ```
 
-Architecture
-------------
-
-The two most important components of this library are the `Moment` and
-`Duration` structures. `Moment` wraps an `NSDate` instance, while
-`Duration` wraps an `NSTimeInterval` value.
-
-There is also an extension to the `Int` type in Swift, used to create
-`Duration` values directly from an integer value:
-
-```Swift
-let duration = 5.hours + 56.minutes
-```
-
-Both `Moment` and `Duration` comply with the `Comparable` protocols, and
-include all the required operators. In addition, `Moment` instances can
-be substracted from one another (which yields a `Duration`) and
-`Duration` instances can be added to `Moments` to create new moments.
-
-`Moments` and `Durations` are made as immutable as possible.
-
-To create new `Moment` values, use the family of `moment()` functions.
-See below for examples.
-
 Examples
 --------
 
@@ -87,6 +63,30 @@ When using a `[String: Int]` dictionary, the order of the keys does not
 matter. Moreover, only the keys above are taken into account, and any
 other information is ignored.
 
+There is also an extension to the `Int` type in Swift, used to create
+`Duration` values directly from an integer value:
+
+```Swift
+let duration = 5.hours + 56.minutes
+```
+
+Architecture
+------------
+
+The two most important components of this library are the `Moment` and
+`Duration` structures. `Moment` wraps an `NSDate` instance, while
+`Duration` wraps an `NSTimeInterval` value.
+
+Both `Moment` and `Duration` comply with the `Comparable` protocols, and
+include all the required operators. In addition, `Moment` instances can
+be substracted from one another (which yields a `Duration`) and
+`Duration` instances can be added to `Moments` to create new moments.
+
+`Moments` and `Durations` are made as immutable as possible.
+
+To create new `Moment` values, use the family of `moment()` functions.
+See below for examples.
+
 Documentation
 -------------
 
@@ -98,6 +98,12 @@ Tests
 
 Swift Moment includes a suite of tests showing how to use the different
 functions of the framework.
+
+Contributors
+------------
+
+Lots of people are actively helping in the development of this library;
+please check the CONTRIBUTORS file for the full list! Thanks to all :)
 
 License
 -------

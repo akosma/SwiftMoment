@@ -15,9 +15,7 @@ This framework targets iOS 8 and later exclusively.
 Installation
 ------------
 
-### As a [CocoaPod](http://cocoapods.org/)
-
-Just add this to your Podfile
+With [CocoaPods](http://cocoapods.org/), just add this to your Podfile:
 
 ```ruby
 pod 'SwiftMoment'

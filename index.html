@@ -52,28 +52,6 @@ time intervals.</li>
 <div class="highlight highlight-ruby"><pre>pod <span class="pl-s1"><span class="pl-pds">'</span>SwiftMoment<span class="pl-pds">'</span></span></pre></div>
 
 <h2>
-<a id="architecture" class="anchor" href="#architecture" aria-hidden="true"><span class="octicon octicon-link"></span></a>Architecture</h2>
-
-<p>The two most important components of this library are the <code>Moment</code> and
-<code>Duration</code> structures. <code>Moment</code> wraps an <code>NSDate</code> instance, while
-<code>Duration</code> wraps an <code>NSTimeInterval</code> value.</p>
-
-<p>There is also an extension to the <code>Int</code> type in Swift, used to create
-<code>Duration</code> values directly from an integer value:</p>
-
-<div class="highlight highlight-Swift"><pre><span class="pl-st">let</span> duration <span class="pl-k">=</span> <span class="pl-c1">5</span><span class="pl-k">.</span>hours <span class="pl-k">+</span> <span class="pl-c1">56</span><span class="pl-k">.</span>minutes</pre></div>
-
-<p>Both <code>Moment</code> and <code>Duration</code> comply with the <code>Comparable</code> protocols, and
-include all the required operators. In addition, <code>Moment</code> instances can
-be substracted from one another (which yields a <code>Duration</code>) and
-<code>Duration</code> instances can be added to <code>Moments</code> to create new moments.</p>
-
-<p><code>Moments</code> and <code>Durations</code> are made as immutable as possible.</p>
-
-<p>To create new <code>Moment</code> values, use the family of <code>moment()</code> functions.
-See below for examples.</p>
-
-<h2>
 <a id="examples" class="anchor" href="#examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Examples</h2>
 
 <p>To use this library, just <code>import SwiftMoment</code> in your application.</p>
@@ -107,6 +85,28 @@ do that by passing strings in different formats:</p>
 matter. Moreover, only the keys above are taken into account, and any
 other information is ignored.</p>
 
+<p>There is also an extension to the <code>Int</code> type in Swift, used to create
+<code>Duration</code> values directly from an integer value:</p>
+
+<div class="highlight highlight-Swift"><pre><span class="pl-st">let</span> duration <span class="pl-k">=</span> <span class="pl-c1">5</span><span class="pl-k">.</span>hours <span class="pl-k">+</span> <span class="pl-c1">56</span><span class="pl-k">.</span>minutes</pre></div>
+
+<h2>
+<a id="architecture" class="anchor" href="#architecture" aria-hidden="true"><span class="octicon octicon-link"></span></a>Architecture</h2>
+
+<p>The two most important components of this library are the <code>Moment</code> and
+<code>Duration</code> structures. <code>Moment</code> wraps an <code>NSDate</code> instance, while
+<code>Duration</code> wraps an <code>NSTimeInterval</code> value.</p>
+
+<p>Both <code>Moment</code> and <code>Duration</code> comply with the <code>Comparable</code> protocols, and
+include all the required operators. In addition, <code>Moment</code> instances can
+be substracted from one another (which yields a <code>Duration</code>) and
+<code>Duration</code> instances can be added to <code>Moments</code> to create new moments.</p>
+
+<p><code>Moments</code> and <code>Durations</code> are made as immutable as possible.</p>
+
+<p>To create new <code>Moment</code> values, use the family of <code>moment()</code> functions.
+See below for examples.</p>
+
 <h2>
 <a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Documentation</h2>
 
@@ -118,6 +118,12 @@ other information is ignored.</p>
 
 <p>Swift Moment includes a suite of tests showing how to use the different
 functions of the framework.</p>
+
+<h2>
+<a id="contributors" class="anchor" href="#contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributors</h2>
+
+<p>Lots of people are actively helping in the development of this library;
+please check the CONTRIBUTORS file for the full list! Thanks to all :)</p>
 
 <h2>
 <a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>

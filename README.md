@@ -1,5 +1,4 @@
-Swift Moment
-============
+# SwiftMoment
 
 This framework is inspired by [Moment.js](http://momentjs.com). Its
 objectives are the following:
@@ -12,8 +11,7 @@ objectives are the following:
 
 This framework targets iOS 8 and later exclusively.
 
-Installation
-------------
+## Installation
 
 With [CocoaPods](http://cocoapods.org/), just add this to your Podfile:
 
@@ -21,8 +19,7 @@ With [CocoaPods](http://cocoapods.org/), just add this to your Podfile:
 pod 'SwiftMoment'
 ```
 
-Examples
---------
+## Examples
 
 To use this library, just `import SwiftMoment` in your application.
 
@@ -70,8 +67,7 @@ There is also an extension to the `Int` type in Swift, used to create
 let duration = 5.hours + 56.minutes
 ```
 
-Architecture
-------------
+## Architecture
 
 The two most important components of this library are the `Moment` and
 `Duration` structures. `Moment` wraps an `NSDate` instance, while
@@ -84,28 +80,24 @@ be substracted from one another (which yields a `Duration`) and
 
 `Moments` and `Durations` are made as immutable as possible.
 
-Documentation
--------------
+## Documentation
 
 The documentation of the code is extracted using
 [Jazzy](https://github.com/realm/jazzy).
 
-Tests
------
+## Tests
 
 Swift Moment includes a suite of tests showing how to use the different
 functions of the framework.
 
-Contributors
-------------
+## Contributors
 
 Lots of people are actively helping in the development of this library;
 please check the
 [CONTRIBUTORS](https://github.com/akosma/SwiftMoment/blob/master/CONTRIBUTORS.md)
 file for the full list! Thanks to all :)
 
-License
--------
+## License
 
 This project is distributed under a BSD license. See the LICENSE file
 for details.

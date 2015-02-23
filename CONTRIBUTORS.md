@@ -5,6 +5,7 @@ This is the list of people that have helped making SwiftMoment with pull
 requests, bug submissions, etc:
 
 - [Aaron Brager](https://github.com/getaaron)
+- [Chris Sloey](https://github.com/chrissloey)
 - [Jake Johnson](https://github.com/johnsonjake)
 - [Tomáš Slíž](https://github.com/tomassliz)
 

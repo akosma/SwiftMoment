@@ -177,18 +177,18 @@ public func moment(date: NSDate
 }
 
 public func moment(moment: Moment) -> Moment {
-    let copy = moment.date.copy() as NSDate
-    let timeZone = moment.timeZone.copy() as NSTimeZone
-    let locale = moment.locale.copy() as NSLocale
+    let copy = moment.date.copy() as! NSDate
+    let timeZone = moment.timeZone.copy() as! NSTimeZone
+    let locale = moment.locale.copy() as! NSLocale
     return Moment(date: copy, timeZone: timeZone, locale: locale)
 }
 
 public func past() -> Moment {
-    return Moment(date: NSDate.distantPast() as NSDate)
+    return Moment(date: NSDate.distantPast() as! NSDate)
 }
 
 public func future() -> Moment {
-    return Moment(date: NSDate.distantFuture() as NSDate)
+    return Moment(date: NSDate.distantFuture() as! NSDate)
 }
 
 public func since(past: Moment) -> Duration {
@@ -262,7 +262,7 @@ public struct Moment: Comparable {
     public var monthName: String {
         let formatter = NSDateFormatter()
         formatter.locale = locale
-        return formatter.monthSymbols[month - 1] as String
+        return formatter.monthSymbols[month - 1] as! String
     }
 
     public var day: Int {

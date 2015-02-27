@@ -13,7 +13,7 @@ This framework targets iOS 8 and later exclusively.
 
 ## Installation
 
-With [CocoaPods](http://cocoapods.org/), just add this to your Podfile:
+SwiftMoment is compatible with [Carthage(http://github.com/Carthage/Carthage) and [CocoaPods](http://cocoapods.org/). With CocoaPods, just add this to your Podfile:
 
 ```ruby
 pod 'SwiftMoment'

@@ -110,8 +110,9 @@ class MomentTests: XCTestCase {
     }
     
     func testCanCreateWeirdDateFromComponents() {
-        let obj = moment([-2015445, 76, -46, 876, 234565, -999])!
-        XCTAssertEqual(obj.format(), "2015440-02-13 12:57:81 GMT+00:34:08", "The date is weird...!")
+        let timeZone = NSTimeZone(abbreviation: "GMT+01")!
+        let obj = moment([-2015445, 76, -46, 876, 234565, -999], timeZone: timeZone)!
+        XCTAssertEqual(obj.format(), "2015440-02-13 12:57:81 GMT+01:00", "The date is weird...!")
     }
     
     func testEmptyArrayOfComponentsYieldsNilMoment() {
@@ -239,7 +240,8 @@ class MomentTests: XCTestCase {
     }
 
     func testFormatDates() {
-        let birthday = moment("1973-09-04")!
+        let timeZone = NSTimeZone(abbreviation: "GMT+01:00")!
+        let birthday = moment("1973-09-04", timeZone: timeZone)!
         let str = birthday.format(dateFormat: "EE QQQQ yyyy/dd/MMMM ZZZZ")
         XCTAssertEqual(str, "Tue 3rd quarter 1973/04/September GMT+01:00", "Complicated string")
 

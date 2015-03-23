@@ -376,6 +376,40 @@ public struct Moment: Comparable {
         let interval = date.timeIntervalSinceDate(moment.date)
         return Duration(value: interval)
     }
+    
+    /**
+    Returns an optional wrapping string showing the amount of time between the moment and now. For example "1 month ago".
+    
+    :param: moment The moment from which the interval is required
+    */
+    public func intervalSince(moment _moment: Moment) -> String? {
+        
+        var timePassedString = ""
+        let interval = moment().intervalSince(_moment)
+        
+        if Int(interval.years) > 0 {
+            timePassedString += "\(Int(interval.years)) " + ((Int(interval.years) > 1) ? "years": "year") + " ago"
+            return timePassedString
+        }
+        if Int(interval.months) > 0 {
+            timePassedString += "\(Int(interval.months)) " + ((Int(interval.months) > 1) ? "months": "month") + " ago"
+            return timePassedString
+        }
+        if Int(interval.days) > 0 {
+            timePassedString += "\(Int(interval.days)) " + ((Int(interval.days) > 1) ? "days": "day") + " ago"
+            return timePassedString
+        }
+        if Int(interval.minutes) > 0 {
+            timePassedString += "\(Int(interval.minutes)) " + ((Int(interval.minutes) > 1) ? "minutes": "minute") + " ago"
+            return timePassedString
+        }
+        if Int(interval.seconds) > 0 {
+            timePassedString += "\(Int(interval.seconds)) " + ((Int(interval.seconds) > 1) ? "seconds": "second") + " ago"
+            return timePassedString
+        }
+        
+        return nil
+    }
 
     public func add(value: Double, _ unit: TimeUnit) -> Moment {
         let seconds = convert(value, unit)

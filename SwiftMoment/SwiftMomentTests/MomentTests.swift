@@ -302,4 +302,85 @@ class MomentTests: XCTestCase {
         XCTAssertEqual(tag, "Sonntag", "Ach so!")
         XCTAssertEqual(monat, "März", "Ach so!")
     }
+
+    func testStartOfYear() {
+        var obj = moment([2015, 10, 19, 20, 45, 34])!.startOf("y")
+        XCTAssertEqual(obj.year, 2015, "The year should match")
+        XCTAssertEqual(obj.month, 1, "The month should match")
+        XCTAssertEqual(obj.day, 1, "The day should match")
+        XCTAssertEqual(obj.hour, 0, "The hour should match")
+        XCTAssertEqual(obj.minute, 0, "The minute should match")
+        XCTAssertEqual(obj.second, 0, "The second should match")
+    }
+
+    func testStartOfMonth() {
+        var obj = moment([2015, 10, 19, 20, 45, 34])!.startOf("M")
+        XCTAssertEqual(obj.year, 2015, "The year should match")
+        XCTAssertEqual(obj.month, 10, "The month should match")
+        XCTAssertEqual(obj.day, 1, "The day should match")
+        XCTAssertEqual(obj.hour, 0, "The hour should match")
+        XCTAssertEqual(obj.minute, 0, "The minute should match")
+        XCTAssertEqual(obj.second, 0, "The second should match")
+    }
+
+    func testStartOfDay() {
+        var obj = moment([2015, 10, 19, 20, 45, 34])!.startOf(.Days)
+        XCTAssertEqual(obj.year, 2015, "The year should match")
+        XCTAssertEqual(obj.month, 10, "The month should match")
+        XCTAssertEqual(obj.day, 19, "The day should match")
+        XCTAssertEqual(obj.hour, 0, "The hour should match")
+        XCTAssertEqual(obj.minute, 0, "The minute should match")
+        XCTAssertEqual(obj.second, 0, "The second should match")
+    }
+
+    func testStartOfHour() {
+        var obj = moment([2015, 10, 19, 20, 45, 34])!.startOf(.Hours)
+        XCTAssertEqual(obj.year, 2015, "The year should match")
+        XCTAssertEqual(obj.month, 10, "The month should match")
+        XCTAssertEqual(obj.day, 19, "The day should match")
+        XCTAssertEqual(obj.hour, 20, "The hour should match")
+        XCTAssertEqual(obj.minute, 0, "The minute should match")
+        XCTAssertEqual(obj.second, 0, "The second should match")
+    }
+
+    func testStartOfMinute() {
+        var obj = moment([2015, 10, 19, 20, 45, 34])!.startOf(.Minutes)
+        XCTAssertEqual(obj.year, 2015, "The year should match")
+        XCTAssertEqual(obj.month, 10, "The month should match")
+        XCTAssertEqual(obj.day, 19, "The day should match")
+        XCTAssertEqual(obj.hour, 20, "The day should match")
+        XCTAssertEqual(obj.minute, 45, "The minute should match")
+        XCTAssertEqual(obj.second, 0, "The second should match")
+    }
+
+    func testEndOfYear() {
+        var obj = moment([2015, 10, 19, 20, 45, 34])!.endOf(.Years)
+        XCTAssertEqual(obj.year, 2015, "The year should match")
+        XCTAssertEqual(obj.month, 12, "The month should match")
+        XCTAssertEqual(obj.day, 31, "The day should match")
+        XCTAssertEqual(obj.hour, 23, "The hour should match")
+        XCTAssertEqual(obj.minute, 59, "The minute should match")
+        XCTAssertEqual(obj.second, 59, "The second should match")
+    }
+
+    func testEndOfMonth() {
+        var obj = moment([2015, 01, 19, 20, 45, 34])!.endOf(.Months)
+        XCTAssertEqual(obj.year, 2015, "The year should match")
+        XCTAssertEqual(obj.month, 01, "The month should match")
+        XCTAssertEqual(obj.day, 31, "The day should match")
+        XCTAssertEqual(obj.hour, 23, "The hour should match")
+        XCTAssertEqual(obj.minute, 59, "The minute should match")
+        XCTAssertEqual(obj.second, 59, "The second should match")
+    }
+
+    func testEndOfDay() {
+        var obj = moment([2015, 10, 19, 20, 45, 34])!.endOf("d")
+        XCTAssertEqual(obj.year, 2015, "The year should match")
+        XCTAssertEqual(obj.month, 10, "The month should match")
+        XCTAssertEqual(obj.day, 19, "The day should match")
+        XCTAssertEqual(obj.hour, 23, "The day should match")
+        XCTAssertEqual(obj.minute, 59, "The minute should match")
+        XCTAssertEqual(obj.second, 59, "The second should match")
+    }
+
 }

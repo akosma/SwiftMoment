@@ -445,6 +445,52 @@ public struct Moment: Comparable {
         return abs(delta.interval) < precision
     }
 
+    public func startOf(unit: TimeUnit) -> Moment {
+        let cal = NSCalendar.currentCalendar()
+        var newDate: NSDate?
+        let components = cal.components(.CalendarUnitYear | .CalendarUnitMonth
+            | .CalendarUnitDay | .CalendarUnitHour
+            | .CalendarUnitMinute | .CalendarUnitSecond, fromDate: date)
+        switch unit {
+        case .Seconds:
+            return self
+        case .Years:
+            components.month = 1
+            fallthrough
+        case .Quarters, .Months:
+            components.day = 1
+            fallthrough
+        case .Days:
+            components.hour = 0
+            fallthrough
+        case .Hours:
+            components.minute = 0
+            fallthrough
+        case .Minutes:
+            components.second = 0
+        }
+        newDate = cal.dateFromComponents(components)
+        return newDate == nil ? self : Moment(date: newDate!)
+    }
+
+    public func startOf(unitName: String) -> Moment {
+        if let unit = TimeUnit(rawValue: unitName) {
+            return startOf(unit)
+        }
+        return self
+    }
+
+    public func endOf(unit: TimeUnit) -> Moment {
+        return startOf(unit).add(1, unit).substract(1.seconds)
+    }
+
+    public func endOf(unitName: String) -> Moment {
+        if let unit = TimeUnit(rawValue: unitName) {
+            return endOf(unit)
+        }
+        return self
+    }
+
     // Private methods
 
     func convert(value: Double, _ unit: TimeUnit) -> Double {

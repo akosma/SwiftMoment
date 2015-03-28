@@ -126,7 +126,6 @@ public func moment(params: [Int]
         }
         
         if let date = calendar.dateFromComponents(components) {
-            println(timeZone.abbreviation)
             return moment(date, timeZone: timeZone, locale: locale)
         }
     }

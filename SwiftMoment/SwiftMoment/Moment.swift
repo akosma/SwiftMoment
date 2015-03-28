@@ -376,14 +376,39 @@ public struct Moment: Comparable {
         return Duration(value: interval)
     }
 
-    public func add(value: Double, _ unit: TimeUnit) -> Moment {
+    public func add(value: Int, _ unit: TimeUnit) -> Moment {
+        let components = NSDateComponents()
+        switch unit {
+        case .Years:
+            components.year = value
+        case .Quarters:
+            components.month = 3 * value
+        case .Months:
+            components.month = value
+        case .Days:
+            components.day = value
+        case .Hours:
+            components.hour = value
+        case .Minutes:
+            components.minute = value
+        case .Seconds:
+            components.second = value
+        }
+        let cal = NSCalendar.currentCalendar()
+        if let newDate = cal.dateByAddingComponents(components, toDate: date, options: nil) {
+          return Moment(date: newDate)
+        }
+        return self
+    }
+
+    public func add(value: NSTimeInterval, _ unit: TimeUnit) -> Moment {
         let seconds = convert(value, unit)
         let interval = NSTimeInterval(seconds)
         let newDate = date.dateByAddingTimeInterval(interval)
         return Moment(date: newDate)
     }
 
-    public func add(value: Double, _ unitName: String) -> Moment {
+    public func add(value: Int, _ unitName: String) -> Moment {
         if let unit = TimeUnit(rawValue: unitName) {
             return add(value, unit)
         }
@@ -394,14 +419,15 @@ public struct Moment: Comparable {
         return add(duration.interval, .Seconds)
     }
 
-    public func substract(value: Double, _ unit: TimeUnit) -> Moment {
-        let seconds = convert(value, unit) * -1
-        let interval = NSTimeInterval(seconds)
-        let newDate = date.dateByAddingTimeInterval(interval)
-        return Moment(date: newDate)
+    public func substract(value: NSTimeInterval, _ unit: TimeUnit) -> Moment {
+        return add(-value, unit)
     }
 
-    public func substract(value: Double, _ unitName: String) -> Moment {
+    public func substract(value: Int, _ unit: TimeUnit) -> Moment {
+        return add(-value, unit)
+    }
+
+    public func substract(value: Int, _ unitName: String) -> Moment {
         if let unit = TimeUnit(rawValue: unitName) {
             return substract(value, unit)
         }

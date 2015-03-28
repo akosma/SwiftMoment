@@ -126,7 +126,6 @@ public func moment(params: [Int]
         }
         
         if let date = calendar.dateFromComponents(components) {
-            println(timeZone.abbreviation)
             return moment(date, timeZone: timeZone, locale: locale)
         }
     }
@@ -377,14 +376,39 @@ public struct Moment: Comparable {
         return Duration(value: interval)
     }
 
-    public func add(value: Double, _ unit: TimeUnit) -> Moment {
+    public func add(value: Int, _ unit: TimeUnit) -> Moment {
+        let components = NSDateComponents()
+        switch unit {
+        case .Years:
+            components.year = value
+        case .Quarters:
+            components.month = 3 * value
+        case .Months:
+            components.month = value
+        case .Days:
+            components.day = value
+        case .Hours:
+            components.hour = value
+        case .Minutes:
+            components.minute = value
+        case .Seconds:
+            components.second = value
+        }
+        let cal = NSCalendar.currentCalendar()
+        if let newDate = cal.dateByAddingComponents(components, toDate: date, options: nil) {
+          return Moment(date: newDate)
+        }
+        return self
+    }
+
+    public func add(value: NSTimeInterval, _ unit: TimeUnit) -> Moment {
         let seconds = convert(value, unit)
         let interval = NSTimeInterval(seconds)
         let newDate = date.dateByAddingTimeInterval(interval)
         return Moment(date: newDate)
     }
 
-    public func add(value: Double, _ unitName: String) -> Moment {
+    public func add(value: Int, _ unitName: String) -> Moment {
         if let unit = TimeUnit(rawValue: unitName) {
             return add(value, unit)
         }
@@ -395,14 +419,15 @@ public struct Moment: Comparable {
         return add(duration.interval, .Seconds)
     }
 
-    public func substract(value: Double, _ unit: TimeUnit) -> Moment {
-        let seconds = convert(value, unit) * -1
-        let interval = NSTimeInterval(seconds)
-        let newDate = date.dateByAddingTimeInterval(interval)
-        return Moment(date: newDate)
+    public func substract(value: NSTimeInterval, _ unit: TimeUnit) -> Moment {
+        return add(-value, unit)
     }
 
-    public func substract(value: Double, _ unitName: String) -> Moment {
+    public func substract(value: Int, _ unit: TimeUnit) -> Moment {
+        return add(-value, unit)
+    }
+
+    public func substract(value: Int, _ unitName: String) -> Moment {
         if let unit = TimeUnit(rawValue: unitName) {
             return substract(value, unit)
         }
@@ -418,6 +443,52 @@ public struct Moment: Comparable {
         // which is initialized a 300 seconds, or 5 minutes.
         let delta = intervalSince(moment)
         return abs(delta.interval) < precision
+    }
+
+    public func startOf(unit: TimeUnit) -> Moment {
+        let cal = NSCalendar.currentCalendar()
+        var newDate: NSDate?
+        let components = cal.components(.CalendarUnitYear | .CalendarUnitMonth
+            | .CalendarUnitDay | .CalendarUnitHour
+            | .CalendarUnitMinute | .CalendarUnitSecond, fromDate: date)
+        switch unit {
+        case .Seconds:
+            return self
+        case .Years:
+            components.month = 1
+            fallthrough
+        case .Quarters, .Months:
+            components.day = 1
+            fallthrough
+        case .Days:
+            components.hour = 0
+            fallthrough
+        case .Hours:
+            components.minute = 0
+            fallthrough
+        case .Minutes:
+            components.second = 0
+        }
+        newDate = cal.dateFromComponents(components)
+        return newDate == nil ? self : Moment(date: newDate!)
+    }
+
+    public func startOf(unitName: String) -> Moment {
+        if let unit = TimeUnit(rawValue: unitName) {
+            return startOf(unit)
+        }
+        return self
+    }
+
+    public func endOf(unit: TimeUnit) -> Moment {
+        return startOf(unit).add(1, unit).substract(1.seconds)
+    }
+
+    public func endOf(unitName: String) -> Moment {
+        if let unit = TimeUnit(rawValue: unitName) {
+            return endOf(unit)
+        }
+        return self
     }
 
     // Private methods

@@ -170,19 +170,34 @@ class MomentTests: XCTestCase {
         XCTAssertEqual(copy, today, "Equality is commutative")
     }
 
-    func testCanUseDifferentSyntaxesToAddAndSubstract() {
-        let now = moment()
-        let one = now.add(5.hours).substract(45.years)
-        let two = now.add(5, .Hours).substract(45, .Years)
-        let three = now.add(5, "H").substract(45, "y")
-        let four = now + 5.hours - 45.years
+    func testDifferentSyntaxesToAddAndSubstract() {
+        // month durations always add 30 days
+        var one = moment([2015, 7, 29, 0, 0])!
+        var exactly_thirty_days = moment([2015, 8, 28, 0, 0])!
+        XCTAssertEqual(exactly_thirty_days, one.add(1.months), "Duration adds exactly 30 days")
+        XCTAssertEqual(30.days, exactly_thirty_days - one, "exactly_thirty_days is a difference of 30 days")
+        XCTAssertEqual(one, exactly_thirty_days.substract(1.months), "Subtracting back to one is okay")
 
-        XCTAssertEqual(one, two, "All the different operations yield the same results")
-        XCTAssertEqual(one, three, "All the different operations yield the same results")
-        XCTAssertEqual(one, four, "All the different operations yield the same results")
-        XCTAssertEqual(two, three, "All the different operations yield the same results")
-        XCTAssertEqual(two, four, "All the different operations yield the same results")
-        XCTAssertEqual(three, four, "All the different operations yield the same results")
+        // adding by a TimeUnit.Month jumps 1 month (not necessarily 30 days)
+        var two = moment([2015, 7, 29, 0, 0])!
+        var exactly_one_month = moment([2015, 8, 29, 0, 0])!
+        XCTAssertEqual(exactly_one_month, two.add(1, .Months), "Time unit adds exactly one month")
+        XCTAssertEqual(31.days, exactly_one_month - two, "exactly_on_month is a difference of 31 days")
+        XCTAssertEqual(two, exactly_one_month.substract(1, .Months), "Subtracting back to two is okay")
+
+
+        // use Duration to always add/subtract 365 days for years,
+        // otherwise, use TimeUnit.Year
+        let all_years_365 = moment().add(5.years)
+        let consider_leap_years = moment().add(5, .Years)
+        XCTAssertNotEqual(all_years_365, consider_leap_years, "5.years is not equal to 5, .Years")
+
+        // Duration vs TimeUnit does not matter for days, hours, minutes, seconds
+        let today = moment()
+        let first = moment(today).add(50.days)
+        let second = moment(today).add(50, .Days)
+        XCTAssertEqual(first, second, "Syntax does not matter when adding days")
+        XCTAssertEqual(first.substract(40, .Days), second.substract(40.days), "Syntax does not matter when subtracting days")
     }
 
     func testAdditionAndSubstractionAreInverse() {
@@ -287,4 +302,85 @@ class MomentTests: XCTestCase {
         XCTAssertEqual(tag, "Sonntag", "Ach so!")
         XCTAssertEqual(monat, "März", "Ach so!")
     }
+
+    func testStartOfYear() {
+        var obj = moment([2015, 10, 19, 20, 45, 34])!.startOf("y")
+        XCTAssertEqual(obj.year, 2015, "The year should match")
+        XCTAssertEqual(obj.month, 1, "The month should match")
+        XCTAssertEqual(obj.day, 1, "The day should match")
+        XCTAssertEqual(obj.hour, 0, "The hour should match")
+        XCTAssertEqual(obj.minute, 0, "The minute should match")
+        XCTAssertEqual(obj.second, 0, "The second should match")
+    }
+
+    func testStartOfMonth() {
+        var obj = moment([2015, 10, 19, 20, 45, 34])!.startOf("M")
+        XCTAssertEqual(obj.year, 2015, "The year should match")
+        XCTAssertEqual(obj.month, 10, "The month should match")
+        XCTAssertEqual(obj.day, 1, "The day should match")
+        XCTAssertEqual(obj.hour, 0, "The hour should match")
+        XCTAssertEqual(obj.minute, 0, "The minute should match")
+        XCTAssertEqual(obj.second, 0, "The second should match")
+    }
+
+    func testStartOfDay() {
+        var obj = moment([2015, 10, 19, 20, 45, 34])!.startOf(.Days)
+        XCTAssertEqual(obj.year, 2015, "The year should match")
+        XCTAssertEqual(obj.month, 10, "The month should match")
+        XCTAssertEqual(obj.day, 19, "The day should match")
+        XCTAssertEqual(obj.hour, 0, "The hour should match")
+        XCTAssertEqual(obj.minute, 0, "The minute should match")
+        XCTAssertEqual(obj.second, 0, "The second should match")
+    }
+
+    func testStartOfHour() {
+        var obj = moment([2015, 10, 19, 20, 45, 34])!.startOf(.Hours)
+        XCTAssertEqual(obj.year, 2015, "The year should match")
+        XCTAssertEqual(obj.month, 10, "The month should match")
+        XCTAssertEqual(obj.day, 19, "The day should match")
+        XCTAssertEqual(obj.hour, 20, "The hour should match")
+        XCTAssertEqual(obj.minute, 0, "The minute should match")
+        XCTAssertEqual(obj.second, 0, "The second should match")
+    }
+
+    func testStartOfMinute() {
+        var obj = moment([2015, 10, 19, 20, 45, 34])!.startOf(.Minutes)
+        XCTAssertEqual(obj.year, 2015, "The year should match")
+        XCTAssertEqual(obj.month, 10, "The month should match")
+        XCTAssertEqual(obj.day, 19, "The day should match")
+        XCTAssertEqual(obj.hour, 20, "The day should match")
+        XCTAssertEqual(obj.minute, 45, "The minute should match")
+        XCTAssertEqual(obj.second, 0, "The second should match")
+    }
+
+    func testEndOfYear() {
+        var obj = moment([2015, 10, 19, 20, 45, 34])!.endOf(.Years)
+        XCTAssertEqual(obj.year, 2015, "The year should match")
+        XCTAssertEqual(obj.month, 12, "The month should match")
+        XCTAssertEqual(obj.day, 31, "The day should match")
+        XCTAssertEqual(obj.hour, 23, "The hour should match")
+        XCTAssertEqual(obj.minute, 59, "The minute should match")
+        XCTAssertEqual(obj.second, 59, "The second should match")
+    }
+
+    func testEndOfMonth() {
+        var obj = moment([2015, 01, 19, 20, 45, 34])!.endOf(.Months)
+        XCTAssertEqual(obj.year, 2015, "The year should match")
+        XCTAssertEqual(obj.month, 01, "The month should match")
+        XCTAssertEqual(obj.day, 31, "The day should match")
+        XCTAssertEqual(obj.hour, 23, "The hour should match")
+        XCTAssertEqual(obj.minute, 59, "The minute should match")
+        XCTAssertEqual(obj.second, 59, "The second should match")
+    }
+
+    func testEndOfDay() {
+        var obj = moment([2015, 10, 19, 20, 45, 34])!.endOf("d")
+        XCTAssertEqual(obj.year, 2015, "The year should match")
+        XCTAssertEqual(obj.month, 10, "The month should match")
+        XCTAssertEqual(obj.day, 19, "The day should match")
+        XCTAssertEqual(obj.hour, 23, "The day should match")
+        XCTAssertEqual(obj.minute, 59, "The minute should match")
+        XCTAssertEqual(obj.second, 59, "The second should match")
+    }
+
 }

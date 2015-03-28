@@ -29,8 +29,9 @@ class MomentTests: XCTestCase {
         let components = cal.components(.CalendarUnitYear | .CalendarUnitMonth
             | .CalendarUnitDay | .CalendarUnitHour
             | .CalendarUnitMinute | .CalendarUnitSecond
-            | .CalendarUnitWeekdayOrdinal | .CalendarUnitWeekOfYear
-            | .CalendarUnitQuarter, fromDate: date)
+            | .CalendarUnitWeekday | .CalendarUnitWeekdayOrdinal
+            | .CalendarUnitWeekOfYear | .CalendarUnitQuarter,
+            fromDate: date)
 
         XCTAssertEqual(today.year, components.year, "The moment contains the current year")
         XCTAssertEqual(today.month, components.month, "The moment contains the current month")
@@ -38,15 +39,16 @@ class MomentTests: XCTestCase {
         XCTAssertEqual(today.hour, components.hour, "The moment contains the current hour")
         XCTAssertEqual(today.minute, components.minute, "The moment contains the current minute")
         XCTAssertEqual(today.second, components.second, "The moment contains the current second")
+        XCTAssertEqual(today.weekday, components.weekday, "The moment contains the current weekday")
         XCTAssertEqual(today.weekOfYear, components.weekOfYear, "The moment contains the current week of year")
         XCTAssertEqual(today.weekdayOrdinal, components.weekdayOrdinal, "The moment contains the current number of the week day")
         XCTAssertEqual(today.quarter, components.quarter, "The moment contains the current quarter")
 
         let formatter = NSDateFormatter()
         formatter.dateFormat = "EEEE"
-        let weekDay = formatter.stringFromDate(date)
+        let weekdayName = formatter.stringFromDate(date)
 
-        XCTAssertEqual(today.weekDay, weekDay, "The moment contains the current week day")
+        XCTAssertEqual(today.weekdayName, weekdayName, "The moment contains the current week day")
     }
     
     func testCanCreateMomentsWithSixComponents() {
@@ -275,14 +277,14 @@ class MomentTests: XCTestCase {
     func testLocaleSupport() {
         let français = NSLocale(localeIdentifier: "fr_FR")
         let anniversaire = moment("1973-09-04 12:30:00", locale: français)!
-        let jour = anniversaire.weekDay
+        let jour = anniversaire.weekdayName
         let mois = anniversaire.monthName
         XCTAssertEqual(jour, "mardi", "Eh ben bravo!")
         XCTAssertEqual(mois, "septembre", "Eh ben bravo!")
 
         let deutsch = NSLocale(localeIdentifier: "de_DE")
         let geburtstag = moment("1973-03-04 12:30:00", locale: deutsch)!
-        let tag = geburtstag.weekDay
+        let tag = geburtstag.weekdayName
         let monat = geburtstag.monthName
         XCTAssertEqual(tag, "Sonntag", "Ach so!")
         XCTAssertEqual(monat, "März", "Ach so!")

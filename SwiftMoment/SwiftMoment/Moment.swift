@@ -298,7 +298,15 @@ public struct Moment: Comparable {
         return components.second
     }
 
-    public var weekDay: String {
+    public var weekday: Int {
+        let cal = NSCalendar.currentCalendar()
+        cal.timeZone = timeZone
+        cal.locale = locale
+        let components = cal.components(.CalendarUnitWeekday, fromDate: date)
+        return components.weekday
+    }
+
+    public var weekdayName: String {
         let formatter = NSDateFormatter()
         formatter.locale = locale
         formatter.dateFormat = "EEEE"

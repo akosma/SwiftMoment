@@ -9,6 +9,7 @@ requests, bug submissions, etc:
 - [Chris Sloey](https://github.com/chrissloey)
 - [Jake Johnson](https://github.com/johnsonjake)
 - [Laurin Brandner](https://github.com/larcus94)
+- [Nate Armstrong](https://github.com/n8armstrong)
 - [PG Herveou](https://github.com/pgherveou)
 - [Ryan Maxwell](https://github.com/ryanmaxwell)
 - [Tomáš Slíž](https://github.com/tomassliz)

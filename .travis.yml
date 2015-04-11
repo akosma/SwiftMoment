@@ -1,5 +1,0 @@
-language: swift
-script:
-    - xcodebuild -workspace SwiftMoment.xcworkspace -scheme SwiftMoment -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
-    - xcodebuild test -workspace SwiftMoment.xcworkspace -scheme SwiftMoment -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
-

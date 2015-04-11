@@ -1,5 +1,7 @@
 # SwiftMoment
 
+[![Build Status](https://travis-ci.org/akosma/SwiftMoment.svg?branch=master)](https://travis-ci.org/akosma/SwiftMoment)
+
 This framework is inspired by [Moment.js](http://momentjs.com). Its
 objectives are the following:
 

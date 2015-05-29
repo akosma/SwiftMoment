@@ -8,6 +8,7 @@ requests, bug submissions, etc:
 - [Anders Klenke](https://github.com/andersklenke)
 - [Chris Sloey](https://github.com/chrissloey)
 - [Jake Johnson](https://github.com/johnsonjake)
+- [karupanenura](https://github.com/karupanerura)
 - [Laurin Brandner](https://github.com/larcus94)
 - [Nate Armstrong](https://github.com/n8armstrong)
 - [PG Herveou](https://github.com/pgherveou)

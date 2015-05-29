@@ -385,4 +385,12 @@ class MomentTests: XCTestCase {
         XCTAssertEqual(obj.second, 59, "The second should match")
     }
 
+    func testEpoch() {
+        let gmt = moment("2015-05-29T01:40:17", timeZone: NSTimeZone(name: "GMT")!)!
+        let jst = moment("2015-05-29T10:40:17", timeZone: NSTimeZone(name: "Asia/Tokyo")!)!
+        XCTAssertEqual(moment(0.0).epoch(), 0.0, "The zero epoch should match")
+        XCTAssertEqual(moment(1432863617.0).epoch(), 1432863617.0, "The non zero epoch should match")
+        XCTAssertEqual(jst.epoch(), gmt.epoch(), "The JST epoch should match GMT epoch")
+    }
+
 }

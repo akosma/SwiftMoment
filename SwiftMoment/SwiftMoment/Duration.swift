@@ -64,10 +64,10 @@ public struct Duration: Equatable {
     }
 }
 
-extension Duration: Printable {
+extension Duration: CustomStringConvertible {
     public var description: String {
         let formatter = NSDateComponentsFormatter()
-        formatter.allowedUnits = .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitWeekOfMonth | .CalendarUnitDay | .CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitSecond
+        formatter.allowedUnits = [.Year, .Month, .WeekOfMonth, .Day, .Hour, .Minute, .Second]
 
         let referenceDate = NSDate(timeIntervalSinceReferenceDate: 0)
         let intervalDate = NSDate(timeInterval: self.interval, sinceDate: referenceDate)

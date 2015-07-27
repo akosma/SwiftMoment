@@ -53,6 +53,6 @@ class DurationTests: XCTestCase {
     func testDurationDescription() {
         let duration = 4.months + 53.days + 6.hours + 4.minutes
         let str = duration.description
-        XCTAssertEqual(str, "5m 3w 1d 7:04:00", "The description of a duration provides quite a bit of info")
+        XCTAssertEqual(str, "5m 3w 1d 6:04:00", "The description of a duration provides quite a bit of info")
     }
 }

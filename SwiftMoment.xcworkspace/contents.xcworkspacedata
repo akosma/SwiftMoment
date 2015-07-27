@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:SwiftMomentTest.playground">
-   </FileRef>
-   <FileRef
       location = "group:SwiftMoment/SwiftMoment.xcodeproj">
    </FileRef>
 </Workspace>

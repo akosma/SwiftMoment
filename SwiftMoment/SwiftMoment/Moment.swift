@@ -499,6 +499,10 @@ public struct Moment: Comparable {
         return self
     }
 
+    public func epoch() -> NSTimeInterval {
+        return date.timeIntervalSince1970
+    }
+
     // Private methods
 
     func convert(value: Double, _ unit: TimeUnit) -> Double {

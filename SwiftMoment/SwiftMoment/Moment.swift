@@ -50,6 +50,7 @@ public func moment(stringDate: String
     let formats = [
         isoFormat,
         "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'",
+        "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'SSS'Z'",
         "yyyy-MM-dd",
         "h:mm:ss A",
         "h:mm A",

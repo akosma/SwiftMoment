@@ -9,12 +9,15 @@ objectives are the following:
 - Streamlining getting date components (day, month, etc.) from dates and
   time intervals.
 
-Important: This framework targets iOS 8.3, Xcode 6.3 and Swift 1.2 and
-later exclusively.
+Important: This framework targets iOS 9, Xcode 7 and Swift 2.0 and later
+exclusively.
 
 ## Installation
 
-SwiftMoment is compatible with [Carthage](http://github.com/Carthage/Carthage) and [CocoaPods](http://cocoapods.org/). With CocoaPods, just add this to your Podfile:
+SwiftMoment is compatible with
+[Carthage](http://github.com/Carthage/Carthage) and
+[CocoaPods](http://cocoapods.org/). With CocoaPods, just add this to
+your Podfile:
 
 ```ruby
 pod 'SwiftMoment'
@@ -81,15 +84,14 @@ be substracted from one another (which yields a `Duration`) and
 
 `Moments` and `Durations` are made as immutable as possible.
 
-## Documentation
-
-The documentation of the code is extracted using
-[Jazzy](https://github.com/realm/jazzy).
-
 ## Tests
 
 Swift Moment includes a suite of tests showing how to use the different
 functions of the framework.
+
+## Playground
+
+A playground is included in the project to learn how to use the library.
 
 ## Contributors
 

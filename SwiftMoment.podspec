@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "SwiftMoment"
-  s.version      = "v0.2"
+  s.version      = "0.2"
   s.summary      = "A time and calendar manipulation library for iOS 9+ written in Swift"
 
   s.description  = <<-DESC
@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
   s.social_media_url   = "http://twitter.com/akosma"
 
   s.platform     = :ios, "8.0"
-  s.source       = { :git => "https://github.com/akosma/SwiftMoment.git", :tag => "v0.1.2" }
+  s.source       = { :git => "https://github.com/akosma/SwiftMoment.git", :tag => "v0.2" }
   s.source_files  = "SwiftMoment/SwiftMoment"
   s.requires_arc = true
 end

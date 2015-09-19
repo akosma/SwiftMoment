@@ -356,8 +356,6 @@ public struct Moment: Comparable {
             return quarter
         case .Years:
             return year
-        default:
-            return nil
         }
     }
 
@@ -521,8 +519,6 @@ public struct Moment: Comparable {
             return value * 7776000 // 3 months
         case .Years:
             return value * 31536000 // 365 days
-        default:
-            return 0
         }
     }
 }

@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
 
   s.name         = "SwiftMoment"
-  s.version      = "0.1.2"
-  s.summary      = "A time and calendar manipulation library for iOS 8+ written in Swift"
+  s.version      = "0.2"
+  s.summary      = "A time and calendar manipulation library for iOS 9+ written in Swift"
 
   s.description  = <<-DESC
                     This framework is inspired by Moment.js. Its objectives are the following:
@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
                     * Simplifying the formatting of date information into strings.
                     * Streamlining getting date components (day, month, etc.) from dates and time intervals.
 
-                    This framework targets iOS 8, Xcode 6.1 and Swift 1.2 and later exclusively.
+                    This framework targets iOS 9, Xcode 7 and Swift 2.0 and later exclusively.
                    DESC
 
   s.homepage     = "http://akosma.github.io/SwiftMoment/"

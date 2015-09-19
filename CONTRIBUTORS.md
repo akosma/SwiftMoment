@@ -9,6 +9,7 @@ requests, bug submissions, etc:
 - [Chris Sloey](https://github.com/chrissloey)
 - [Jake Johnson](https://github.com/johnsonjake)
 - [karupanenura](https://github.com/karupanerura)
+- [Ken Goldfarb](https://github.com/kengoldfarb)
 - [Laurin Brandner](https://github.com/larcus94)
 - [Nate Armstrong](https://github.com/n8armstrong)
 - [PG Herveou](https://github.com/pgherveou)

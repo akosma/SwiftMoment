@@ -26,11 +26,7 @@ class MomentTests: XCTestCase {
         let date = NSDate()
         let cal = NSCalendar.currentCalendar()
         cal.timeZone = NSTimeZone.defaultTimeZone()
-        let components = cal.components(.CalendarUnitYear | .CalendarUnitMonth
-            | .CalendarUnitDay | .CalendarUnitHour
-            | .CalendarUnitMinute | .CalendarUnitSecond
-            | .CalendarUnitWeekday | .CalendarUnitWeekdayOrdinal
-            | .CalendarUnitWeekOfYear | .CalendarUnitQuarter,
+        let components = cal.components([.Year, .Month, .Day, .Hour, .Minute, .Second, .Weekday, .WeekdayOrdinal, .WeekOfYear, .Quarter],
             fromDate: date)
 
         XCTAssertEqual(today.year, components.year, "The moment contains the current year")
@@ -174,15 +170,15 @@ class MomentTests: XCTestCase {
 
     func testDifferentSyntaxesToAddAndSubstract() {
         // month durations always add 30 days
-        var one = moment([2015, 7, 29, 0, 0])!
-        var exactly_thirty_days = moment([2015, 8, 28, 0, 0])!
+        let one = moment([2015, 7, 29, 0, 0])!
+        let exactly_thirty_days = moment([2015, 8, 28, 0, 0])!
         XCTAssertEqual(exactly_thirty_days, one.add(1.months), "Duration adds exactly 30 days")
         XCTAssertEqual(30.days, exactly_thirty_days - one, "exactly_thirty_days is a difference of 30 days")
         XCTAssertEqual(one, exactly_thirty_days.substract(1.months), "Subtracting back to one is okay")
 
         // adding by a TimeUnit.Month jumps 1 month (not necessarily 30 days)
-        var two = moment([2015, 7, 29, 0, 0])!
-        var exactly_one_month = moment([2015, 8, 29, 0, 0])!
+        let two = moment([2015, 7, 29, 0, 0])!
+        let exactly_one_month = moment([2015, 8, 29, 0, 0])!
         XCTAssertEqual(exactly_one_month, two.add(1, .Months), "Time unit adds exactly one month")
         XCTAssertEqual(31.days, exactly_one_month - two, "exactly_on_month is a difference of 31 days")
         XCTAssertEqual(two, exactly_one_month.substract(1, .Months), "Subtracting back to two is okay")
@@ -211,10 +207,8 @@ class MomentTests: XCTestCase {
 
     func testFindMaximumMoment() {
         let today = moment()
-        let epoch = moment(0)
-        let copy = moment(epoch)
         let format = "EE yyyy/dd--MMMM HH:mm ZZZZ"
-        let birthday = moment("Tue 1973/4--September 12:30 GMT-03:00", format)!
+        let birthday = moment("Tue 1973/4--September 12:30 GMT-03:00", dateFormat: format)!
         let ninetyFive = moment("1995-12-25")!
         let max = maximum(today, ninetyFive, birthday)!
         XCTAssertEqual(max, today, "Today is the maximum")
@@ -223,9 +217,8 @@ class MomentTests: XCTestCase {
     func testFindMinimumMoment() {
         let today = moment()
         let epoch = moment(0)
-        let copy = moment(epoch)
         let format = "EE yyyy/dd--MMMM HH:mm ZZZZ"
-        let birthday = moment("Tue 1973/4--September 12:30 GMT-03:00", format)!
+        let birthday = moment("Tue 1973/4--September 12:30 GMT-03:00", dateFormat: format)!
         let ninetyFive = moment("1995-12-25")!
         let min = minimum(today, epoch, ninetyFive, birthday)!
         XCTAssertEqual(min, epoch, "The minimum is the epoch")
@@ -259,7 +252,7 @@ class MomentTests: XCTestCase {
     func testFormatDates() {
         let timeZone = NSTimeZone(abbreviation: "GMT+01:00")!
         let birthday = moment("1973-09-04", timeZone: timeZone)!
-        let str = birthday.format(dateFormat: "EE QQQQ yyyy/dd/MMMM ZZZZ")
+        let str = birthday.format("EE QQQQ yyyy/dd/MMMM ZZZZ")
         XCTAssertEqual(str, "Tue 3rd quarter 1973/04/September GMT+01:00", "Complicated string")
 
         let standard = birthday.format()
@@ -279,13 +272,13 @@ class MomentTests: XCTestCase {
     func testTimeZoneSupport() {
         let zone = NSTimeZone(abbreviation: "PST")!
         let birthday = moment("1973-09-04 12:30:00", timeZone: zone)!
-        let str = birthday.format(dateFormat: "EE QQQQ yyyy/dd/MMMM HH:mm ZZZZ")
+        let str = birthday.format("EE QQQQ yyyy/dd/MMMM HH:mm ZZZZ")
         XCTAssertEqual(str, "Tue 3rd quarter 1973/04/September 12:30 GMT-07:00", "A date in San Francisco")
     }
     
     func testUTCMomentSupport() {
         let greenwich = utc()
-        let str = greenwich.format(dateFormat: "ZZZZ")
+        let str = greenwich.format("ZZZZ")
         XCTAssertEqual(str, "GMT", "The timezone is UTC")
     }
     

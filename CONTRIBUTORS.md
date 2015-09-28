@@ -12,6 +12,7 @@ requests, bug submissions, etc:
 - [karupanenura](https://github.com/karupanerura)
 - [Ken Goldfarb](https://github.com/kengoldfarb)
 - [Laurin Brandner](https://github.com/larcus94)
+- [Masaya Yashiro](https://github.com/yashims)
 - [Nate Armstrong](https://github.com/n8armstrong)
 - [PG Herveou](https://github.com/pgherveou)
 - [Ryan Maxwell](https://github.com/ryanmaxwell)

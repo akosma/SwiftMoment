@@ -93,6 +93,10 @@ functions of the framework.
 
 A playground is included in the project to learn how to use the library.
 
+## Differences with [Moment.js](http://momentjs.com)
+
+- Format strings `DD` and `dd` do not yield the same results.
+
 ## Contributors
 
 Lots of people are actively helping in the development of this library;

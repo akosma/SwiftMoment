@@ -103,7 +103,7 @@ other information is ignored.</p>
 
 <p>Both <code>Moment</code> and <code>Duration</code> comply with the <code>Comparable</code> protocols, and
 include all the required operators. In addition, <code>Moment</code> instances can
-be substracted from one another (which yields a <code>Duration</code>) and
+be subtracted from one another (which yields a <code>Duration</code>) and
 <code>Duration</code> instances can be added to <code>Moments</code> to create new moments.</p>
 
 <p><code>Moments</code> and <code>Durations</code> are made as immutable as possible.</p>
@@ -118,6 +118,14 @@ functions of the framework.</p>
 <a id="playground" class="anchor" href="#playground" aria-hidden="true"><span class="octicon octicon-link"></span></a>Playground</h2>
 
 <p>A playground is included in the project to learn how to use the library.</p>
+
+<h2>
+<a id="differences-with-momentjs" class="anchor" href="#differences-with-momentjs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Differences with <a href="http://momentjs.com">Moment.js</a>
+</h2>
+
+<ul>
+<li>Format strings <code>DD</code> and <code>dd</code> do not yield the same results.</li>
+</ul>
 
 <h2>
 <a id="contributors" class="anchor" href="#contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributors</h2>

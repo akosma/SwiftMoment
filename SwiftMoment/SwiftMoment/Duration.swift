@@ -48,14 +48,14 @@ public struct Duration: Equatable {
     }
 
     public func ago() -> Moment {
-        return moment().substract(self)
+        return moment().subtract(self)
     }
 
     public func add(duration: Duration) -> Duration {
         return Duration(value: self.interval + duration.interval)
     }
 
-    public func substract(duration: Duration) -> Duration {
+    public func subtract(duration: Duration) -> Duration {
         return Duration(value: self.interval - duration.interval)
     }
 

@@ -47,11 +47,11 @@ public func + (lhs: Duration, rhs: Moment) -> Moment {
 }
 
 public func - (lhs: Moment, rhs: Duration) -> Moment {
-    return lhs.substract(rhs)
+    return lhs.subtract(rhs)
 }
 
 public func - (lhs: Duration, rhs: Moment) -> Moment {
-    return rhs.substract(lhs)
+    return rhs.subtract(lhs)
 }
 
 public func == (lhs: Duration, rhs: Duration) -> Bool {
@@ -63,5 +63,5 @@ public func + (lhs: Duration, rhs: Duration) -> Duration {
 }
 
 public func - (lhs: Duration, rhs: Duration) -> Duration {
-    return lhs.substract(rhs)
+    return lhs.subtract(rhs)
 }

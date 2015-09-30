@@ -427,23 +427,23 @@ public struct Moment: Comparable {
         return add(duration.interval, .Seconds)
     }
 
-    public func substract(value: NSTimeInterval, _ unit: TimeUnit) -> Moment {
+    public func subtract(value: NSTimeInterval, _ unit: TimeUnit) -> Moment {
         return add(-value, unit)
     }
 
-    public func substract(value: Int, _ unit: TimeUnit) -> Moment {
+    public func subtract(value: Int, _ unit: TimeUnit) -> Moment {
         return add(-value, unit)
     }
 
-    public func substract(value: Int, _ unitName: String) -> Moment {
+    public func subtract(value: Int, _ unitName: String) -> Moment {
         if let unit = TimeUnit(rawValue: unitName) {
-            return substract(value, unit)
+            return subtract(value, unit)
         }
         return self
     }
 
-    public func substract(duration: Duration) -> Moment {
-        return substract(duration.interval, .Seconds)
+    public func subtract(duration: Duration) -> Moment {
+        return subtract(duration.interval, .Seconds)
     }
 
     public func isCloseTo(moment: Moment, precision: NSTimeInterval = 300) -> Bool {
@@ -487,7 +487,7 @@ public struct Moment: Comparable {
     }
 
     public func endOf(unit: TimeUnit) -> Moment {
-        return startOf(unit).add(1, unit).substract(1.seconds)
+        return startOf(unit).add(1, unit).subtract(1.seconds)
     }
 
     public func endOf(unitName: String) -> Moment {

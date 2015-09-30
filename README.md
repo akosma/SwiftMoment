@@ -79,7 +79,7 @@ The two most important components of this library are the `Moment` and
 
 Both `Moment` and `Duration` comply with the `Comparable` protocols, and
 include all the required operators. In addition, `Moment` instances can
-be substracted from one another (which yields a `Duration`) and
+be subtracted from one another (which yields a `Duration`) and
 `Duration` instances can be added to `Moments` to create new moments.
 
 `Moments` and `Durations` are made as immutable as possible.

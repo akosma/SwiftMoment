@@ -45,9 +45,9 @@ class DurationTests: XCTestCase {
     func testCanAddAndSubstractDurations() {
         let birthday = moment("09/04/1973")!
         let duration = Duration(value: 107567580)
-        let substracted = birthday - (3.years + 5.months - 7.minutes)
-        let substracted2 = birthday - duration
-        XCTAssertEqual(substracted, substracted2, "Both operations yield the same result")
+        let subtracted = birthday - (3.years + 5.months - 7.minutes)
+        let subtracted2 = birthday - duration
+        XCTAssertEqual(subtracted, subtracted2, "Both operations yield the same result")
     }
     
     func testDurationDescription() {

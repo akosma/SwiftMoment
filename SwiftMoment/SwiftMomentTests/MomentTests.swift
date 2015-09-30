@@ -174,14 +174,14 @@ class MomentTests: XCTestCase {
         let exactly_thirty_days = moment([2015, 8, 28, 0, 0])!
         XCTAssertEqual(exactly_thirty_days, one.add(1.months), "Duration adds exactly 30 days")
         XCTAssertEqual(30.days, exactly_thirty_days - one, "exactly_thirty_days is a difference of 30 days")
-        XCTAssertEqual(one, exactly_thirty_days.substract(1.months), "Subtracting back to one is okay")
+        XCTAssertEqual(one, exactly_thirty_days.subtract(1.months), "Subtracting back to one is okay")
 
         // adding by a TimeUnit.Month jumps 1 month (not necessarily 30 days)
         let two = moment([2015, 7, 29, 0, 0])!
         let exactly_one_month = moment([2015, 8, 29, 0, 0])!
         XCTAssertEqual(exactly_one_month, two.add(1, .Months), "Time unit adds exactly one month")
         XCTAssertEqual(31.days, exactly_one_month - two, "exactly_on_month is a difference of 31 days")
-        XCTAssertEqual(two, exactly_one_month.substract(1, .Months), "Subtracting back to two is okay")
+        XCTAssertEqual(two, exactly_one_month.subtract(1, .Months), "Subtracting back to two is okay")
 
 
         // use Duration to always add/subtract 365 days for years,
@@ -195,14 +195,14 @@ class MomentTests: XCTestCase {
         let first = moment(today).add(50.days)
         let second = moment(today).add(50, .Days)
         XCTAssertEqual(first, second, "Syntax does not matter when adding days")
-        XCTAssertEqual(first.substract(40, .Days), second.substract(40.days), "Syntax does not matter when subtracting days")
+        XCTAssertEqual(first.subtract(40, .Days), second.subtract(40.days), "Syntax does not matter when subtracting days")
     }
 
     func testAdditionAndSubstractionAreInverse() {
         let today = moment()
         let soon = today + 1.hours
         let now = soon - 1.hours
-        XCTAssertEqual(now, today, "Addition and substraction are inverse operations")
+        XCTAssertEqual(now, today, "Addition and subtraction are inverse operations")
     }
 
     func testFindMaximumMoment() {

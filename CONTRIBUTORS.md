@@ -4,6 +4,7 @@ Contributors
 This is the list of people that have helped making SwiftMoment with pull
 requests, bug submissions, etc:
 
+- [박현재](https://github.com/hyeonjae)
 - [Aaron Brager](https://github.com/getaaron)
 - [Adriano Goncalves](https://github.com/amg1976)
 - [Anders Klenke](https://github.com/andersklenke)

@@ -110,7 +110,7 @@ class MomentTests: XCTestCase {
     func testCanCreateWeirdDateFromComponents() {
         let timeZone = NSTimeZone(abbreviation: "GMT+01")!
         let obj = moment([-2015445, 76, -46, 876, 234565, -999], timeZone: timeZone)!
-        XCTAssertEqual(obj.format(), "2015440-02-13 12:57:81 GMT+01:00", "The date is weird...!")
+        XCTAssertEqual(obj.format(), "2015440-02-13 12:57:11 GMT+01:00", "The date is weird...!")
     }
     
     func testEmptyArrayOfComponentsYieldsNilMoment() {

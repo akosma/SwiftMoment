@@ -366,7 +366,7 @@ public struct Moment: Comparable {
         return nil
     }
 
-    public func format(dateFormat: String = "yyyy-MM-dd HH:mm:SS ZZZZ") -> String {
+    public func format(dateFormat: String = "yyyy-MM-dd HH:mm:ss ZZZZ") -> String {
         let formatter = NSDateFormatter()
         formatter.dateFormat = dateFormat
         formatter.timeZone = timeZone

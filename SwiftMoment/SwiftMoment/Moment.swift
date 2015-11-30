@@ -40,8 +40,10 @@ parsed by the function, the Optional wraps a nil value.
 public func moment(stringDate: String
     , timeZone: NSTimeZone = NSTimeZone.defaultTimeZone()
     , locale: NSLocale = NSLocale.autoupdatingCurrentLocale()) -> Moment? {
+
     let formatter = NSDateFormatter()
     formatter.timeZone = timeZone
+    formatter.locale = locale
     let isoFormat = "yyyy-MM-ddTHH:mm:ssZ"
 
     // The contents of the array below are borrowed
@@ -86,6 +88,7 @@ public func moment(stringDate: String
     let formatter = NSDateFormatter()
     formatter.dateFormat = dateFormat
     formatter.timeZone = timeZone
+    formatter.locale = locale
     if let date = formatter.dateFromString(stringDate) {
         return Moment(date: date, timeZone: timeZone, locale: locale)
     }

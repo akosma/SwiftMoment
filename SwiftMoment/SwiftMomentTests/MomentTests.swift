@@ -259,6 +259,20 @@ class MomentTests: XCTestCase {
         XCTAssertEqual(standard, "1973-09-04 00:00:00 GMT+01:00", "Standard output")
     }
 
+    func testFormatDatesWithLocale() {
+        let ad = NSLocale(localeIdentifier: "en_US_POSIX")
+        let defaultFormatAd = moment("2015-09-04", locale: ad)!
+        let giveFormatAd    = moment("2015", dateFormat: "yyyy", locale: ad)!
+        XCTAssertEqual(defaultFormatAd.year, 2015, "AD2015")
+        XCTAssertEqual(giveFormatAd.year,    2015, "AD2015")
+
+        let japanese = NSLocale(localeIdentifier: "ja_JP@calendar=japanese")
+        let defaultFormatJapanese = moment("0027-09-04", locale: japanese)!
+        let giveFormatJapanese    = moment("0027", dateFormat: "yyyy", locale: japanese)!
+        XCTAssertEqual(defaultFormatJapanese.year, 2015, "AD2015 == 27 Heisei period")
+        XCTAssertEqual(giveFormatJapanese.year,    2015, "AD2015 == 27 Heisei period")
+    }
+
     func testFutureMoment() {
         let duration = future() - moment()
         XCTAssertGreaterThan(duration.years, 1000, "The future is really far away")

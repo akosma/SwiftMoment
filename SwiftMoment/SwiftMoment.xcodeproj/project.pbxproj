@@ -16,6 +16,7 @@
 		3AB0FB891A6D160F006449DB /* Moment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0FB881A6D160F006449DB /* Moment.swift */; };
 		3AB0FB8B1A6D1629006449DB /* TimeUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0FB8A1A6D1629006449DB /* TimeUnit.swift */; };
 		3AB0FB8D1A6D1644006449DB /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0FB8C1A6D1644006449DB /* Duration.swift */; };
+		53A6860A1C03058000106198 /* MomentFromNow.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 53A686091C03058000106198 /* MomentFromNow.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		3AB0FB881A6D160F006449DB /* Moment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Moment.swift; sourceTree = "<group>"; };
 		3AB0FB8A1A6D1629006449DB /* TimeUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUnit.swift; sourceTree = "<group>"; };
 		3AB0FB8C1A6D1644006449DB /* Duration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Duration.swift; sourceTree = "<group>"; };
+		53A686091C03058000106198 /* MomentFromNow.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MomentFromNow.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 		3AB0FB6E1A6D15F8006449DB /* SwiftMoment */ = {
 			isa = PBXGroup;
 			children = (
+				53A686091C03058000106198 /* MomentFromNow.bundle */,
 				3AB0FB711A6D15F8006449DB /* SwiftMoment.h */,
 				3AB0FB6F1A6D15F8006449DB /* Supporting Files */,
 				3AB0FB881A6D160F006449DB /* Moment.swift */,
@@ -214,6 +217,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53A6860A1C03058000106198 /* MomentFromNow.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

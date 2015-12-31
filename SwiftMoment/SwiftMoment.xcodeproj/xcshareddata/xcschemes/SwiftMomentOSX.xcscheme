@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E2F6253D1C357BC00057AE1D"
-               BuildableName = "SwiftMomentOSX.framework"
+               BuildableName = "SwiftMoment.framework"
                BlueprintName = "SwiftMomentOSX"
                ReferencedContainer = "container:SwiftMoment.xcodeproj">
             </BuildableReference>
@@ -28,7 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E2532BEB1C358B4E00392471"
+               BuildableName = "SwiftMomentOSXTests.xctest"
+               BlueprintName = "SwiftMomentOSXTests"
+               ReferencedContainer = "container:SwiftMoment.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "E2F6253D1C357BC00057AE1D"
+            BuildableName = "SwiftMoment.framework"
+            BlueprintName = "SwiftMomentOSX"
+            ReferencedContainer = "container:SwiftMoment.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -46,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E2F6253D1C357BC00057AE1D"
-            BuildableName = "SwiftMomentOSX.framework"
+            BuildableName = "SwiftMoment.framework"
             BlueprintName = "SwiftMomentOSX"
             ReferencedContainer = "container:SwiftMoment.xcodeproj">
          </BuildableReference>
@@ -64,7 +83,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E2F6253D1C357BC00057AE1D"
-            BuildableName = "SwiftMomentOSX.framework"
+            BuildableName = "SwiftMoment.framework"
             BlueprintName = "SwiftMomentOSX"
             ReferencedContainer = "container:SwiftMoment.xcodeproj">
          </BuildableReference>

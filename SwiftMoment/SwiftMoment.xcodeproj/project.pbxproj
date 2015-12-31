@@ -16,6 +16,9 @@
 		3AB0FB891A6D160F006449DB /* Moment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0FB881A6D160F006449DB /* Moment.swift */; };
 		3AB0FB8B1A6D1629006449DB /* TimeUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0FB8A1A6D1629006449DB /* TimeUnit.swift */; };
 		3AB0FB8D1A6D1644006449DB /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0FB8C1A6D1644006449DB /* Duration.swift */; };
+		E2532BF11C358B4E00392471 /* SwiftMoment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2F6254B1C357BC00057AE1D /* SwiftMoment.framework */; };
+		E2532BF71C358BC000392471 /* MomentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0FB7E1A6D15F8006449DB /* MomentTests.swift */; };
+		E2532BF81C358BC000392471 /* DurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6429C71A6D345500B10310 /* DurationTests.swift */; };
 		E2F6253F1C357BC00057AE1D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6429C51A6D33FA00B10310 /* Extensions.swift */; };
 		E2F625401C357BC00057AE1D /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0FB8C1A6D1644006449DB /* Duration.swift */; };
 		E2F625411C357BC00057AE1D /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6429C31A6D2C8700B10310 /* Operators.swift */; };
@@ -31,6 +34,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 3AB0FB6B1A6D15F8006449DB;
 			remoteInfo = SwiftMoment;
+		};
+		E2532BF21C358B4E00392471 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3AB0FB631A6D15F8006449DB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E2F6253D1C357BC00057AE1D;
+			remoteInfo = SwiftMomentOSX;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -48,6 +58,8 @@
 		3AB0FB881A6D160F006449DB /* Moment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Moment.swift; sourceTree = "<group>"; };
 		3AB0FB8A1A6D1629006449DB /* TimeUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUnit.swift; sourceTree = "<group>"; };
 		3AB0FB8C1A6D1644006449DB /* Duration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Duration.swift; sourceTree = "<group>"; };
+		E2532BEC1C358B4E00392471 /* SwiftMomentOSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftMomentOSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2532BF91C358BF000392471 /* InfoOSX.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = InfoOSX.plist; sourceTree = "<group>"; };
 		E2F6254B1C357BC00057AE1D /* SwiftMoment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftMoment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2F6254D1C357CEB0057AE1D /* InfoOSX.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = InfoOSX.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -65,6 +77,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AB0FB781A6D15F8006449DB /* SwiftMoment.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2532BE91C358B4E00392471 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2532BF11C358B4E00392471 /* SwiftMoment.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +114,7 @@
 				3AB0FB6C1A6D15F8006449DB /* SwiftMoment.framework */,
 				3AB0FB771A6D15F8006449DB /* SwiftMomentTests.xctest */,
 				E2F6254B1C357BC00057AE1D /* SwiftMoment.framework */,
+				E2532BEC1C358B4E00392471 /* SwiftMomentOSXTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -134,6 +155,7 @@
 		3AB0FB7C1A6D15F8006449DB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E2532BF91C358BF000392471 /* InfoOSX.plist */,
 				3AB0FB7D1A6D15F8006449DB /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -197,6 +219,24 @@
 			productReference = 3AB0FB771A6D15F8006449DB /* SwiftMomentTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		E2532BEB1C358B4E00392471 /* SwiftMomentOSXTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E2532BF61C358B4E00392471 /* Build configuration list for PBXNativeTarget "SwiftMomentOSXTests" */;
+			buildPhases = (
+				E2532BE81C358B4E00392471 /* Sources */,
+				E2532BE91C358B4E00392471 /* Frameworks */,
+				E2532BEA1C358B4E00392471 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E2532BF31C358B4E00392471 /* PBXTargetDependency */,
+			);
+			name = SwiftMomentOSXTests;
+			productName = SwiftMomentOSXTests;
+			productReference = E2532BEC1C358B4E00392471 /* SwiftMomentOSXTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		E2F6253D1C357BC00057AE1D /* SwiftMomentOSX */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E2F625481C357BC00057AE1D /* Build configuration list for PBXNativeTarget "SwiftMomentOSX" */;
@@ -222,7 +262,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftMigration = 0700;
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Adrian Kosmaczewski";
 				TargetAttributes = {
@@ -231,6 +271,9 @@
 					};
 					3AB0FB761A6D15F8006449DB = {
 						CreatedOnToolsVersion = 6.1.1;
+					};
+					E2532BEB1C358B4E00392471 = {
+						CreatedOnToolsVersion = 7.2;
 					};
 				};
 			};
@@ -249,6 +292,7 @@
 				3AB0FB6B1A6D15F8006449DB /* SwiftMoment */,
 				3AB0FB761A6D15F8006449DB /* SwiftMomentTests */,
 				E2F6253D1C357BC00057AE1D /* SwiftMomentOSX */,
+				E2532BEB1C358B4E00392471 /* SwiftMomentOSXTests */,
 			);
 		};
 /* End PBXProject section */
@@ -262,6 +306,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		3AB0FB751A6D15F8006449DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2532BEA1C358B4E00392471 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -299,6 +350,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E2532BE81C358B4E00392471 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2532BF71C358BC000392471 /* MomentTests.swift in Sources */,
+				E2532BF81C358BC000392471 /* DurationTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E2F6253E1C357BC00057AE1D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -318,6 +378,11 @@
 			isa = PBXTargetDependency;
 			target = 3AB0FB6B1A6D15F8006449DB /* SwiftMoment */;
 			targetProxy = 3AB0FB791A6D15F8006449DB /* PBXContainerItemProxy */;
+		};
+		E2532BF31C358B4E00392471 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E2F6253D1C357BC00057AE1D /* SwiftMomentOSX */;
+			targetProxy = E2532BF21C358B4E00392471 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -474,6 +539,40 @@
 			};
 			name = Release;
 		};
+		E2532BF41C358B4E00392471 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = SwiftMomentTests/InfoOSX.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = com.akosma.SwiftMomentOSXTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		E2532BF51C358B4E00392471 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = SwiftMomentTests/InfoOSX.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = com.akosma.SwiftMomentOSXTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		E2F625491C357BC00057AE1D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -544,6 +643,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		E2532BF61C358B4E00392471 /* Build configuration list for PBXNativeTarget "SwiftMomentOSXTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E2532BF41C358B4E00392471 /* Debug */,
+				E2532BF51C358B4E00392471 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		E2F625481C357BC00057AE1D /* Build configuration list for PBXNativeTarget "SwiftMomentOSX" */ = {
 			isa = XCConfigurationList;

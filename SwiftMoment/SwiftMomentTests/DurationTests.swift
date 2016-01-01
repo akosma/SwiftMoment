@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Adrian Kosmaczewski. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import XCTest
 import SwiftMoment
 

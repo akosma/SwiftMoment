@@ -9,8 +9,8 @@ objectives are the following:
 - Streamlining getting date components (day, month, etc.) from dates and
   time intervals.
 
-Important: This framework targets iOS 9, Xcode 7 and Swift 2.0 and later
-exclusively.
+Important: This framework targets iOS 9, OS X 10.10, Xcode 7 and Swift 
+2.0 and later exclusively.
 
 ## Installation
 

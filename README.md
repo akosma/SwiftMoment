@@ -23,6 +23,13 @@ your Podfile:
 pod 'SwiftMoment'
 ```
 
+## OS X Notes
+
+- Drag the created .framework file into the Xcode Project, be sure to tick 'Copy Files to Directory'
+- In the containing applications target, add a new 'Copy File Build Phase'
+- Set the 'Destination' to 'Frameworks'
+- Drag in the created .framework
+
 ## Examples
 
 To use this library, just `import SwiftMoment` in your application.

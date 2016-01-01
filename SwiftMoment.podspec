@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "SwiftMoment"
-  s.version      = "0.2.1"
+  s.version      = "0.3"
   s.summary      = "A time and calendar manipulation library for iOS 9+ written in Swift"
 
   s.description  = <<-DESC
@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
                     * Simplifying the formatting of date information into strings.
                     * Streamlining getting date components (day, month, etc.) from dates and time intervals.
 
-                    This framework targets iOS 9, Xcode 7 and Swift 2.0 and later exclusively.
+                    This framework targets iOS 9, OS X 10.10, Xcode 7 and Swift 2.0 and later exclusively.
                    DESC
 
   s.homepage     = "http://akosma.github.io/SwiftMoment/"
@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
   s.social_media_url   = "http://twitter.com/akosma"
 
   s.platform     = :ios, "8.0"
-  s.source       = { :git => "https://github.com/akosma/SwiftMoment.git", :tag => "v0.2" }
+  s.source       = { :git => "https://github.com/akosma/SwiftMoment.git", :tag => "v0.3" }
   s.source_files  = "SwiftMoment/SwiftMoment"
   s.requires_arc = true
 end

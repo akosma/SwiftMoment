@@ -5,6 +5,7 @@ This is the list of people that have helped making SwiftMoment with pull
 requests, bug submissions, etc:
 
 - [박현재](https://github.com/hyeonjae)
+- [akihiro0228](https://github.com/akihiro0228)
 - [Aaron Brager](https://github.com/getaaron)
 - [Adriano Goncalves](https://github.com/amg1976)
 - [Anders Klenke](https://github.com/andersklenke)
@@ -13,9 +14,12 @@ requests, bug submissions, etc:
 - [karupanenura](https://github.com/karupanerura)
 - [Ken Goldfarb](https://github.com/kengoldfarb)
 - [Laurin Brandner](https://github.com/larcus94)
+- [Madhava Jay](https://github.com/madhavajay)
 - [Masaya Yashiro](https://github.com/yashims)
+- [Mihyaeru](https://github.com/mihyaeru21)
 - [Nate Armstrong](https://github.com/n8armstrong)
 - [PG Herveou](https://github.com/pgherveou)
+- [Pine Mizune](https://github.com/pine613)
 - [Ryan Maxwell](https://github.com/ryanmaxwell)
 - [Tomáš Slíž](https://github.com/tomassliz)
 

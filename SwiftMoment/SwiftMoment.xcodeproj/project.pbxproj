@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16DF56A51C3A7D7900ED9292 /* ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DF56A41C3A7D7900ED9292 /* ExtensionsTests.swift */; };
 		3A6429C41A6D2C8700B10310 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6429C31A6D2C8700B10310 /* Operators.swift */; };
 		3A6429C61A6D33FA00B10310 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6429C51A6D33FA00B10310 /* Extensions.swift */; };
 		3A6429C81A6D345500B10310 /* DurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6429C71A6D345500B10310 /* DurationTests.swift */; };
@@ -45,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		16DF56A41C3A7D7900ED9292 /* ExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionsTests.swift; sourceTree = "<group>"; };
 		3A6429C31A6D2C8700B10310 /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
 		3A6429C51A6D33FA00B10310 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3A6429C71A6D345500B10310 /* DurationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationTests.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 			children = (
 				3AB0FB7E1A6D15F8006449DB /* MomentTests.swift */,
 				3A6429C71A6D345500B10310 /* DurationTests.swift */,
+				16DF56A41C3A7D7900ED9292 /* ExtensionsTests.swift */,
 				3AB0FB7C1A6D15F8006449DB /* Supporting Files */,
 			);
 			path = SwiftMomentTests;
@@ -346,6 +349,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AB0FB7F1A6D15F8006449DB /* MomentTests.swift in Sources */,
+				16DF56A51C3A7D7900ED9292 /* ExtensionsTests.swift in Sources */,
 				3A6429C81A6D345500B10310 /* DurationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

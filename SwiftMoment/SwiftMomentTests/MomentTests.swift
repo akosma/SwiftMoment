@@ -401,4 +401,22 @@ class MomentTests: XCTestCase {
         XCTAssertEqual(jst.epoch(), gmt.epoch(), "The JST epoch should match GMT epoch")
     }
 
+	func testPublicDate() {
+		let date = NSDate()
+		let now = moment(date)
+		XCTAssertEqual(now.date, date, "The moment's date should be publicly readable")
+		XCTAssertEqual(now.timeZone, NSTimeZone.defaultTimeZone(), "The moment's timeZone should be publicly readable and default to the current timezone")
+	}
+	
+	func testPublicTimeZone() {
+		let date = NSDate()
+		let now = moment(date)
+		XCTAssertEqual(now.timeZone, NSTimeZone.defaultTimeZone(), "The moment's timeZone should be publicly readable and default to the current timezone")
+	}
+
+	func testPublicLocale() {
+		let date = NSDate()
+		let now = moment(date)
+		XCTAssertEqual(now.locale, NSLocale.currentLocale(), "The moment's locale should be publicly readable and default to the current locale")
+	}
 }

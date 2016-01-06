@@ -10,6 +10,7 @@ requests, bug submissions, etc:
 - [Adriano Goncalves](https://github.com/amg1976)
 - [Anders Klenke](https://github.com/andersklenke)
 - [Chris Sloey](https://github.com/chrissloey)
+- [Florent Pillet](https://github.com/fpillet)
 - [Jake Johnson](https://github.com/johnsonjake)
 - [karupanenura](https://github.com/karupanerura)
 - [Ken Goldfarb](https://github.com/kengoldfarb)

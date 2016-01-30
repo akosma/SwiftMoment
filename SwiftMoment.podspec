@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "SwiftMoment"
-  s.version      = "0.3"
+  s.version      = "0.4"
   s.summary      = "A time and calendar manipulation library for iOS 9+ written in Swift"
 
   s.description  = <<-DESC

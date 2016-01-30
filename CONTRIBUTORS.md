@@ -9,6 +9,7 @@ requests, bug submissions, etc:
 - [Aaron Brager](https://github.com/getaaron)
 - [Adriano Goncalves](https://github.com/amg1976)
 - [Anders Klenke](https://github.com/andersklenke)
+- [Andrew Barba](https://github.com/AndrewBarba)
 - [Chris Sloey](https://github.com/chrissloey)
 - [Florent Pillet](https://github.com/fpillet)
 - [Jake Johnson](https://github.com/johnsonjake)

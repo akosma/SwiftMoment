@@ -10,6 +10,7 @@ public enum TimeUnit : String {
     case Years = "y"
     case Quarters = "Q"
     case Months = "M"
+    case Weeks = "w"
     case Days = "d"
     case Hours = "H"
     case Minutes = "m"

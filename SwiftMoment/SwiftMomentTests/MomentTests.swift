@@ -333,6 +333,16 @@ class MomentTests: XCTestCase {
         XCTAssertEqual(obj.second, 0, "The second should match")
     }
 
+    func testStartOfWeek() {
+        let obj = moment([2016, 01, 02, 20, 45, 34])!.startOf(.Weeks)
+        XCTAssertEqual(obj.year, 2015, "The year should match")
+        XCTAssertEqual(obj.month, 12, "The month should match")
+        XCTAssertEqual(obj.day, 28, "The day should match")
+        XCTAssertEqual(obj.hour, 0, "The hour should match")
+        XCTAssertEqual(obj.minute, 0, "The minute should match")
+        XCTAssertEqual(obj.second, 0, "The second should match")
+    }
+
     func testStartOfDay() {
         let obj = moment([2015, 10, 19, 20, 45, 34])!.startOf(.Days)
         XCTAssertEqual(obj.year, 2015, "The year should match")
@@ -378,6 +388,16 @@ class MomentTests: XCTestCase {
         XCTAssertEqual(obj.year, 2015, "The year should match")
         XCTAssertEqual(obj.month, 01, "The month should match")
         XCTAssertEqual(obj.day, 31, "The day should match")
+        XCTAssertEqual(obj.hour, 23, "The hour should match")
+        XCTAssertEqual(obj.minute, 59, "The minute should match")
+        XCTAssertEqual(obj.second, 59, "The second should match")
+    }
+
+    func testEndOfWeek() {
+        let obj = moment([2015, 12, 29, 20, 45, 34])!.endOf(.Weeks)
+        XCTAssertEqual(obj.year, 2016, "The year should match")
+        XCTAssertEqual(obj.month, 01, "The month should match")
+        XCTAssertEqual(obj.day, 03, "The day should match")
         XCTAssertEqual(obj.hour, 23, "The hour should match")
         XCTAssertEqual(obj.minute, 59, "The minute should match")
         XCTAssertEqual(obj.second, 59, "The second should match")

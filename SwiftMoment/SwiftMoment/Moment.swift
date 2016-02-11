@@ -353,6 +353,8 @@ public struct Moment: Comparable {
             return hour
         case .Days:
             return day
+        case .Weeks:
+            return weekOfYear
         case .Months:
             return month
         case .Quarters:
@@ -395,6 +397,8 @@ public struct Moment: Comparable {
             components.month = 3 * value
         case .Months:
             components.month = value
+        case .Weeks:
+            components.day = 7 * value
         case .Days:
             components.day = value
         case .Hours:
@@ -459,15 +463,19 @@ public struct Moment: Comparable {
     public func startOf(unit: TimeUnit) -> Moment {
         let cal = NSCalendar.currentCalendar()
         var newDate: NSDate?
-        let components = cal.components([.Year, .Month, .Day, .Hour, .Minute, .Second], fromDate: date)
+        let components = cal.components([.Year, .Month, .Weekday, .Day, .Hour, .Minute, .Second], fromDate: date)
         switch unit {
         case .Seconds:
             return self
         case .Years:
             components.month = 1
             fallthrough
-        case .Quarters, .Months:
-            components.day = 1
+        case .Quarters, .Months, .Weeks:
+            if unit == .Weeks {
+                components.day -= (components.weekday - 2)
+            } else {
+                components.day = 1
+            }
             fallthrough
         case .Days:
             components.hour = 0
@@ -516,6 +524,8 @@ public struct Moment: Comparable {
             return value * 3600 // 60 minutes
         case .Days:
             return value * 86400 // 24 hours
+        case .Weeks:
+            return value * 605800 // 7 days
         case .Months:
             return value * 2592000 // 30 days
         case .Quarters:

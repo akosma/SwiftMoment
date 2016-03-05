@@ -24,6 +24,7 @@ requests, bug submissions, etc:
 - [PG Herveou](https://github.com/pgherveou)
 - [Pine Mizune](https://github.com/pine613)
 - [Ryan Maxwell](https://github.com/ryanmaxwell)
+- [Ryo Yamada](https://github.com/Liooo)
 - [Tomáš Slíž](https://github.com/tomassliz)
 
 Special Thanks

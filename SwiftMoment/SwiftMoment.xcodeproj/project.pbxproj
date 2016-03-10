@@ -589,7 +589,7 @@
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = SwiftMoment;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -610,7 +610,7 @@
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = SwiftMoment;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -655,6 +655,7 @@
 				E2532BF51C358B4E00392471 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E2F625481C357BC00057AE1D /* Build configuration list for PBXNativeTarget "SwiftMomentOSX" */ = {
 			isa = XCConfigurationList;

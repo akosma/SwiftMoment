@@ -12,6 +12,7 @@ requests, bug submissions, etc:
 - [Andrew Barba](https://github.com/AndrewBarba)
 - [Chris Sloey](https://github.com/chrissloey)
 - [Daniel Cestari](https://github.com/dcestari)
+- [David Harris](https://github.com/toadzky)
 - [Florent Pillet](https://github.com/fpillet)
 - [Jake Johnson](https://github.com/johnsonjake)
 - [karupanenura](https://github.com/karupanerura)

@@ -127,6 +127,7 @@
 		3AB0FB6E1A6D15F8006449DB /* SwiftMoment */ = {
 			isa = PBXGroup;
 			children = (
+				53CB62721C919E8000BA62E9 /* MomentFromNow.bundle */,
 				3AB0FB711A6D15F8006449DB /* SwiftMoment.h */,
 				3AB0FB6F1A6D15F8006449DB /* Supporting Files */,
 				3AB0FB881A6D160F006449DB /* Moment.swift */,
@@ -141,7 +142,6 @@
 		3AB0FB6F1A6D15F8006449DB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				53CB62721C919E8000BA62E9 /* MomentFromNow.bundle */,
 				E2F6254D1C357CEB0057AE1D /* InfoOSX.plist */,
 				3AB0FB701A6D15F8006449DB /* Info.plist */,
 			);

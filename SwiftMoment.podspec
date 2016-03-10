@@ -23,6 +23,6 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "8.0"
   s.source       = { :git => "https://github.com/akosma/SwiftMoment.git", :tag => "v0.4" }
   s.source_files  = "SwiftMoment/SwiftMoment"
+  s.resource     = "SwiftMoment/SwiftMoment/MomentFromNow.bundle"
   s.requires_arc = true
 end
-

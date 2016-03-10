@@ -17,6 +17,8 @@
 		3AB0FB891A6D160F006449DB /* Moment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0FB881A6D160F006449DB /* Moment.swift */; };
 		3AB0FB8B1A6D1629006449DB /* TimeUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0FB8A1A6D1629006449DB /* TimeUnit.swift */; };
 		3AB0FB8D1A6D1644006449DB /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0FB8C1A6D1644006449DB /* Duration.swift */; };
+		53CB62731C919E8000BA62E9 /* MomentFromNow.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 53CB62721C919E8000BA62E9 /* MomentFromNow.bundle */; };
+		53CB62741C919E8000BA62E9 /* MomentFromNow.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 53CB62721C919E8000BA62E9 /* MomentFromNow.bundle */; };
 		E2532BF11C358B4E00392471 /* SwiftMoment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2F6254B1C357BC00057AE1D /* SwiftMoment.framework */; };
 		E2532BF71C358BC000392471 /* MomentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0FB7E1A6D15F8006449DB /* MomentTests.swift */; };
 		E2532BF81C358BC000392471 /* DurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6429C71A6D345500B10310 /* DurationTests.swift */; };
@@ -60,6 +62,7 @@
 		3AB0FB881A6D160F006449DB /* Moment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Moment.swift; sourceTree = "<group>"; };
 		3AB0FB8A1A6D1629006449DB /* TimeUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUnit.swift; sourceTree = "<group>"; };
 		3AB0FB8C1A6D1644006449DB /* Duration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Duration.swift; sourceTree = "<group>"; };
+		53CB62721C919E8000BA62E9 /* MomentFromNow.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MomentFromNow.bundle; sourceTree = "<group>"; };
 		E2532BEC1C358B4E00392471 /* SwiftMomentOSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftMomentOSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2532BF91C358BF000392471 /* InfoOSX.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = InfoOSX.plist; sourceTree = "<group>"; };
 		E2F6254B1C357BC00057AE1D /* SwiftMoment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftMoment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +141,7 @@
 		3AB0FB6F1A6D15F8006449DB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				53CB62721C919E8000BA62E9 /* MomentFromNow.bundle */,
 				E2F6254D1C357CEB0057AE1D /* InfoOSX.plist */,
 				3AB0FB701A6D15F8006449DB /* Info.plist */,
 			);
@@ -305,6 +309,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53CB62731C919E8000BA62E9 /* MomentFromNow.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +331,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53CB62741C919E8000BA62E9 /* MomentFromNow.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -655,6 +661,7 @@
 				E2532BF51C358B4E00392471 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E2F625481C357BC00057AE1D /* Build configuration list for PBXNativeTarget "SwiftMomentOSX" */ = {
 			isa = XCConfigurationList;

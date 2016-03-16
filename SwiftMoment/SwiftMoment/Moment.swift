@@ -519,7 +519,7 @@ public struct Moment: Comparable {
         return date.timeIntervalSince1970
     }
 
-    public func fromNow(locale: String? = nil) -> String {
+    public func fromNow() -> String {
         let timeDiffDuration = moment(NSDate()).intervalSince(self)
         let deltaSeconds = Int(timeDiffDuration.seconds)
         let deltaMinutes = Int(timeDiffDuration.minutes)
@@ -528,52 +528,52 @@ public struct Moment: Comparable {
         
         if deltaSeconds < 5 {
             // Just Now
-            return NSDateTimeAgoLocalizedStrings("Just now", locale: locale)
+            return NSDateTimeAgoLocalizedStrings("Just now")
         } else if deltaSeconds < minuteInSeconds {
             // Seconds Ago
-            return stringFromFormat("%%d %@seconds ago", withValue: deltaSeconds, locale: locale)
+            return stringFromFormat("%%d %@seconds ago", withValue: deltaSeconds)
         } else if deltaSeconds < 120 {
             // A Minute Ago
-            return NSDateTimeAgoLocalizedStrings("A minute ago", locale: locale)
+            return NSDateTimeAgoLocalizedStrings("A minute ago")
         } else if deltaMinutes < minuteInSeconds {
             // Minutes Ago
-            return stringFromFormat("%%d %@minutes ago", withValue: deltaMinutes, locale: locale)
+            return stringFromFormat("%%d %@minutes ago", withValue: deltaMinutes)
         } else if deltaMinutes < 120 {
             // An Hour Ago
-            return NSDateTimeAgoLocalizedStrings("An hour ago", locale: locale)
+            return NSDateTimeAgoLocalizedStrings("An hour ago")
         } else if deltaMinutes < dayInSeconds {
             // Hours Ago
             value = Int(floor(Float(deltaMinutes / minuteInSeconds)))
-            return stringFromFormat("%%d %@hours ago", withValue: value, locale: locale)
+            return stringFromFormat("%%d %@hours ago", withValue: value)
         } else if deltaMinutes < (dayInSeconds * 2) {
             // Yesterday
-            return NSDateTimeAgoLocalizedStrings("Yesterday", locale: locale)
+            return NSDateTimeAgoLocalizedStrings("Yesterday")
         } else if deltaMinutes < weekInSeconds {
             // Days Ago
             value = Int(floor(Float(deltaMinutes / dayInSeconds)))
-            return stringFromFormat("%%d %@days ago", withValue: value, locale: locale)
+            return stringFromFormat("%%d %@days ago", withValue: value)
         } else if deltaMinutes < (weekInSeconds * 2) {
             // Last Week
-            return NSDateTimeAgoLocalizedStrings("Last week", locale: locale)
+            return NSDateTimeAgoLocalizedStrings("Last week")
         } else if deltaMinutes < monthInSeconds {
             // Weeks Ago
             value = Int(floor(Float(deltaMinutes / weekInSeconds)))
-            return stringFromFormat("%%d %@weeks ago", withValue: value, locale: locale)
+            return stringFromFormat("%%d %@weeks ago", withValue: value)
         } else if deltaMinutes < (dayInSeconds * 61) {
             // Last month
-            return NSDateTimeAgoLocalizedStrings("Last month", locale: locale)
+            return NSDateTimeAgoLocalizedStrings("Last month")
         } else if deltaMinutes < yearInSeconds {
             // Month Ago
             value = Int(floor(Float(deltaMinutes / monthInSeconds)))
-            return stringFromFormat("%%d %@months ago", withValue: value, locale: locale)
+            return stringFromFormat("%%d %@months ago", withValue: value)
         } else if deltaMinutes < (dayInSeconds * (yearInSeconds * 2)) {
             // Last Year
-            return NSDateTimeAgoLocalizedStrings("Last Year", locale: locale)
+            return NSDateTimeAgoLocalizedStrings("Last Year")
         }
         
         // Years Ago
         value = Int(floor(Float(deltaMinutes / yearInSeconds)))
-        return stringFromFormat("%%d %@years ago", withValue: value, locale: locale)
+        return stringFromFormat("%%d %@years ago", withValue: value)
     }
 
     // Private methods
@@ -599,35 +599,31 @@ public struct Moment: Comparable {
         }
     }
     
-    private func stringFromFormat(format: String, withValue value: Int, locale: String? = nil) -> String {
+    private func stringFromFormat(format: String, withValue value: Int) -> String {
         
         let localeFormat = String(format: format, getLocaleFormatUnderscoresWithValue(Double(value)))
         
-        return String(format: NSDateTimeAgoLocalizedStrings(localeFormat, locale: locale), value)
+        return String(format: NSDateTimeAgoLocalizedStrings(localeFormat), value)
     }
     
     
-    private func NSDateTimeAgoLocalizedStrings(key: String, locale: String? = nil) -> String {
+    private func NSDateTimeAgoLocalizedStrings(key: String) -> String {
         guard let resourcePath = NSBundle.mainBundle().resourcePath else {
-            return ""
+            return "error1"
         }
         
         let path = NSURL(fileURLWithPath:resourcePath).URLByAppendingPathComponent("MomentFromNow.bundle")
         guard let bundle = NSBundle(URL: path) else {
-            return ""
+            return "error2"
         }
 
-        if let locale = locale {
-            guard let languagePath = bundle.pathForResource(locale, ofType: "lproj"), languageBundle = NSBundle(path: languagePath) else {
-                return ""
-            }
-            
-            
-            return languageBundle.localizedStringForKey(key, value: "", table: "NSDateTimeAgo")
-        } else {
-            return NSLocalizedString(key, tableName: "NSDateTimeAgo", bundle: bundle, comment: "")
+        let localeIdentifer = self.locale.localeIdentifier
+        guard let languagePath = bundle.pathForResource(localeIdentifer, ofType: "lproj"), languageBundle = NSBundle(path: languagePath) else {
+            return "error3 \(localeIdentifer)"
         }
         
+        
+        return languageBundle.localizedStringForKey(key, value: "", table: "NSDateTimeAgo")
     }
     
     private func getLocaleFormatUnderscoresWithValue(value: Double) -> String {

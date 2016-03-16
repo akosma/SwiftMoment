@@ -622,7 +622,8 @@ public struct Moment: Comparable {
                 return ""
             }
             
-            return languageBundle.localizedStringForKey(key, value: "", table: nil)
+            
+            return languageBundle.localizedStringForKey(key, value: "", table: "NSDateTimeAgo")
         } else {
             return NSLocalizedString(key, tableName: "NSDateTimeAgo", bundle: bundle, comment: "")
         }

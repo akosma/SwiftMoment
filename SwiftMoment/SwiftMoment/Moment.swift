@@ -234,10 +234,10 @@ public func minimum(moments: Moment...) -> Moment? {
 */
 public struct Moment: Comparable {
     private let minuteInSeconds = 60
-    private let dayInSeconds = 1440
-    private let weekInSeconds = 10080
-    private let monthInSeconds = 312480
-    private let yearInSeconds = 114055200
+    private let dayInSeconds = 86400
+    private let weekInSeconds = 604800
+    private let monthInSeconds = 2592000
+    private let yearInSeconds = 31536000
 
     public let date: NSDate
     public let timeZone: NSTimeZone
@@ -609,17 +609,17 @@ public struct Moment: Comparable {
     
     private func NSDateTimeAgoLocalizedStrings(key: String) -> String {
         guard let resourcePath = NSBundle.mainBundle().resourcePath else {
-            return "error1"
+            return ""
         }
         
         let path = NSURL(fileURLWithPath:resourcePath).URLByAppendingPathComponent("MomentFromNow.bundle")
         guard let bundle = NSBundle(URL: path) else {
-            return "error2"
+            return ""
         }
 
         let localeIdentifer = self.locale.localeIdentifier
         guard let languagePath = bundle.pathForResource(localeIdentifer, ofType: "lproj"), languageBundle = NSBundle(path: languagePath) else {
-            return "error3 \(localeIdentifer)"
+            return ""
         }
         
         

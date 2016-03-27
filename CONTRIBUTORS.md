@@ -21,6 +21,7 @@ requests, bug submissions, etc:
 - [Madhava Jay](https://github.com/madhavajay)
 - [Masaya Yashiro](https://github.com/yashims)
 - [Mihyaeru](https://github.com/mihyaeru21)
+- [Neil](https://github.com/AsFarA)
 - [Nate Armstrong](https://github.com/n8armstrong)
 - [PG Herveou](https://github.com/pgherveou)
 - [Pine Mizune](https://github.com/pine613)

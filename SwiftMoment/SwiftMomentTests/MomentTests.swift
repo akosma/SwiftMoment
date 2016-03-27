@@ -439,4 +439,13 @@ class MomentTests: XCTestCase {
 		let now = moment(date)
 		XCTAssertEqual(now.locale, NSLocale.currentLocale(), "The moment's locale should be publicly readable and default to the current locale")
 	}
+    
+    func testAddingInt() {
+        // This is to verify that issue #48 is corrected
+        // https://github.com/akosma/SwiftMoment/issues/48
+        let problem = moment("2016-07-01")!
+        let result = problem.add(1, .Months)
+        let expected = moment("2016-08-01")!
+        XCTAssertEqual(result, expected)
+    }
 }

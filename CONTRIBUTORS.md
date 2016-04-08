@@ -34,9 +34,11 @@ Special Thanks
 
 A big shoutout to [Dave Verwer](https://twitter.com/daveverwer) who
 kindly featured SwiftMoment in [iOS Dev Weekly issue
-186](http://iosdevweekly.com/issues/186) and to [Natasha
+186](http://iosdevweekly.com/issues/186), to [Natasha
 Murashev](http://natashatherobot.com) who also featured SwiftMoment in
-her newsletter. Please make sure to subscribe to both!
+her newsletter, and to [Swift Sandbox](http://swiftsandbox.io) who 
+featured SwiftMoment in [issue 36](http://swiftsandbox.io/issues/36?#start)!
+Please make sure to subscribe to all of these newsletters!
 
 Also thanks to [Matteo Crippa](https://github.com/matteocrippa) and
 [dkhamsing](https://github.com/dkhamsing) for featuring SwiftMoment in

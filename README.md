@@ -1,6 +1,6 @@
 # SwiftMoment
 
-[![Build Status](https://travis-ci.org/madhavajay/SwiftMoment.svg?branch=master)](https://travis-ci.org/madhavajay/SwiftMoment)
+[![Build Status](https://travis-ci.org/akosma/SwiftMoment.svg?branch=master)](https://travis-ci.org/akosma/SwiftMoment)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/SwiftMoment.svg)](https://img.shields.io/cocoapods/v/SwiftMoment)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Platform](https://img.shields.io/cocoapods/p/SwiftMoment.svg?style=flat)](http://cocoadocs.org/docsets/SwiftMoment)

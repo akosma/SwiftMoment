@@ -10,6 +10,7 @@ requests, bug submissions, etc:
 - [Adriano Goncalves](https://github.com/amg1976)
 - [Anders Klenke](https://github.com/andersklenke)
 - [Andrew Barba](https://github.com/AndrewBarba)
+- [Andrew Branch](https://github.com/andrewbranch)
 - [Chris Sloey](https://github.com/chrissloey)
 - [Daniel Cestari](https://github.com/dcestari)
 - [David Harris](https://github.com/toadzky)

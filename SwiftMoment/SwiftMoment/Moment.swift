@@ -44,7 +44,7 @@ public func moment(stringDate: String
     let formatter = NSDateFormatter()
     formatter.timeZone = timeZone
     formatter.locale = locale
-    let isoFormat = "yyyy-MM-ddTHH:mm:ssZ"
+    let isoFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
 
     // The contents of the array below are borrowed
     // and adapted from the source code of Moment.js

@@ -14,8 +14,7 @@ objectives are the following:
 - Streamlining getting date components (day, month, etc.) from dates and
   time intervals.
 
-Important: This framework targets iOS 9, OS X 10.10, Xcode 7 and Swift 
-2.0 and later exclusively.
+Important: This supports targets iOS 8+, macOS 10.10+, tvOS 9+, Xcode 7 and Swift 2.2.
 
 ## Installation
 
@@ -28,7 +27,7 @@ your Podfile:
 pod 'SwiftMoment'
 ```
 
-## OS X Notes
+## macOS Notes
 
 - Drag the created .framework file into the Xcode Project, be sure to tick 'Copy Files to Directory'
 - In the containing applications target, add a new 'Copy File Build Phase'

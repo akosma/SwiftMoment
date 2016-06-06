@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3AB0FB6B1A6D15F8006449DB"
+               BlueprintIdentifier = "285B8B491D057575008A6AD6"
                BuildableName = "SwiftMoment.framework"
-               BlueprintName = "SwiftMoment iOS"
+               BlueprintName = "SwiftMoment tvOS"
                ReferencedContainer = "container:SwiftMoment.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,9 +28,9 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3AB0FB761A6D15F8006449DB"
-               BuildableName = "SwiftMoment iOS Tests.xctest"
-               BlueprintName = "SwiftMoment iOS Tests"
+               BlueprintIdentifier = "285B8B521D057575008A6AD6"
+               BuildableName = "SwiftMoment tvOS Tests.xctest"
+               BlueprintName = "SwiftMoment tvOS Tests"
                ReferencedContainer = "container:SwiftMoment.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,9 +47,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3AB0FB761A6D15F8006449DB"
-               BuildableName = "SwiftMoment iOS Tests.xctest"
-               BlueprintName = "SwiftMoment iOS Tests"
+               BlueprintIdentifier = "285B8B521D057575008A6AD6"
+               BuildableName = "SwiftMoment tvOS Tests.xctest"
+               BlueprintName = "SwiftMoment tvOS Tests"
                ReferencedContainer = "container:SwiftMoment.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -57,9 +57,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3AB0FB6B1A6D15F8006449DB"
+            BlueprintIdentifier = "285B8B491D057575008A6AD6"
             BuildableName = "SwiftMoment.framework"
-            BlueprintName = "SwiftMoment iOS"
+            BlueprintName = "SwiftMoment tvOS"
             ReferencedContainer = "container:SwiftMoment.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -79,9 +79,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3AB0FB6B1A6D15F8006449DB"
+            BlueprintIdentifier = "285B8B491D057575008A6AD6"
             BuildableName = "SwiftMoment.framework"
-            BlueprintName = "SwiftMoment iOS"
+            BlueprintName = "SwiftMoment tvOS"
             ReferencedContainer = "container:SwiftMoment.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -97,9 +97,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3AB0FB6B1A6D15F8006449DB"
+            BlueprintIdentifier = "285B8B491D057575008A6AD6"
             BuildableName = "SwiftMoment.framework"
-            BlueprintName = "SwiftMoment iOS"
+            BlueprintName = "SwiftMoment tvOS"
             ReferencedContainer = "container:SwiftMoment.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

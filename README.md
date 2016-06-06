@@ -28,7 +28,7 @@ your Podfile:
 pod 'SwiftMoment'
 ```
 
-## macOS Notes
+## Mac OS X Notes
 
 - Drag the created .framework file into the Xcode Project, be sure to tick 'Copy Files to Directory'
 - In the containing applications target, add a new 'Copy File Build Phase'

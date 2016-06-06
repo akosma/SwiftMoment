@@ -61,9 +61,4 @@ class ExtensionsTests: XCTestCase {
         XCTAssertEqual(2.years, Duration(value: 31536000 * 2), "The Duration instance by two years is returned")
         XCTAssertEqual(3.years, Duration(value: 31536000 * 3), "The Duration instance by three years is returned")
     }
-    
-    func testFromNow() {
-        let mom = moment(NSDate(), timeZone: NSTimeZone.defaultTimeZone(), locale: NSLocale(localeIdentifier: "he"))
-        print("mom \(mom.fromNow())")
-    }
 }

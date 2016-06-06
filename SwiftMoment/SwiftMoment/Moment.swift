@@ -234,6 +234,7 @@ public func minimum(moments: Moment...) -> Moment? {
 */
 public struct Moment: Comparable {
     private let minuteInSeconds = 60
+    private let hourInSeconds = 3600
     private let dayInSeconds = 86400
     private let weekInSeconds = 604800
     private let monthInSeconds = 2592000
@@ -523,57 +524,68 @@ public struct Moment: Comparable {
     public func fromNow() -> String {
         let timeDiffDuration = moment(NSDate()).intervalSince(self)
         let deltaSeconds = Int(timeDiffDuration.seconds)
-        let deltaMinutes = Int(timeDiffDuration.minutes)
         
         var value: Int!
         
         if deltaSeconds < 5 {
             // Just Now
             return NSDateTimeAgoLocalizedStrings("Just now")
+
         } else if deltaSeconds < minuteInSeconds {
             // Seconds Ago
             return stringFromFormat("%%d %@seconds ago", withValue: deltaSeconds)
-        } else if deltaSeconds < 120 {
+
+        } else if deltaSeconds < (minuteInSeconds * 2) {
             // A Minute Ago
             return NSDateTimeAgoLocalizedStrings("A minute ago")
-        } else if deltaMinutes < minuteInSeconds {
+
+        } else if deltaSeconds < hourInSeconds {
             // Minutes Ago
-            return stringFromFormat("%%d %@minutes ago", withValue: deltaMinutes)
-        } else if deltaMinutes < 120 {
+            return stringFromFormat("%%d %@minutes ago", withValue: deltaSeconds / minuteInSeconds)
+
+        } else if deltaSeconds < (hourInSeconds * 2) {
             // An Hour Ago
             return NSDateTimeAgoLocalizedStrings("An hour ago")
-        } else if deltaMinutes < dayInSeconds {
+
+        } else if deltaSeconds < dayInSeconds {
             // Hours Ago
-            value = Int(floor(Float(deltaMinutes / minuteInSeconds)))
+            value = Int(floor(Float(deltaSeconds / hourInSeconds)))
             return stringFromFormat("%%d %@hours ago", withValue: value)
-        } else if deltaMinutes < (dayInSeconds * 2) {
+
+        } else if deltaSeconds < (dayInSeconds * 2) {
             // Yesterday
             return NSDateTimeAgoLocalizedStrings("Yesterday")
-        } else if deltaMinutes < weekInSeconds {
+
+        } else if deltaSeconds < weekInSeconds {
             // Days Ago
-            value = Int(floor(Float(deltaMinutes / dayInSeconds)))
+            value = Int(floor(Float(deltaSeconds / dayInSeconds)))
             return stringFromFormat("%%d %@days ago", withValue: value)
-        } else if deltaMinutes < (weekInSeconds * 2) {
+
+        } else if deltaSeconds < (weekInSeconds * 2) {
             // Last Week
             return NSDateTimeAgoLocalizedStrings("Last week")
-        } else if deltaMinutes < monthInSeconds {
+
+        } else if deltaSeconds < monthInSeconds {
             // Weeks Ago
-            value = Int(floor(Float(deltaMinutes / weekInSeconds)))
+            value = Int(floor(Float(deltaSeconds / weekInSeconds)))
             return stringFromFormat("%%d %@weeks ago", withValue: value)
-        } else if deltaMinutes < (dayInSeconds * 61) {
+
+        } else if deltaSeconds < (dayInSeconds * 61) {
             // Last month
             return NSDateTimeAgoLocalizedStrings("Last month")
-        } else if deltaMinutes < yearInSeconds {
+
+        } else if deltaSeconds < yearInSeconds {
             // Month Ago
-            value = Int(floor(Float(deltaMinutes / monthInSeconds)))
+            value = Int(floor(Float(deltaSeconds / monthInSeconds)))
             return stringFromFormat("%%d %@months ago", withValue: value)
-        } else if deltaMinutes < (dayInSeconds * (yearInSeconds * 2)) {
+
+        } else if deltaSeconds < (yearInSeconds * 2) {
             // Last Year
-            return NSDateTimeAgoLocalizedStrings("Last Year")
+            return NSDateTimeAgoLocalizedStrings("Last year")
         }
         
         // Years Ago
-        value = Int(floor(Float(deltaMinutes / yearInSeconds)))
+        value = Int(floor(Float(deltaSeconds / yearInSeconds)))
         return stringFromFormat("%%d %@years ago", withValue: value)
     }
 
@@ -609,7 +621,12 @@ public struct Moment: Comparable {
     
     
     private func NSDateTimeAgoLocalizedStrings(key: String) -> String {
-        guard let resourcePath = NSBundle.mainBundle().resourcePath else {
+        // get framework bundle
+        guard let frameworkBundle = NSBundle(identifier: "com.akosma.SwiftMoment") else {
+          return ""
+        }
+
+        guard let resourcePath = frameworkBundle.resourcePath else {
             return ""
         }
         

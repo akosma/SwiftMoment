@@ -14,7 +14,7 @@ objectives are the following:
 - Streamlining getting date components (day, month, etc.) from dates and
   time intervals.
 
-Important: This supports targets iOS 8+, macOS 10.10+, tvOS 9+, Xcode 7 and Swift 2.2.
+Important: This framework supports iOS 8+, macOS 10.10+, tvOS 9+, watchOS 2+, Xcode 7 and Swift 2.2.
 
 ## Installation
 

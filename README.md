@@ -1,5 +1,11 @@
 # SwiftMoment
 
+[![Build Status](https://travis-ci.org/madhavajay/SwiftMoment.svg?branch=master)](https://travis-ci.org/madhavajay/SwiftMoment)
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/SwiftMoment.svg)](https://img.shields.io/cocoapods/v/SwiftMoment)
+[![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Platform](https://img.shields.io/cocoapods/p/SwiftMoment.svg?style=flat)](http://cocoadocs.org/docsets/SwiftMoment)
+[![swiftyness](https://img.shields.io/badge/pure-swift-ff3f26.svg?style=flat)](https://swift.org/)
+
 This framework is inspired by [Moment.js](http://momentjs.com). Its
 objectives are the following:
 
@@ -9,8 +15,7 @@ objectives are the following:
 - Streamlining getting date components (day, month, etc.) from dates and
   time intervals.
 
-Important: This framework targets iOS 9, OS X 10.10, Xcode 7 and Swift 
-2.0 and later exclusively.
+Important: This framework supports iOS 8+, macOS 10.10+, tvOS 9+, watchOS 2+, Xcode 7 and Swift 2.2.
 
 ## Installation
 
@@ -23,7 +28,7 @@ your Podfile:
 pod 'SwiftMoment'
 ```
 
-## OS X Notes
+## macOS Notes
 
 - Drag the created .framework file into the Xcode Project, be sure to tick 'Copy Files to Directory'
 - In the containing applications target, add a new 'Copy File Build Phase'

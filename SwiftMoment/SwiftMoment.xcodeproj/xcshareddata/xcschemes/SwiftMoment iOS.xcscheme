@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0720"
+   LastUpgradeVersion = "0730"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,23 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E2F6253D1C357BC00057AE1D"
+               BlueprintIdentifier = "3AB0FB6B1A6D15F8006449DB"
                BuildableName = "SwiftMoment.framework"
-               BlueprintName = "SwiftMomentOSX"
+               BlueprintName = "SwiftMoment iOS"
+               ReferencedContainer = "container:SwiftMoment.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3AB0FB761A6D15F8006449DB"
+               BuildableName = "SwiftMoment iOS Tests.xctest"
+               BlueprintName = "SwiftMoment iOS Tests"
                ReferencedContainer = "container:SwiftMoment.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -26,15 +40,16 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E2532BEB1C358B4E00392471"
-               BuildableName = "SwiftMomentOSXTests.xctest"
-               BlueprintName = "SwiftMomentOSXTests"
+               BlueprintIdentifier = "3AB0FB761A6D15F8006449DB"
+               BuildableName = "SwiftMoment iOS Tests.xctest"
+               BlueprintName = "SwiftMoment iOS Tests"
                ReferencedContainer = "container:SwiftMoment.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -42,9 +57,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E2F6253D1C357BC00057AE1D"
+            BlueprintIdentifier = "3AB0FB6B1A6D15F8006449DB"
             BuildableName = "SwiftMoment.framework"
-            BlueprintName = "SwiftMomentOSX"
+            BlueprintName = "SwiftMoment iOS"
             ReferencedContainer = "container:SwiftMoment.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -64,9 +79,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E2F6253D1C357BC00057AE1D"
+            BlueprintIdentifier = "3AB0FB6B1A6D15F8006449DB"
             BuildableName = "SwiftMoment.framework"
-            BlueprintName = "SwiftMomentOSX"
+            BlueprintName = "SwiftMoment iOS"
             ReferencedContainer = "container:SwiftMoment.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -82,9 +97,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E2F6253D1C357BC00057AE1D"
+            BlueprintIdentifier = "3AB0FB6B1A6D15F8006449DB"
             BuildableName = "SwiftMoment.framework"
-            BlueprintName = "SwiftMomentOSX"
+            BlueprintName = "SwiftMoment iOS"
             ReferencedContainer = "container:SwiftMoment.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

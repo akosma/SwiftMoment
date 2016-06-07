@@ -22,14 +22,16 @@ class DurationTests: XCTestCase {
 
     func testCanCreateDurationsFromIntegers() {
         let duration = Duration(value: 10000000)
-        XCTAssertEqual(duration.seconds, 10000000, "The Duration instance wraps an NSTimeInterval in seconds")
+        let durationString = "The Duration instance wraps an NSTimeInterval in seconds"
+        XCTAssertEqual(duration.seconds, 10000000, durationString)
     }
-    
+
     func testCanCreateDurationsFromDoubles() {
         let duration = Duration(value: 10000000.1000)
-        XCTAssertEqual(duration.seconds, 10000000.1000, "The Duration instance wraps an NSTimeInterval in seconds")
+        let durationString = "The Duration instance wraps an NSTimeInterval in seconds"
+        XCTAssertEqual(duration.seconds, 10000000.1000, durationString)
     }
-    
+
     func testCanGenerateMomentAgo() {
         let date = 2.months.ago()
         XCTAssert(date ~= (moment() - 2.months), "'ago()' returns a moment in the past")
@@ -49,10 +51,11 @@ class DurationTests: XCTestCase {
         let subtracted2 = birthday - duration
         XCTAssertEqual(subtracted, subtracted2, "Both operations yield the same result")
     }
-    
+
     func testDurationDescription() {
         let duration = 4.months + 53.days + 6.hours + 4.minutes
         let str = duration.description
-        XCTAssertEqual(str, "5m 3w 1d 6:04:00", "The description of a duration provides quite a bit of info")
+        let durationString = "The description of a duration provides quite a bit of info"
+        XCTAssertEqual(str, "5m 3w 1d 6:04:00", durationString)
     }
 }

@@ -1,9 +1,8 @@
 Pod::Spec.new do |s|
 
   s.name         = "SwiftMoment"
-  s.version      = "0.4"
+  s.version      = "0.5"
   s.summary      = "A time and calendar manipulation library for iOS / macOS / tvOS / watchOS written in Swift"
-
   s.description  = <<-DESC
                     This framework is inspired by Moment.js. Its objectives are the following:
 
@@ -14,7 +13,6 @@ Pod::Spec.new do |s|
 
                     This framework supports iOS 8+, macOS 10.10+, tvOS 9+, watchOS 2+, Xcode 7 and Swift 2.2.
                    DESC
-
   s.homepage     = "http://akosma.github.io/SwiftMoment/"
   s.license      = { :type => "BSD", :file => "LICENSE" }
   s.author             = { "Adrian Kosmaczewski" => "akosma@me.com" }
@@ -23,6 +21,7 @@ Pod::Spec.new do |s|
   s.osx.deployment_target = "10.10"
   s.tvos.deployment_target = "9.0"
   s.watchos.deployment_target = "2.0"
-  s.source       = { :git => "https://github.com/akosma/SwiftMoment.git", :tag => "v0.4" }
+  s.source       = { :git => "https://github.com/akosma/SwiftMoment.git", :tag => "v0.5" }
   s.source_files  = "SwiftMoment/SwiftMoment"
+  s.resource     = "SwiftMoment/SwiftMoment/MomentFromNow.bundle"
 end

@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Adrian Kosmaczewski. All rights reserved.
 //
 
-public enum TimeUnit : String {
+public enum TimeUnit: String {
     case Years = "y"
     case Quarters = "Q"
     case Months = "M"

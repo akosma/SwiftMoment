@@ -12,13 +12,15 @@
 import Foundation
 
 /**
-Returns a moment representing the current instant in time
-at the current timezone.
+ Returns a moment representing the current instant in time at the current timezone
 
-- returns: A Moment instance.
-*/
-public func moment(timeZone: NSTimeZone = NSTimeZone.defaultTimeZone()
-    , locale: NSLocale = NSLocale.autoupdatingCurrentLocale()) -> Moment {
+ - parameter timeZone:   An NSTimeZone object
+ - parameter locale:     An NSLocale object
+
+ - returns: A moment instance.
+ */
+public func moment(timeZone: NSTimeZone = NSTimeZone.defaultTimeZone(),
+                   locale: NSLocale = NSLocale.autoupdatingCurrentLocale()) -> Moment {
     return Moment(timeZone: timeZone, locale: locale)
 }
 
@@ -28,18 +30,19 @@ public func utc() -> Moment {
 }
 
 /**
-Returns an Optional wrapping a Moment structure, representing the
-current instant in time. If the string passed as parameter cannot be
-parsed by the function, the Optional wraps a nil value.
+ Returns an Optional wrapping a Moment structure, representing the
+ current instant in time. If the string passed as parameter cannot be
+ parsed by the function, the Optional wraps a nil value.
 
-- parameter stringDate: A string with a date representation.
-- parameter timeZone:   An NSTimeZone object
+ - parameter stringDate: A string with a date representation.
+ - parameter timeZone:   An NSTimeZone object
+ - parameter locale:     An NSLocale object
 
-- returns: An optional Moment instance.
-*/
-public func moment(stringDate: String
-    , timeZone: NSTimeZone = NSTimeZone.defaultTimeZone()
-    , locale: NSLocale = NSLocale.autoupdatingCurrentLocale()) -> Moment? {
+ - returns: <#return value description#>
+ */
+public func moment(stringDate: String,
+                   timeZone: NSTimeZone = NSTimeZone.defaultTimeZone(),
+                   locale: NSLocale = NSLocale.autoupdatingCurrentLocale()) -> Moment? {
 
     let formatter = NSDateFormatter()
     formatter.timeZone = timeZone
@@ -82,10 +85,9 @@ public func moment(stringDate: String
     return nil
 }
 
-public func moment(stringDate: String
-    , dateFormat: String
-    , timeZone: NSTimeZone = NSTimeZone.defaultTimeZone()
-    , locale: NSLocale = NSLocale.autoupdatingCurrentLocale()) -> Moment? {
+public func moment(stringDate: String, dateFormat: String,
+                   timeZone: NSTimeZone = NSTimeZone.defaultTimeZone(),
+                   locale: NSLocale = NSLocale.autoupdatingCurrentLocale()) -> Moment? {
     let formatter = NSDateFormatter()
     formatter.dateFormat = dateFormat
     formatter.timeZone = timeZone
@@ -97,23 +99,23 @@ public func moment(stringDate: String
 }
 
 /**
-Builds a new Moment instance using an array with the following components,
-in the following order: [ year, month, day, hour, minute, second ]
+ Builds a new Moment instance using an array with the following components,
+ in the following order: [ year, month, day, hour, minute, second ]
 
-- parameter dateComponents: An array of integer values
-- parameter timeZone:   An NSTimeZone object
+ - parameter params:   An array of integer values as date components
+ - parameter timeZone: An NSTimeZone object
+ - parameter locale:   An NSLocale object
 
-- returns: An optional wrapping a Moment instance
-*/
-public func moment(params: [Int]
-    , timeZone: NSTimeZone = NSTimeZone.defaultTimeZone()
-    , locale: NSLocale = NSLocale.autoupdatingCurrentLocale()) -> Moment? {
+ - returns: An optional wrapping a Moment instance
+ */
+public func moment(params: [Int], timeZone: NSTimeZone = NSTimeZone.defaultTimeZone(),
+                   locale: NSLocale = NSLocale.autoupdatingCurrentLocale()) -> Moment? {
     if params.count > 0 {
         let calendar = NSCalendar.currentCalendar()
         calendar.timeZone = timeZone
         let components = NSDateComponents()
         components.year = params[0]
-        
+
         if params.count > 1 {
             components.month = params[1]
             if params.count > 2 {
@@ -129,7 +131,7 @@ public func moment(params: [Int]
                 }
             }
         }
-        
+
         if let date = calendar.dateFromComponents(components) {
             return moment(date, timeZone: timeZone, locale: locale)
         }
@@ -137,9 +139,8 @@ public func moment(params: [Int]
     return nil
 }
 
-public func moment(dict: [String: Int]
-    , timeZone: NSTimeZone = NSTimeZone.defaultTimeZone()
-    , locale: NSLocale = NSLocale.autoupdatingCurrentLocale()) -> Moment? {
+public func moment(dict: [String: Int], timeZone: NSTimeZone = NSTimeZone.defaultTimeZone(),
+                   locale: NSLocale = NSLocale.autoupdatingCurrentLocale()) -> Moment? {
     if dict.count > 0 {
         var params = [Int]()
         if let year = dict["year"] {
@@ -175,16 +176,15 @@ public func moment(seconds: NSTimeInterval) -> Moment {
     return Moment(date: date)
 }
 
-public func moment(date: NSDate
-    , timeZone: NSTimeZone = NSTimeZone.defaultTimeZone()
-    , locale: NSLocale = NSLocale.autoupdatingCurrentLocale()) -> Moment {
+public func moment(date: NSDate, timeZone: NSTimeZone = NSTimeZone.defaultTimeZone(),
+                   locale: NSLocale = NSLocale.autoupdatingCurrentLocale()) -> Moment {
     return Moment(date: date, timeZone: timeZone, locale: locale)
 }
 
 public func moment(moment: Moment) -> Moment {
-    let copy = moment.date.copy() as! NSDate
-    let timeZone = moment.timeZone.copy() as! NSTimeZone
-    let locale = moment.locale.copy() as! NSLocale
+    let copy = (moment.date.copy() as? NSDate)!
+    let timeZone = (moment.timeZone.copy() as? NSTimeZone)!
+    let locale = (moment.locale.copy() as? NSLocale)!
     return Moment(date: copy, timeZone: timeZone, locale: locale)
 }
 
@@ -233,13 +233,19 @@ public func minimum(moments: Moment...) -> Moment? {
  call moment() with one of the supported input types.
 */
 public struct Moment: Comparable {
+    public let minuteInSeconds = 60
+    public let hourInSeconds = 3600
+    public let dayInSeconds = 86400
+    public let weekInSeconds = 604800
+    public let monthInSeconds = 2592000
+    public let yearInSeconds = 31536000
+
     public let date: NSDate
     public let timeZone: NSTimeZone
     public let locale: NSLocale
 
-    init(date: NSDate = NSDate()
-        , timeZone: NSTimeZone = NSTimeZone.defaultTimeZone()
-        , locale: NSLocale = NSLocale.autoupdatingCurrentLocale()) {
+    init(date: NSDate = NSDate(), timeZone: NSTimeZone = NSTimeZone.defaultTimeZone(),
+         locale: NSLocale = NSLocale.autoupdatingCurrentLocale()) {
         self.date = date
         self.timeZone = timeZone
         self.locale = locale
@@ -267,7 +273,7 @@ public struct Moment: Comparable {
     public var monthName: String {
         let formatter = NSDateFormatter()
         formatter.locale = locale
-        return formatter.monthSymbols[month - 1] 
+        return formatter.monthSymbols[month - 1]
     }
 
     public var day: Int {
@@ -412,7 +418,8 @@ public struct Moment: Comparable {
         let cal = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
         cal.timeZone = timeZone
         cal.locale = locale
-        if let newDate = cal.dateByAddingComponents(components, toDate: date, options: NSCalendarOptions.init(rawValue: 0)) {
+        if let newDate = cal.dateByAddingComponents(components, toDate: date,
+                                                    options: NSCalendarOptions.init(rawValue: 0)) {
           return Moment(date: newDate)
         }
         return self
@@ -465,7 +472,8 @@ public struct Moment: Comparable {
     public func startOf(unit: TimeUnit) -> Moment {
         let cal = NSCalendar.currentCalendar()
         var newDate: NSDate?
-        let components = cal.components([.Year, .Month, .Weekday, .Day, .Hour, .Minute, .Second], fromDate: date)
+        let components = cal.components([.Year, .Month, .Weekday, .Day, .Hour, .Minute, .Second],
+                                        fromDate: date)
         switch unit {
         case .Seconds:
             return self
@@ -549,4 +557,3 @@ extension Moment: CustomDebugStringConvertible {
         return description
     }
 }
-

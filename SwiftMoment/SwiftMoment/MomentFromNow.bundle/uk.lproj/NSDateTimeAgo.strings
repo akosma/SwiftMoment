@@ -1,7 +1,7 @@
 /*
- RULES:
- Assume value for (seconds, hours, minutes, days, weeks, months or years) is XXXY, Y is last digit, XY is last two digits;
- */
+RULES:
+Assume value for (seconds, hours, minutes, days, weeks, months or years) is XXXY, Y is last digit, XY is last two digits;
+*/
 
 /* Y == 0 OR Y > 4 OR (XY > 10 AND XY < 15); */
 "%d days ago" = "%d днів тому";

@@ -28,6 +28,7 @@ requests, bug submissions, etc:
 - [Ryan Maxwell](https://github.com/ryanmaxwell)
 - [Ryo Yamada](https://github.com/Liooo)
 - [Tomáš Slíž](https://github.com/tomassliz)
+- [Hadar Landao](https://github.com/hlandao)
 
 Special Thanks
 --------------

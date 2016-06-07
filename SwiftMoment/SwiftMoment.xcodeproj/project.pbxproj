@@ -22,6 +22,13 @@
 		2877F4D41D06B42700B66806 /* MomentFromNow.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 53CB62721C919E8000BA62E9 /* MomentFromNow.bundle */; };
 		2877F4D51D06B42800B66806 /* MomentFromNow.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 53CB62721C919E8000BA62E9 /* MomentFromNow.bundle */; };
 		2877F4D61D06B42900B66806 /* MomentFromNow.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 53CB62721C919E8000BA62E9 /* MomentFromNow.bundle */; };
+		2877F4DC1D06BCB900B66806 /* FromNowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877F4DB1D06BCB900B66806 /* FromNowTests.swift */; };
+		2877F4DD1D06BCB900B66806 /* FromNowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877F4DB1D06BCB900B66806 /* FromNowTests.swift */; };
+		2877F4DE1D06BCB900B66806 /* FromNowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877F4DB1D06BCB900B66806 /* FromNowTests.swift */; };
+		2877F4E01D06BF0E00B66806 /* MomentFromNow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877F4DF1D06BF0E00B66806 /* MomentFromNow.swift */; };
+		2877F4E11D06BF0E00B66806 /* MomentFromNow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877F4DF1D06BF0E00B66806 /* MomentFromNow.swift */; };
+		2877F4E21D06BF0E00B66806 /* MomentFromNow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877F4DF1D06BF0E00B66806 /* MomentFromNow.swift */; };
+		2877F4E31D06BF0E00B66806 /* MomentFromNow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877F4DF1D06BF0E00B66806 /* MomentFromNow.swift */; };
 		28819E9B1D0594C800534ACD /* MomentFromNow.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 53CB62721C919E8000BA62E9 /* MomentFromNow.bundle */; };
 		28C0DBCA1D057E3600279645 /* SwiftMoment.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AB0FB711A6D15F8006449DB /* SwiftMoment.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		28C0DBCB1D057E4000279645 /* Moment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0FB881A6D160F006449DB /* Moment.swift */; };
@@ -80,6 +87,8 @@
 		16DF56A41C3A7D7900ED9292 /* ExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionsTests.swift; sourceTree = "<group>"; };
 		285B8B4A1D057575008A6AD6 /* SwiftMoment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftMoment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		285B8B531D057575008A6AD6 /* SwiftMoment tvOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftMoment tvOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2877F4DB1D06BCB900B66806 /* FromNowTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FromNowTests.swift; sourceTree = "<group>"; };
+		2877F4DF1D06BF0E00B66806 /* MomentFromNow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentFromNow.swift; sourceTree = "<group>"; };
 		28C0DBC21D057D9F00279645 /* SwiftMoment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftMoment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A6429C31A6D2C8700B10310 /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
 		3A6429C51A6D33FA00B10310 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -186,6 +195,7 @@
 				3AB0FB711A6D15F8006449DB /* SwiftMoment.h */,
 				3AB0FB6F1A6D15F8006449DB /* Supporting Files */,
 				3AB0FB881A6D160F006449DB /* Moment.swift */,
+				2877F4DF1D06BF0E00B66806 /* MomentFromNow.swift */,
 				3AB0FB8A1A6D1629006449DB /* TimeUnit.swift */,
 				3AB0FB8C1A6D1644006449DB /* Duration.swift */,
 				3A6429C31A6D2C8700B10310 /* Operators.swift */,
@@ -205,9 +215,10 @@
 		3AB0FB7B1A6D15F8006449DB /* SwiftMomentTests */ = {
 			isa = PBXGroup;
 			children = (
-				3AB0FB7E1A6D15F8006449DB /* MomentTests.swift */,
 				3A6429C71A6D345500B10310 /* DurationTests.swift */,
 				16DF56A41C3A7D7900ED9292 /* ExtensionsTests.swift */,
+				2877F4DB1D06BCB900B66806 /* FromNowTests.swift */,
+				3AB0FB7E1A6D15F8006449DB /* MomentTests.swift */,
 				3AB0FB7C1A6D15F8006449DB /* Supporting Files */,
 			);
 			path = SwiftMomentTests;
@@ -267,6 +278,7 @@
 				285B8B461D057575008A6AD6 /* Frameworks */,
 				285B8B471D057575008A6AD6 /* Headers */,
 				285B8B481D057575008A6AD6 /* Resources */,
+				2877F4D91D06B87100B66806 /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -303,6 +315,7 @@
 				28C0DBBE1D057D9F00279645 /* Frameworks */,
 				28C0DBBF1D057D9F00279645 /* Headers */,
 				28C0DBC01D057D9F00279645 /* Resources */,
+				2877F4DA1D06B88000B66806 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -321,6 +334,7 @@
 				3AB0FB681A6D15F8006449DB /* Frameworks */,
 				3AB0FB691A6D15F8006449DB /* Headers */,
 				3AB0FB6A1A6D15F8006449DB /* Resources */,
+				2877F4D71D06B82E00B66806 /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -375,6 +389,7 @@
 				E2F625441C357BC00057AE1D /* Frameworks */,
 				E2F625451C357BC00057AE1D /* Headers */,
 				E2F625471C357BC00057AE1D /* Resources */,
+				2877F4D81D06B86100B66806 /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -498,6 +513,64 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2877F4D71D06B82E00B66806 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+		2877F4D81D06B86100B66806 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+		2877F4D91D06B87100B66806 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+		2877F4DA1D06B88000B66806 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		285B8B451D057575008A6AD6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -507,6 +580,7 @@
 				285B8B6B1D057979008A6AD6 /* Duration.swift in Sources */,
 				285B8B6C1D057979008A6AD6 /* Operators.swift in Sources */,
 				285B8B6A1D057979008A6AD6 /* TimeUnit.swift in Sources */,
+				2877F4E21D06BF0E00B66806 /* MomentFromNow.swift in Sources */,
 				285B8B691D057979008A6AD6 /* Moment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -515,6 +589,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2877F4DE1D06BCB900B66806 /* FromNowTests.swift in Sources */,
 				285B8B611D057611008A6AD6 /* MomentTests.swift in Sources */,
 				285B8B631D057611008A6AD6 /* ExtensionsTests.swift in Sources */,
 				285B8B621D057611008A6AD6 /* DurationTests.swift in Sources */,
@@ -529,6 +604,7 @@
 				28C0DBCD1D057E4000279645 /* Duration.swift in Sources */,
 				28C0DBCE1D057E4000279645 /* Operators.swift in Sources */,
 				28C0DBCC1D057E4000279645 /* TimeUnit.swift in Sources */,
+				2877F4E31D06BF0E00B66806 /* MomentFromNow.swift in Sources */,
 				28C0DBCB1D057E4000279645 /* Moment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -541,6 +617,7 @@
 				3AB0FB8D1A6D1644006449DB /* Duration.swift in Sources */,
 				3A6429C41A6D2C8700B10310 /* Operators.swift in Sources */,
 				3AB0FB8B1A6D1629006449DB /* TimeUnit.swift in Sources */,
+				2877F4E01D06BF0E00B66806 /* MomentFromNow.swift in Sources */,
 				3AB0FB891A6D160F006449DB /* Moment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -549,6 +626,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2877F4DC1D06BCB900B66806 /* FromNowTests.swift in Sources */,
 				3AB0FB7F1A6D15F8006449DB /* MomentTests.swift in Sources */,
 				16DF56A51C3A7D7900ED9292 /* ExtensionsTests.swift in Sources */,
 				3A6429C81A6D345500B10310 /* DurationTests.swift in Sources */,
@@ -559,6 +637,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2877F4DD1D06BCB900B66806 /* FromNowTests.swift in Sources */,
 				E2532BF71C358BC000392471 /* MomentTests.swift in Sources */,
 				E2532BF81C358BC000392471 /* DurationTests.swift in Sources */,
 				285B8B441D056DCA008A6AD6 /* ExtensionsTests.swift in Sources */,
@@ -573,6 +652,7 @@
 				E2F625401C357BC00057AE1D /* Duration.swift in Sources */,
 				E2F625411C357BC00057AE1D /* Operators.swift in Sources */,
 				E2F625421C357BC00057AE1D /* TimeUnit.swift in Sources */,
+				2877F4E11D06BF0E00B66806 /* MomentFromNow.swift in Sources */,
 				E2F625431C357BC00057AE1D /* Moment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

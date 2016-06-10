@@ -8,6 +8,9 @@
 
 import Foundation
 
+// needed to dynamically select the bundle below
+class MomentBundle: NSObject { }
+
 extension Moment {
     public func fromNow() -> String {
       let timeDiffDuration = moment(NSDate()).intervalSince(self)
@@ -85,7 +88,10 @@ extension Moment {
 
     private func NSDateTimeAgoLocalizedStrings(key: String) -> String {
       // get framework bundle
-      let bundleIdentifier = "com.akosma.SwiftMoment"
+      guard let bundleIdentifier = NSBundle(forClass: MomentBundle.self).bundleIdentifier  else {
+        return ""
+      }
+      
       guard let frameworkBundle = NSBundle(identifier: bundleIdentifier) else {
         return ""
       }

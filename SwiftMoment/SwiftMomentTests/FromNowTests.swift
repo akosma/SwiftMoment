@@ -84,9 +84,24 @@ class FromNowTests: XCTestCase {
         XCTAssertEqual(monthsMoment3.fromNow(), "3 years ago")
     }
 
+    func testGetClosestLanguageForUnknownLocale() {
+      let missingLocale = "en_GB"
+      let secondMissingLocale = "es_AR"
+
+      let now = NSDate()
+      let nowMoment = getLocalMoment(now, locale: NSLocale(localeIdentifier: missingLocale))
+      XCTAssertEqual(nowMoment.fromNow(), "Just now")
+
+      let nowMoment2 = getLocalMoment(now, locale: NSLocale(localeIdentifier: secondMissingLocale))
+      XCTAssertEqual(nowMoment2.fromNow(), "Ahora mismo")
+    }
+
+    func getLocalMoment(date: NSDate, locale: NSLocale) -> Moment {
+      return moment(date, timeZone: NSTimeZone.defaultTimeZone(), locale: locale)
+    }
+
     func getLocalEnglishMoment(date: NSDate) -> Moment {
-        return moment(date, timeZone: NSTimeZone.defaultTimeZone(),
-                      locale: NSLocale(localeIdentifier: "en"))
+      return getLocalMoment(date, locale: NSLocale(localeIdentifier: "en"))
     }
 
     func testFromNowHebrew() {

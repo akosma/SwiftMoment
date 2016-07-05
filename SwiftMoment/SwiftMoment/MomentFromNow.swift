@@ -101,14 +101,34 @@ extension Moment {
       }
 
       let localeIdentifer = self.locale.localeIdentifier
-      guard let languagePath = bundle.pathForResource(localeIdentifer, ofType: "lproj"),
-        languageBundle = NSBundle(path: languagePath)
-        else {
+
+      // Try to get the Language Bundle based on the localIdentifier, for example "en_US"
+      var languageBundle = getLanguageBundle(bundle, localeIdentifier: localeIdentifer)
+
+      // If it doesn't exist then we can try again
+      if languageBundle == nil {
+
+        // Get the first 2 letters from the localIdentifier and use them instead, for example "en"
+        let languageCode = String(localeIdentifer.characters.prefix(2))
+        languageBundle = getLanguageBundle(bundle, localeIdentifier: languageCode)
+        if languageBundle == nil {
+          // Still nothing
           return ""
+        }
       }
 
-      return languageBundle.localizedStringForKey(key, value: "", table: "NSDateTimeAgo")
+      // Get localized string from language look up table
+      return languageBundle!.localizedStringForKey(key, value: "", table: "NSDateTimeAgo")
     }
+
+  private func getLanguageBundle(bundle: NSBundle, localeIdentifier: String) -> NSBundle? {
+    guard let languagePath = bundle.pathForResource(localeIdentifier, ofType: "lproj"),
+              languageBundle = NSBundle(path: languagePath) else {
+        return nil
+    }
+
+    return languageBundle
+  }
 
     private func getLocaleFormatUnderscoresWithValue(value: Double) -> String {
       guard let localeCode = NSLocale.preferredLanguages().first else {

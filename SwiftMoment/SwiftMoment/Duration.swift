@@ -9,14 +9,14 @@
 import Foundation
 
 public struct Duration: Equatable {
-    let interval: NSTimeInterval
+    let interval: TimeInterval
 
-    public init(value: NSTimeInterval) {
+    public init(value: TimeInterval) {
         self.interval = value
     }
 
     public init(value: Int) {
-        self.interval = NSTimeInterval(value)
+        self.interval = TimeInterval(value)
     }
 
     public var years: Double {
@@ -51,28 +51,28 @@ public struct Duration: Equatable {
         return moment().subtract(self)
     }
 
-    public func add(duration: Duration) -> Duration {
+    public func add(_ duration: Duration) -> Duration {
         return Duration(value: self.interval + duration.interval)
     }
 
-    public func subtract(duration: Duration) -> Duration {
+    public func subtract(_ duration: Duration) -> Duration {
         return Duration(value: self.interval - duration.interval)
     }
 
-    public func isEqualTo(duration: Duration) -> Bool {
+    public func isEqualTo(_ duration: Duration) -> Bool {
         return self.interval == duration.interval
     }
 }
 
 extension Duration: CustomStringConvertible {
     public var description: String {
-        let formatter = NSDateComponentsFormatter()
-        formatter.calendar = NSCalendar(identifier: NSCalendarIdentifierGregorian)
-        formatter.calendar?.timeZone = NSTimeZone(abbreviation: "UTC")!
-        formatter.allowedUnits = [.Year, .Month, .WeekOfMonth, .Day, .Hour, .Minute, .Second]
+        let formatter = DateComponentsFormatter()
+        formatter.calendar = Calendar(identifier: Calendar.Identifier.gregorian)
+        formatter.calendar?.timeZone = TimeZone(abbreviation: "UTC")!
+        formatter.allowedUnits = [.year, .month, .weekOfMonth, .day, .hour, .minute, .second]
 
-        let referenceDate = NSDate(timeIntervalSinceReferenceDate: 0)
-        let intervalDate = NSDate(timeInterval: self.interval, sinceDate: referenceDate)
-        return formatter.stringFromDate(referenceDate, toDate: intervalDate)!
+        let referenceDate = Date(timeIntervalSinceReferenceDate: 0)
+        let intervalDate = Date(timeInterval: self.interval, since: referenceDate)
+        return formatter.string(from: referenceDate, to: intervalDate)!
     }
 }

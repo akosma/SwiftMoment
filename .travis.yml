@@ -1,26 +1,28 @@
 language: objective-c
-osx_image: xcode7.3
+osx_image: xcode8
 
 install:
   - ./Resources/install_swiftlint.sh
 
 env:
   global:
-  - LC_CTYPE=en_US.UTF-8
-  - LANG=en_US.UTF-8
-  - WORKSPACE=SwiftMoment.xcworkspace
-  - IOS_FRAMEWORK_SCHEME="SwiftMoment iOS"
-  - OSX_FRAMEWORK_SCHEME="SwiftMoment macOS"
-  - TVOS_FRAMEWORK_SCHEME="SwiftMoment tvOS"
-  - WATCHOS_FRAMEWORK_SCHEME="SwiftMoment watchOS"
-  - IOS_SDK=iphonesimulator9.3
-  - WATCHOS_SDK=watchsimulator2.2
-  - TVOS_SDK=appletvsimulator9.2
-  - OSX_SDK=macosx10.11
+    - LANG=en_US.UTF-8
+    - LC_ALL=en_US.UTF-8
+    - WORKSPACE=SwiftMoment.xcworkspace
+    - IOS_FRAMEWORK_SCHEME="SwiftMoment iOS"
+    - MACOS_FRAMEWORK_SCHEME="SwiftMoment macOS"
+    - TVOS_FRAMEWORK_SCHEME="SwiftMoment tvOS"
+    - WATCHOS_FRAMEWORK_SCHEME="SwiftMoment watchOS"
+    - IOS_SDK=iphonesimulator10.0
+    - MACOS_SDK=macosx10.12
+    - TVOS_SDK=appletvsimulator10.0
+    - WATCHOS_SDK=watchsimulator3.0
   matrix:
-    - DESTINATION="OS=9.3,name=iPhone 6S Plus"     SCHEME="$IOS_FRAMEWORK_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="YES" POD_LINT="YES"
-    - DESTINATION="OS=9.2,name=Apple TV 1080p"     SCHEME="$TVOS_FRAMEWORK_SCHEME"    SDK="$TVOS_SDK"    RUN_TESTS="YES" POD_LINT="NO"
-    - DESTINATION="arch=x86_64"                    SCHEME="$OSX_FRAMEWORK_SCHEME"     SDK="$OSX_SDK"     RUN_TESTS="YES" POD_LINT="NO"
+    - DESTINATION="OS=10.0,name=iPhone 6S Plus"     SCHEME="$IOS_FRAMEWORK_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="YES"
+    - DESTINATION="arch=x86_64"                     SCHEME="$MACOS_FRAMEWORK_SCHEME"   SDK="$MACOS_SDK"   RUN_TESTS="YES"
+    - DESTINATION="OS=10.0,name=Apple TV 1080p"     SCHEME="$TVOS_FRAMEWORK_SCHEME"    SDK="$TVOS_SDK"    RUN_TESTS="YES"
+    - DESTINATION="OS=3.0,name=Apple Watch - 38mm"  SCHEME="$WATCHOS_FRAMEWORK_SCHEME" SDK="$WATCHOS_SDK" RUN_TESTS="NO"
+
 script:
   - set -o pipefail
   - swiftlint
@@ -34,14 +36,12 @@ script:
       xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO build | xcpretty -c;
     fi
 
-  # Build Framework in ReleaseTest and Run Tests if specified
+  # Build Framework in Release and Run Tests if specified
   - if [ $RUN_TESTS == "YES" ]; then
       xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release ONLY_ACTIVE_ARCH=NO test | xcpretty -c;
     else
       xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release ONLY_ACTIVE_ARCH=NO build | xcpretty -c;
     fi
 
-  # Run `pod lib lint` if specified
-  - if [ $POD_LINT == "YES" ]; then
-      pod lib lint;
-    fi
+after_success:
+  - pod lib lint

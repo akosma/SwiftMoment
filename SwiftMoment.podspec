@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "SwiftMoment"
-  s.version      = "0.5"
+  s.version      = "0.6"
   s.summary      = "A time and calendar manipulation library for iOS / macOS / tvOS / watchOS written in Swift"
   s.description  = <<-DESC
                     This framework is inspired by Moment.js. Its objectives are the following:

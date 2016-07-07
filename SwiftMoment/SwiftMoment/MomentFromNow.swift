@@ -10,7 +10,7 @@ import Foundation
 
 extension Moment {
     public func fromNow() -> String {
-      let timeDiffDuration = moment(NSDate()).intervalSince(self)
+      let timeDiffDuration = moment(Date()).intervalSince(self)
       let deltaSeconds = Int(timeDiffDuration.seconds)
 
       var value: Int!
@@ -77,16 +77,16 @@ extension Moment {
       return stringFromFormat("%%d %@years ago", withValue: value)
     }
 
-    private func stringFromFormat(format: String, withValue value: Int) -> String {
+    private func stringFromFormat(_ format: String, withValue value: Int) -> String {
       let localeFormat = String(format: format,
                                 getLocaleFormatUnderscoresWithValue(Double(value)))
       return String(format: NSDateTimeAgoLocalizedStrings(localeFormat), value)
     }
 
-    private func NSDateTimeAgoLocalizedStrings(key: String) -> String {
+    private func NSDateTimeAgoLocalizedStrings(_ key: String) -> String {
       // get framework bundle
       let bundleIdentifier = "com.akosma.SwiftMoment"
-      guard let frameworkBundle = NSBundle(identifier: bundleIdentifier) else {
+      guard let frameworkBundle = Bundle(identifier: bundleIdentifier) else {
         return ""
       }
 
@@ -95,8 +95,8 @@ extension Moment {
       }
 
       let bundleName = "MomentFromNow.bundle"
-      let path = NSURL(fileURLWithPath:resourcePath).URLByAppendingPathComponent(bundleName)
-      guard let bundle = NSBundle(URL: path) else {
+      let path = try? URL(fileURLWithPath:resourcePath).appendingPathComponent(bundleName)
+      guard let bundle = Bundle(url: path!) else {
         return ""
       }
 
@@ -118,20 +118,20 @@ extension Moment {
       }
 
       // Get localized string from language look up table
-      return languageBundle!.localizedStringForKey(key, value: "", table: "NSDateTimeAgo")
+      return languageBundle!.localizedString(forKey: key, value: "", table: "NSDateTimeAgo")
     }
 
-  private func getLanguageBundle(bundle: NSBundle, localeIdentifier: String) -> NSBundle? {
+  private func getLanguageBundle(_ bundle: Bundle, localeIdentifier: String) -> Bundle? {
     guard let languagePath = bundle.pathForResource(localeIdentifier, ofType: "lproj"),
-              languageBundle = NSBundle(path: languagePath) else {
+              languageBundle = Bundle(path: languagePath) else {
         return nil
     }
 
     return languageBundle
   }
 
-    private func getLocaleFormatUnderscoresWithValue(value: Double) -> String {
-      guard let localeCode = NSLocale.preferredLanguages().first else {
+    private func getLocaleFormatUnderscoresWithValue(_ value: Double) -> String {
+      guard let localeCode = Locale.preferredLanguages.first else {
         return ""
       }
 

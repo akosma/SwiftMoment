@@ -1,9 +1,6 @@
 language: objective-c
 osx_image: xcode8
 
-install:
-  - ./Resources/install_swiftlint.sh
-
 env:
   global:
     - LANG=en_US.UTF-8

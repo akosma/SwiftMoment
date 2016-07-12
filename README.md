@@ -15,7 +15,7 @@ objectives are the following:
 - Streamlining getting date components (day, month, etc.) from dates and
   time intervals.
 
-Important: This framework supports iOS 8+, macOS 10.10+, tvOS 9+, watchOS 2+, Xcode 7 and Swift 2.2.
+Important: This framework supports iOS 8+, macOS 10.10+, tvOS 9+, watchOS 2+, Xcode 8 and Swift 3.
 
 ## Installation
 
@@ -28,7 +28,7 @@ your Podfile:
 pod 'SwiftMoment'
 ```
 
-## Mac OS X Notes
+## macOS Notes
 
 - Drag the created .framework file into the Xcode Project, be sure to tick 'Copy Files to Directory'
 - In the containing applications target, add a new 'Copy File Build Phase'
@@ -87,7 +87,7 @@ let duration = 5.hours + 56.minutes
 
 The two most important components of this library are the `Moment` and
 `Duration` structures. `Moment` wraps an `NSDate` instance, while
-`Duration` wraps an `NSTimeInterval` value.
+`Duration` wraps a `TimeInterval` value.
 
 Both `Moment` and `Duration` comply with the `Comparable` protocols, and
 include all the required operators. In addition, `Moment` instances can

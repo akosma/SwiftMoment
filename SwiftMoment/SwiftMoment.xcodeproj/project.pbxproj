@@ -776,7 +776,7 @@
 				INFOPLIST_FILE = SwiftMoment/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.akosma.SwiftMoment-watchOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.akosma.SwiftMoment;
 				PRODUCT_NAME = SwiftMoment;
 				SDKROOT = watchos3.0;
 				SKIP_INSTALL = YES;
@@ -800,7 +800,7 @@
 				INFOPLIST_FILE = SwiftMoment/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.akosma.SwiftMoment-watchOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.akosma.SwiftMoment;
 				PRODUCT_NAME = SwiftMoment;
 				SDKROOT = watchos3.0;
 				SKIP_INSTALL = YES;

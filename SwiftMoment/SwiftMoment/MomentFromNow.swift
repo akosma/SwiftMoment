@@ -106,8 +106,9 @@ extension Moment {
         return ""
       }
 
-      let localeIdentifer = self.locale.localeIdentifier
-      guard let languagePath = bundle.pathForResource(localeIdentifer, ofType: "lproj"),
+      let localeIdentifier = getAvailableLocaleIdentifier()
+
+      guard let languagePath = bundle.pathForResource(localeIdentifier, ofType: "lproj"),
         languageBundle = NSBundle(path: languagePath)
         else {
           return ""
@@ -115,7 +116,23 @@ extension Moment {
 
       return languageBundle.localizedStringForKey(key, value: "", table: "NSDateTimeAgo")
     }
-
+    
+    
+    // Get user preferred localization, from supported locales from app bundle, from available languages.
+    // If your app only supports English, it will display English even if user preference is Japanese.
+    private func getAvailableLocaleIdentifier() -> String {
+        if #available(iOS 9.0, *) {
+            let availableLanguages = ["ar", "bg", "cs", "da", "de", "en_US", "en", "es", "fi", "fr", "gre", "he", "hu", "is", "it", "ja", "ko", "lv", "ms", "nb", "pl", "pt-PT", "ro", "ru", "sk", "sq", "sv", "th", "tr", "uk", "vi", "zh-Hans", "zh-Hant"]
+            
+            
+            let localeIdentifier = NSBundle.preferredLocalizationsFromArray(availableLanguages).first ?? self.locale.localeIdentifier
+            return localeIdentifier
+        }
+        
+        // default
+        return self.locale.localeIdentifier
+    }
+    
     private func getLocaleFormatUnderscoresWithValue(value: Double) -> String {
       guard let localeCode = NSLocale.preferredLanguages().first else {
         return ""

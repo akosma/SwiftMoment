@@ -122,9 +122,11 @@ extension Moment {
     }
 
   private func getLanguageBundle(_ bundle: Bundle, localeIdentifier: String) -> Bundle? {
+    // swiftlint:disable conditional_binding_cascade
     guard let languagePath = bundle.pathForResource(localeIdentifier, ofType: "lproj"),
-              languageBundle = Bundle(path: languagePath) else {
+          let languageBundle = Bundle(path: languagePath) else {
         return nil
+    // swiftlint:enable conditional_binding_cascade
     }
 
     return languageBundle

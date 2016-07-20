@@ -482,9 +482,11 @@ public struct Moment: Comparable {
             fallthrough
         case .Quarters, .Months, .Weeks:
             if unit == .Weeks {
-              guard let day = components.day, weekday = components.weekday else {
+              // swiftlint:disable conditional_binding_cascade
+              guard let day = components.day, let weekday = components.weekday else {
                 fatalError()
               }
+              // swiftlint:enable conditional_binding_cascade
               components.day = day - (weekday - 2)
             } else {
                 components.day = 1

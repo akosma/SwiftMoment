@@ -19,7 +19,7 @@ import Foundation
 
  - returns: A moment instance.
  */
-public func moment(_ timeZone: TimeZone = TimeZone.default,
+public func moment(_ timeZone: TimeZone = TimeZone.current,
                    locale: Locale = Locale.autoupdatingCurrent) -> Moment {
     return Moment(timeZone: timeZone, locale: locale)
 }
@@ -41,7 +41,7 @@ public func utc() -> Moment {
  - returns: <#return value description#>
  */
 public func moment(_ stringDate: String,
-                   timeZone: TimeZone = TimeZone.default,
+                   timeZone: TimeZone = TimeZone.current,
                    locale: Locale = Locale.autoupdatingCurrent) -> Moment? {
 
     let formatter = DateFormatter()
@@ -86,7 +86,7 @@ public func moment(_ stringDate: String,
 }
 
 public func moment(_ stringDate: String, dateFormat: String,
-                   timeZone: TimeZone = TimeZone.default,
+                   timeZone: TimeZone = TimeZone.current,
                    locale: Locale = Locale.autoupdatingCurrent) -> Moment? {
     let formatter = DateFormatter()
     formatter.dateFormat = dateFormat
@@ -108,10 +108,10 @@ public func moment(_ stringDate: String, dateFormat: String,
 
  - returns: An optional wrapping a Moment instance
  */
-public func moment(_ params: [Int], timeZone: TimeZone = TimeZone.default,
+public func moment(_ params: [Int], timeZone: TimeZone = TimeZone.current,
                    locale: Locale = Locale.autoupdatingCurrent) -> Moment? {
     if params.count > 0 {
-        let calendar = Calendar.current
+        var calendar = Calendar.current
         calendar.timeZone = timeZone
         var components = DateComponents()
         components.year = params[0]
@@ -139,7 +139,7 @@ public func moment(_ params: [Int], timeZone: TimeZone = TimeZone.default,
     return nil
 }
 
-public func moment(_ dict: [String: Int], timeZone: TimeZone = TimeZone.default,
+public func moment(_ dict: [String: Int], timeZone: TimeZone = TimeZone.current,
                    locale: Locale = Locale.autoupdatingCurrent) -> Moment? {
     if dict.count > 0 {
         var params = [Int]()
@@ -176,16 +176,13 @@ public func moment(_ seconds: TimeInterval) -> Moment {
     return Moment(date: date)
 }
 
-public func moment(_ date: Date, timeZone: TimeZone = TimeZone.default,
+public func moment(_ date: Date, timeZone: TimeZone = TimeZone.current,
                    locale: Locale = Locale.autoupdatingCurrent) -> Moment {
     return Moment(date: date, timeZone: timeZone, locale: locale)
 }
 
 public func moment(_ moment: Moment) -> Moment {
-    let copy = ((moment.date as NSDate).copy() as? Date)!
-    let timeZone = (moment.timeZone.copy() as? TimeZone)!
-    let locale = (moment.locale.copy() as? Locale)!
-    return Moment(date: copy, timeZone: timeZone, locale: locale)
+    return Moment(date: moment.date, timeZone: moment.timeZone, locale: moment.locale)
 }
 
 public func past() -> Moment {
@@ -244,7 +241,7 @@ public struct Moment: Comparable {
     public let timeZone: TimeZone
     public let locale: Locale
 
-    init(date: Date = Date(), timeZone: TimeZone = TimeZone.default,
+    init(date: Date = Date(), timeZone: TimeZone = TimeZone.current,
          locale: Locale = Locale.autoupdatingCurrent) {
         self.date = date
         self.timeZone = timeZone
@@ -253,19 +250,19 @@ public struct Moment: Comparable {
 
     /// Returns the year of the current instance.
     public var year: Int {
-        let cal = Calendar.current
+        var cal = Calendar.current
         cal.timeZone = timeZone
         cal.locale = locale
-        let components = cal.components(.year, from: date)
+        let components = cal.dateComponents([.year], from: date)
         return components.year!
     }
 
     /// Returns the month (1-12) of the current instance.
     public var month: Int {
-        let cal = Calendar.current
+        var cal = Calendar.current
         cal.timeZone = timeZone
         cal.locale = locale
-        let components = cal.components(.month, from: date)
+        let components = cal.dateComponents([.month], from: date)
         return components.month!
     }
 
@@ -277,42 +274,42 @@ public struct Moment: Comparable {
     }
 
     public var day: Int {
-        let cal = Calendar.current
+        var cal = Calendar.current
         cal.timeZone = timeZone
         cal.locale = locale
-        let components = cal.components(.day, from: date)
+        let components = cal.dateComponents([.day], from: date)
         return components.day!
     }
 
     public var hour: Int {
-        let cal = Calendar.current
+        var cal = Calendar.current
         cal.timeZone = timeZone
         cal.locale = locale
-        let components = cal.components(.hour, from: date)
+        let components = cal.dateComponents([.hour], from: date)
         return components.hour!
     }
 
     public var minute: Int {
-        let cal = Calendar.current
+        var cal = Calendar.current
         cal.timeZone = timeZone
         cal.locale = locale
-        let components = cal.components(.minute, from: date)
+        let components = cal.dateComponents([.minute], from: date)
         return components.minute!
     }
 
     public var second: Int {
-        let cal = Calendar.current
+        var cal = Calendar.current
         cal.timeZone = timeZone
         cal.locale = locale
-        let components = cal.components(.second, from: date)
+        let components = cal.dateComponents([.second], from: date)
         return components.second!
     }
 
     public var weekday: Int {
-        let cal = Calendar.current
+        var cal = Calendar.current
         cal.timeZone = timeZone
         cal.locale = locale
-        let components = cal.components(.weekday, from: date)
+        let components = cal.dateComponents([.weekday], from: date)
         return components.weekday!
     }
 
@@ -325,26 +322,26 @@ public struct Moment: Comparable {
     }
 
     public var weekdayOrdinal: Int {
-        let cal = Calendar.current
+        var cal = Calendar.current
         cal.locale = locale
         cal.timeZone = timeZone
-        let components = cal.components(.weekdayOrdinal, from: date)
+        let components = cal.dateComponents([.weekdayOrdinal], from: date)
         return components.weekdayOrdinal!
     }
 
     public var weekOfYear: Int {
-        let cal = Calendar.current
+        var cal = Calendar.current
         cal.locale = locale
         cal.timeZone = timeZone
-        let components = cal.components(.weekOfYear, from: date)
+        let components = cal.dateComponents([.weekOfYear], from: date)
         return components.weekOfYear!
     }
 
     public var quarter: Int {
-        let cal = Calendar.current
+        var cal = Calendar.current
         cal.locale = locale
         cal.timeZone = timeZone
-        let components = cal.components(.quarter, from: date)
+        let components = cal.dateComponents([.quarter], from: date)
         return components.quarter!
     }
 
@@ -415,11 +412,10 @@ public struct Moment: Comparable {
         case .Seconds:
             components.second = value
         }
-        let cal = Calendar(calendarIdentifier: Calendar.Identifier.gregorian)!
+        var cal = Calendar(identifier: Calendar.Identifier.gregorian)
         cal.timeZone = timeZone
         cal.locale = locale
-        if let newDate = cal.date(byAdding: components, to: date,
-                                                    options: Calendar.Options.init(rawValue: 0)) {
+      if let newDate = cal.date(byAdding: components, to: date, wrappingComponents: false) {
           return Moment(date: newDate)
         }
         return self
@@ -472,7 +468,7 @@ public struct Moment: Comparable {
     public func startOf(_ unit: TimeUnit) -> Moment {
         let cal = Calendar.current
         var newDate: Date?
-        var components = cal.components([.year, .month, .weekday, .day, .hour, .minute, .second],
+        var components = cal.dateComponents([.year, .month, .weekday, .day, .hour, .minute, .second],
                                         from: date)
         switch unit {
         case .Seconds:

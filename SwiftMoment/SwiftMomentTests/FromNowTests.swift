@@ -89,24 +89,24 @@ class FromNowTests: XCTestCase {
       let secondMissingLocale = "es_AR"
 
       let now = Date()
-      let nowMoment = getLocalMoment(now, locale: Locale(localeIdentifier: missingLocale))
+      let nowMoment = getLocalMoment(now, locale: Locale(identifier: missingLocale))
       XCTAssertEqual(nowMoment.fromNow(), "Just now")
 
-      let nowMoment2 = getLocalMoment(now, locale: Locale(localeIdentifier: secondMissingLocale))
+      let nowMoment2 = getLocalMoment(now, locale: Locale(identifier: secondMissingLocale))
       XCTAssertEqual(nowMoment2.fromNow(), "Ahora mismo")
     }
 
     func getLocalMoment(_ date: Date, locale: Locale) -> Moment {
-      return moment(date, timeZone: TimeZone.default, locale: locale)
+      return moment(date, timeZone: TimeZone.current, locale: locale)
     }
 
     func getLocalEnglishMoment(_ date: Date) -> Moment {
-      return getLocalMoment(date, locale: Locale(localeIdentifier: "en"))
+      return getLocalMoment(date, locale: Locale(identifier: "en"))
     }
 
     func testFromNowHebrew() {
-        let mom = moment(Date(), timeZone: TimeZone.default,
-                         locale: Locale(localeIdentifier: "he"))
+        let mom = moment(Date(), timeZone: TimeZone.current,
+                         locale: Locale(identifier: "he"))
     XCTAssertEqual(mom.fromNow(), "ממש עכשיו")
     }
 }

@@ -95,12 +95,12 @@ extension Moment {
       }
 
       let bundleName = "MomentFromNow.bundle"
-      let path = try? URL(fileURLWithPath:resourcePath).appendingPathComponent(bundleName)
-      guard let bundle = Bundle(url: path!) else {
+      let path = URL(fileURLWithPath:resourcePath).appendingPathComponent(bundleName)
+      guard let bundle = Bundle(url: path) else {
         return ""
       }
 
-      let localeIdentifer = self.locale.localeIdentifier
+      let localeIdentifer = self.locale.identifier
 
       // Try to get the Language Bundle based on the localIdentifier, for example "en_US"
       var languageBundle = getLanguageBundle(bundle, localeIdentifier: localeIdentifer)
@@ -123,7 +123,7 @@ extension Moment {
 
   private func getLanguageBundle(_ bundle: Bundle, localeIdentifier: String) -> Bundle? {
     // swiftlint:disable conditional_binding_cascade
-    guard let languagePath = bundle.pathForResource(localeIdentifier, ofType: "lproj"),
+    guard let languagePath = bundle.path(forResource: localeIdentifier, ofType: "lproj"),
           let languageBundle = Bundle(path: languagePath) else {
         return nil
     // swiftlint:enable conditional_binding_cascade

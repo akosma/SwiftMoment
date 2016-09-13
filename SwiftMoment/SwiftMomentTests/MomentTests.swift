@@ -458,12 +458,36 @@ class MomentTests: XCTestCase {
 		XCTAssertEqual(now.locale, NSLocale.currentLocale(), expectedString)
 	}
 
-  func testAddingInt() {
-    // This is to verify that issue #48 is corrected
-    // https://github.com/akosma/SwiftMoment/issues/48
-    let problem = moment("2016-07-01")!
-    let result = problem.add(1, .Months)
-    let expected = moment("2016-08-01")!
-    XCTAssertEqual(result, expected)
-  }
+    func testAddingInt() {
+        // This is to verify that issue #48 is corrected
+        // https://github.com/akosma/SwiftMoment/issues/48
+        let problem = moment("2016-07-01")!
+        let result = problem.add(1, .Months)
+        let expected = moment("2016-08-01")!
+        XCTAssertEqual(result, expected)
+    }
+
+    func testTimeZoneChangeAdd() {
+        let now = moment(NSTimeZone(abbreviation: "UTC")!)
+        let tomorrow = now.add(1, .Days)
+        XCTAssertEqual(now.timeZone, tomorrow.timeZone)
+    }
+
+    func testTimeZoneChangeSubtract() {
+        let now = moment(NSTimeZone(abbreviation: "UTC")!)
+        let yesterday = now.subtract(1, .Days)
+        XCTAssertEqual(now.timeZone, yesterday.timeZone)
+    }
+
+    func testTimeZoneChangeStartOf() {
+        let now = moment(NSTimeZone(abbreviation: "UTC")!)
+        let startOfDay = now.startOf(.Days)
+        XCTAssertEqual(now.timeZone, startOfDay.timeZone)
+    }
+
+    func testTimeZoneChangeEndOf() {
+        let now = moment(NSTimeZone(abbreviation: "UTC")!)
+        let endOfDay = now.endOf(.Days)
+        XCTAssertEqual(now.timeZone, endOfDay.timeZone)
+    }
 }

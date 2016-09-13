@@ -420,7 +420,7 @@ public struct Moment: Comparable {
         cal.locale = locale
         if let newDate = cal.dateByAddingComponents(components, toDate: date,
                                                     options: NSCalendarOptions.init(rawValue: 0)) {
-          return Moment(date: newDate)
+          return Moment(date: newDate, timeZone: timeZone)
         }
         return self
     }
@@ -429,7 +429,7 @@ public struct Moment: Comparable {
         let seconds = convert(value, unit)
         let interval = NSTimeInterval(seconds)
         let newDate = date.dateByAddingTimeInterval(interval)
-        return Moment(date: newDate)
+        return Moment(date: newDate, timeZone: timeZone)
     }
 
     public func add(value: Int, _ unitName: String) -> Moment {
@@ -497,7 +497,7 @@ public struct Moment: Comparable {
             components.second = 0
         }
         newDate = cal.dateFromComponents(components)
-        return newDate == nil ? self : Moment(date: newDate!)
+        return newDate == nil ? self : Moment(date: newDate!, timeZone: timeZone)
     }
 
     public func startOf(unitName: String) -> Moment {

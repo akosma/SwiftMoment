@@ -490,4 +490,15 @@ class MomentTests: XCTestCase {
         let endOfDay = now.endOf(.Days)
         XCTAssertEqual(now.timeZone, endOfDay.timeZone)
     }
+
+    func testTimeZoneStartOfDay() {
+        let cet = NSTimeZone(abbreviation: "CET")!
+        let edt = NSTimeZone(abbreviation: "EDT")!
+        let nowCet = moment(cet)
+        let nowEdt = moment(edt)
+        let startOfDayCet = nowCet.startOf(.Days)
+        let startOfDayEdt = nowEdt.startOf(.Days)
+        XCTAssertEqual(startOfDayCet.hour, 0)
+        XCTAssertEqual(startOfDayEdt.hour, 0)
+    }
 }

@@ -471,6 +471,8 @@ public struct Moment: Comparable {
 
     public func startOf(unit: TimeUnit) -> Moment {
         let cal = NSCalendar.currentCalendar()
+        cal.locale = locale
+        cal.timeZone = timeZone
         var newDate: NSDate?
         let components = cal.components([.Year, .Month, .Weekday, .Day, .Hour, .Minute, .Second],
                                         fromDate: date)

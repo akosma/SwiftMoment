@@ -293,37 +293,36 @@ class MomentTests: XCTestCase {
         let duration = moment() - past()
         XCTAssertLessThan(1000, duration.years, "The past is really far away")
     }
-    /*
+
     func testTimeZoneSupport() {
-        let zone = NSTimeZone(abbreviation: "PST")!
-        let birthday = moment("1973-09-04 12:30:00", timeZone: zone)!
+        let zone = TimeZone(abbreviation: "PST")!
+        let birthday = moment("1973-09-04", timeZone: zone)!
         let str = birthday.format("EE QQQQ yyyy/dd/MMMM HH:mm ZZZZ")
-        XCTAssertEqual(str, "Tue 3rd quarter 1973/04/September 12:30 GMT-07:00",
+        XCTAssertEqual(str, "Tue 3rd quarter 1973/04/September 00:00 GMT-07:00",
                        "A date in San Francisco")
     }
-    */
+
     func testUTCMomentSupport() {
         let greenwich = utc()
         let str = greenwich.format("ZZZZ")
         XCTAssertEqual(str, "GMT", "The timezone is UTC")
     }
 
-   /*
     func testLocaleSupport() {
-        let français = NSLocale(localeIdentifier: "fr_FR")
-        let anniversaire = moment("1973-09-04 12:30:00", locale: français)!
+        let français = Locale(identifier: "fr_FR")
+        let anniversaire = moment("1973-09-04", locale: français)!
         let jour = anniversaire.weekdayName
         let mois = anniversaire.monthName
         XCTAssertEqual(jour, "mardi", "Eh ben bravo!")
         XCTAssertEqual(mois, "septembre", "Eh ben bravo!")
 
-        let deutsch = NSLocale(localeIdentifier: "de_DE")
-        let geburtstag = moment("1973-03-04 12:30:00", locale: deutsch)!
+        let deutsch = Locale(identifier: "de_DE")
+        let geburtstag = moment("1973-03-04", locale: deutsch)!
         let tag = geburtstag.weekdayName
         let monat = geburtstag.monthName
         XCTAssertEqual(tag, "Sonntag", "Ach so!")
-        X
-*/
+        XCTAssertEqual(monat, "März", "Ach so!")
+    }
 
     func testStartOfYear() {
         let obj = moment([2015, 10, 19, 20, 45, 34])!.startOf("y")

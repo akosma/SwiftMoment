@@ -182,10 +182,10 @@ public func moment(_ date: Date, timeZone: TimeZone = TimeZone.current,
 }
 
 public func moment(_ moment: Moment) -> Moment {
-    let copy = moment.date
+    let date = moment.date
     let timeZone = moment.timeZone
-    let locale = moment.locale as Locale
-    return Moment(date: copy, timeZone: timeZone, locale: locale)
+    let locale = moment.locale
+    return Moment(date: date, timeZone: timeZone, locale: locale)
 }
 
 public func past() -> Moment {
@@ -396,33 +396,26 @@ public struct Moment: Comparable {
     }
 
     public func add(_ value: Int, _ unit: TimeUnit) -> Moment {
-        var components = DateComponents()
+        var interval = value
         switch unit {
         case .Years:
-            components.year = value
+            interval = value * Int(1.years.interval)
         case .Quarters:
-            components.month = 3 * value
+            interval = value * Int(1.quarters.interval)
         case .Months:
-            components.month = value
+            interval = value * Int(1.months.interval)
         case .Weeks:
-            components.day = 7 * value
+            interval = value * Int(1.weeks.interval)
         case .Days:
-            components.day = value
+            interval = value * Int(1.days.interval)
         case .Hours:
-            components.hour = value
+            interval = value * Int(1.hours.interval)
         case .Minutes:
-            components.minute = value
+            interval = value * Int(1.minutes.interval)
         case .Seconds:
-            components.second = value
+            interval = value
         }
-        var cal = Calendar(identifier: Calendar.Identifier.gregorian)
-        cal.timeZone = timeZone
-        cal.locale = locale
-        if let newDate = (cal as NSCalendar).date(byAdding: components, to: date,
-                                                  options: NSCalendar.Options.init(rawValue: 0)) {
-            return Moment(date: newDate, timeZone: timeZone)
-        }
-        return self
+        return add(TimeInterval(interval), .Seconds)
     }
 
     public func add(_ value: TimeInterval, _ unit: TimeUnit) -> Moment {

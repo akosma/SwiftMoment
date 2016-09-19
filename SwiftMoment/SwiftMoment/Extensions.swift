@@ -19,6 +19,10 @@ public extension Int {
         return Duration(value: self * 3600)
     }
 
+    var weeks: Duration {
+        return Duration(value: self * 604800)
+    }
+
     var days: Duration {
         return Duration(value: self * 86400)
     }

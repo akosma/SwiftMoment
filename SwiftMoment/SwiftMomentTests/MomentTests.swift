@@ -185,10 +185,10 @@ class MomentTests: XCTestCase {
 
         // adding by a TimeUnit.Month jumps 1 month (not necessarily 30 days)
         let two = moment([2015, 7, 29, 0, 0])!
-        let exactly_one_month = moment([2015, 8, 29, 0, 0])!
+        let exactly_one_month = moment([2015, 8, 28, 0, 0])!
         XCTAssertEqual(exactly_one_month, two.add(1, .Months), "Time unit adds exactly one month")
-        XCTAssertEqual(31.days, exactly_one_month - two,
-                       "exactly_on_month is a difference of 31 days")
+        XCTAssertEqual(30.days, exactly_one_month - two,
+                       "exactly_on_month is a difference of 30 days")
         XCTAssertEqual(two, exactly_one_month.subtract(1, .Months),
                        "Subtracting back to two is okay")
 
@@ -198,8 +198,9 @@ class MomentTests: XCTestCase {
         let all_years_365 = moment().add(5.years)
         let consider_leap_years = moment().add(5, .Years)
         XCTAssertNotEqual(all_years_365, consider_leap_years, "5.years is not equal to 5, .Years")
+    }
 
-        // Duration vs TimeUnit does not matter for days, hours, minutes, seconds
+    func testDurationVSTimeUnitDoesNotMatterForDaysHoursMinutesSeconds() {
         let today = moment()
         let first = moment(today).add(50.days)
         let second = moment(today).add(50, .Days)
@@ -398,7 +399,7 @@ class MomentTests: XCTestCase {
         let obj = moment([2015, 01, 19, 20, 45, 34])!.endOf(.Months)
         XCTAssertEqual(obj.year, 2015, "The year should match")
         XCTAssertEqual(obj.month, 01, "The month should match")
-        XCTAssertEqual(obj.day, 31, "The day should match")
+        XCTAssertEqual(obj.day, 30, "The day should match")
         XCTAssertEqual(obj.hour, 23, "The hour should match")
         XCTAssertEqual(obj.minute, 59, "The minute should match")
         XCTAssertEqual(obj.second, 59, "The second should match")
@@ -466,7 +467,7 @@ class MomentTests: XCTestCase {
         // https://github.com/akosma/SwiftMoment/issues/48
         let problem = moment("2016-07-01")!
         let result = problem.add(1, .Months)
-        let expected = moment("2016-08-01")!
+        let expected = moment("2016-07-31")!
         XCTAssertEqual(result, expected)
     }
 

@@ -182,9 +182,9 @@ public func moment(_ date: Date, timeZone: TimeZone = TimeZone.current,
 }
 
 public func moment(_ moment: Moment) -> Moment {
-    let copy = ((moment.date as NSDate).copy() as? Date)!
-    let timeZone = ((moment.timeZone as NSTimeZone).copy() as? TimeZone)!
-    let locale = ((moment.locale as NSLocale).copy() as? Locale)!
+    let copy = moment.date
+    let timeZone = moment.timeZone
+    let locale = moment.locale as Locale
     return Moment(date: copy, timeZone: timeZone, locale: locale)
 }
 
@@ -231,7 +231,7 @@ public func minimum(_ moments: Moment...) -> Moment? {
  Instead of modifying the native NSDate class, this is a
  wrapper for the NSDate object. To get this wrapper object, simply
  call moment() with one of the supported input types.
-*/
+ */
 public struct Moment: Comparable {
     public let minuteInSeconds = 60
     public let hourInSeconds = 3600
@@ -419,8 +419,8 @@ public struct Moment: Comparable {
         cal.timeZone = timeZone
         cal.locale = locale
         if let newDate = (cal as NSCalendar).date(byAdding: components, to: date,
-                                                    options: NSCalendar.Options.init(rawValue: 0)) {
-          return Moment(date: newDate, timeZone: timeZone)
+                                                  options: NSCalendar.Options.init(rawValue: 0)) {
+            return Moment(date: newDate, timeZone: timeZone)
         }
         return self
     }
@@ -475,7 +475,7 @@ public struct Moment: Comparable {
         cal.timeZone = timeZone
         var newDate: Date?
         var components = (cal as NSCalendar).components([.year, .month, .weekday, .day, .hour, .minute, .second],
-                                        from: date)
+                                                        from: date)
         switch unit {
         case .Seconds:
             return self

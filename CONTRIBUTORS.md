@@ -14,7 +14,9 @@ requests, bug submissions, etc:
 - [Chris Sloey](https://github.com/chrissloey)
 - [Daniel Cestari](https://github.com/dcestari)
 - [David Harris](https://github.com/toadzky)
+- [Fabio Felici](https://github.com/fabfelici)
 - [Florent Pillet](https://github.com/fpillet)
+- [Hadar Landao](https://github.com/hlandao)
 - [Jake Johnson](https://github.com/johnsonjake)
 - [karupanenura](https://github.com/karupanerura)
 - [Ken Goldfarb](https://github.com/kengoldfarb)
@@ -22,14 +24,14 @@ requests, bug submissions, etc:
 - [Madhava Jay](https://github.com/madhavajay)
 - [Masaya Yashiro](https://github.com/yashims)
 - [Mihyaeru](https://github.com/mihyaeru21)
-- [Neil](https://github.com/AsFarA)
+- [Narayan Sainaney](https://github.com/nsainaney)
 - [Nate Armstrong](https://github.com/n8armstrong)
+- [Neil](https://github.com/AsFarA)
 - [PG Herveou](https://github.com/pgherveou)
 - [Pine Mizune](https://github.com/pine613)
 - [Ryan Maxwell](https://github.com/ryanmaxwell)
 - [Ryo Yamada](https://github.com/Liooo)
 - [Tomáš Slíž](https://github.com/tomassliz)
-- [Hadar Landao](https://github.com/hlandao)
 
 Special Thanks
 --------------

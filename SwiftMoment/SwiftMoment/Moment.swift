@@ -364,10 +364,20 @@ public func future() -> Moment {
     return Moment(date: Date.distantFuture)
 }
 
+/// Returns the Duration that separates the current moment from another one.
+///
+/// - parameter past: The moment to compare to the current moment.
+///
+/// - returns: A Duration value.
 public func since(_ past: Moment) -> Duration {
     return moment().intervalSince(past)
 }
 
+/// Returns the maximum, that is, the latest of all values passed in parameter.
+///
+/// - parameter moments: A sequence of Moment values.
+///
+/// - returns: The latest Moment value in the sequence.
 public func maximum(_ moments: Moment...) -> Moment? {
     if moments.count > 0 {
         var max: Moment = moments[0]
@@ -381,6 +391,11 @@ public func maximum(_ moments: Moment...) -> Moment? {
     return nil
 }
 
+/// Returns the minimum, that is, the earliest of all values passed in parameter.
+///
+/// - parameter moments: A sequence of Moment values.
+///
+/// - returns: The earliest Moment value in the sequence.
 public func minimum(_ moments: Moment...) -> Moment? {
     if moments.count > 0 {
         var min: Moment = moments[0]
@@ -399,12 +414,12 @@ public func minimum(_ moments: Moment...) -> Moment? {
 /// It wraps a Foundation `Date`, a `TimeZone` and a `Locale` value.
 /// To create one of these values, call one of the `moment()` family of functions.
 public struct Moment: Comparable {
-    public let minuteInSeconds = 60
-    public let hourInSeconds = 3600
-    public let dayInSeconds = 86400
-    public let weekInSeconds = 604800
-    public let monthInSeconds = 2592000
-    public let yearInSeconds = 31536000
+    public let minuteInSeconds : Double = 60
+    public let hourInSeconds : Double = 3600
+    public let dayInSeconds : Double = 86400
+    public let weekInSeconds : Double = 604800
+    public let monthInSeconds : Double = 2592000
+    public let yearInSeconds : Double = 31536000
 
     public let date: Date
     public let timeZone: TimeZone
@@ -667,29 +682,53 @@ public struct Moment: Comparable {
         return Duration(value: Int(interval))
     }
 
+    /// Adds the specified value in the specified time unit to the current
+    /// instance and returns a new Moment instance.
+    ///
+    ///     let old = moment("2016-07-01")!
+    ///     let new = problem.add(1, .Months)
+    ///     let expected = moment("2016-07-31")!
+    ///     // and "new" is equal to "expected"
+    ///
+    /// - parameter value: The amount to add.
+    /// - parameter unit:  The unit of the amount to add.
+    ///
+    /// - returns: A new Moment instance.
     public func add(_ value: Int, _ unit: TimeUnit) -> Moment {
-        var interval = value
+        var interval = Double(value)
         switch unit {
         case .Years:
-            interval = value * Int(1.years.interval)
+            interval = value.years.interval
         case .Quarters:
-            interval = value * Int(1.quarters.interval)
+            interval = value.quarters.interval
         case .Months:
-            interval = value * Int(1.months.interval)
+            interval = value.months.interval
         case .Weeks:
-            interval = value * Int(1.weeks.interval)
+            interval = value.weeks.interval
         case .Days:
-            interval = value * Int(1.days.interval)
+            interval = value.days.interval
         case .Hours:
-            interval = value * Int(1.hours.interval)
+            interval = value.hours.interval
         case .Minutes:
-            interval = value * Int(1.minutes.interval)
+            interval = value.minutes.interval
         case .Seconds:
-            interval = value
+            interval = Double(value)
         }
         return add(TimeInterval(interval), .Seconds)
     }
 
+    /// Adds the specified value in the specified TimeInterval to the current
+    /// instance and returns a new Moment instance.
+    ///
+    ///     let mom1 = moment([2015, 7, 29, 0, 0])!
+    ///     let mom2 = mom1.add(1.0, .Months)
+    ///     let mom3 = moment([2015, 8, 28, 0, 0])!
+    ///     // mom2 is equal to mom3, because duration adds exactly 30 days
+    ///
+    /// - parameter value: The amount to add.
+    /// - parameter unit:  The unit of the amount to add.
+    ///
+    /// - returns: A new Moment instance.
     public func add(_ value: TimeInterval, _ unit: TimeUnit) -> Moment {
         let seconds = convert(value, unit)
         let interval = TimeInterval(seconds)
@@ -697,6 +736,29 @@ public struct Moment: Comparable {
         return Moment(date: newDate, timeZone: timeZone)
     }
 
+    /// Adds the specified value in the specified TimeInterval to the current
+    /// instance and returns a new Moment instance.
+    ///
+    /// Valid unit values:
+    ///
+    /// - Years = "y"
+    /// - Quarters = "Q"
+    /// - Months = "M"
+    /// - Weeks = "w"
+    /// - Days = "d"
+    /// - Hours = "H"
+    /// - Minutes = "m"
+    /// - Seconds = "s"
+    ///
+    ///     let mom1 = moment([2015, 7, 29, 0, 0])!
+    ///     let mom2 = mom1.add(1, "M")
+    ///     let mom3 = moment([2015, 8, 28, 0, 0])!
+    ///     // mom2 is equal to mom3, because duration adds exactly 30 days
+    ///
+    /// - parameter value: The amount to add.
+    /// - parameter unit:  The name of the unit of the amount to add.
+    ///
+    /// - returns: A new Moment instance.
     public func add(_ value: Int, _ unitName: String) -> Moment {
         if let unit = TimeUnit(rawValue: unitName) {
             return add(value, unit)
@@ -704,18 +766,75 @@ public struct Moment: Comparable {
         return self
     }
 
+    /// Adds the specified duration to the current instance and returns a new Moment.
+    ///
+    ///     let mom1 = moment([2015, 7, 29, 0, 0])!
+    ///     let mom2 = mom1.add(1.months)
+    ///     let mom3 = moment([2015, 8, 28, 0, 0])!
+    ///     // mom2 is equal to mom3, because duration adds exactly 30 days
+    ///
+    /// - parameter duration: The duration to add.
+    ///
+    /// - returns: A new Moment instance.
     public func add(_ duration: Duration) -> Moment {
         return add(duration.interval, .Seconds)
     }
 
-    public func subtract(_ value: TimeInterval, _ unit: TimeUnit) -> Moment {
-        return add(-value, unit)
-    }
-
+    /// Substracts the specified value in the specified TimeInterval to the current
+    /// instance and returns a new Moment instance.
+    ///
+    ///     let mom1 = moment([2015, 7, 29, 0, 0])!
+    ///     let mom3 = moment([2015, 8, 28, 0, 0])!
+    ///     let mom2 = mom3.substract(1.0, .Months)
+    ///     // mom2 is equal to mom1, because duration equals exactly 30 days
+    ///
+    /// - parameter value: The amount to substract.
+    /// - parameter unit:  The unit of the amount to substract.
+    ///
+    /// - returns: A new Moment instance.
     public func subtract(_ value: Int, _ unit: TimeUnit) -> Moment {
         return add(-value, unit)
     }
 
+    /// Substracts the specified value in the specified TimeInterval to the current
+    /// instance and returns a new Moment instance.
+    ///
+    ///     let mom1 = moment([2015, 7, 29, 0, 0])!
+    ///     let mom3 = moment([2015, 8, 28, 0, 0])!
+    ///     let mom2 = mom3.substract(1.0, .Months)
+    ///     // mom2 is equal to mom1, because duration equals exactly 30 days
+    ///
+    /// - parameter value: The amount to substract.
+    /// - parameter unit:  The unit of the amount to substract.
+    ///
+    /// - returns: A new Moment instance.
+    public func subtract(_ value: TimeInterval, _ unit: TimeUnit) -> Moment {
+        return add(-value, unit)
+    }
+
+    /// Substracts the specified value in the specified TimeInterval to the current
+    /// instance and returns a new Moment instance.
+    ///
+    /// Valid unit values:
+    ///
+    /// - Years = "y"
+    /// - Quarters = "Q"
+    /// - Months = "M"
+    /// - Weeks = "w"
+    /// - Days = "d"
+    /// - Hours = "H"
+    /// - Minutes = "m"
+    /// - Seconds = "s"
+    ///
+    ///     let mom1 = moment([2015, 7, 29, 0, 0])!
+    ///     let mom3 = moment([2015, 8, 28, 0, 0])!
+    ///     let mom2 = mom3.substract(1, "M")
+    ///     // mom2 is equal to mom1, because duration equals exactly 30 days
+    ///
+    /// - parameter value: The amount to substract.
+    /// - parameter unit:  The name of the unit of the amount to substract.
+    ///
+    /// - returns: A new Moment instance.
     public func subtract(_ value: Int, _ unitName: String) -> Moment {
         if let unit = TimeUnit(rawValue: unitName) {
             return subtract(value, unit)
@@ -723,17 +842,38 @@ public struct Moment: Comparable {
         return self
     }
 
+    /// Substracts the specified duration to the current instance and returns a new Moment.
+    ///
+    ///     let mom1 = moment([2015, 7, 29, 0, 0])!
+    ///     let mom3 = moment([2015, 8, 28, 0, 0])!
+    ///     let mom2 = mom3.substract(1.months)
+    ///     // mom2 is equal to mom1, because duration equals exactly 30 days
+    ///
+    /// - parameter duration: The duration to substract.
+    ///
+    /// - returns: A new Moment instance.
     public func subtract(_ duration: Duration) -> Moment {
         return subtract(duration.interval, .Seconds)
     }
 
+    /// Decides whether a moment is "close by" another one passed in parameter,
+    /// where "Being close" is measured using a precision argument
+    /// which is initialized a 300 seconds, or 5 minutes.
+    ///
+    /// - parameter moment:    The moment used for the comparison.
+    /// - parameter precision: The precision of the comparison, initialized at 300 seconds
+    ///
+    /// - returns: A boolean; true if close by, false otherwise.
     public func isCloseTo(_ moment: Moment, precision: TimeInterval = 300) -> Bool {
-        // "Being close" is measured using a precision argument
-        // which is initialized a 300 seconds, or 5 minutes.
         let delta = intervalSince(moment)
         return abs(delta.interval) < precision
     }
 
+    /// Returns a new Moment that is initialized at the start of a specified unit of time.
+    ///
+    /// - parameter unit: A TimeUnit value.
+    ///
+    /// - returns: A new Moment instance.
     public func startOf(_ unit: TimeUnit) -> Moment {
         var cal = Calendar.current
         cal.locale = locale
@@ -767,6 +907,22 @@ public struct Moment: Comparable {
         return newDate == nil ? self : Moment(date: newDate!, timeZone: timeZone)
     }
 
+    /// Returns a new Moment that is initialized at the start of a specified unit of time.
+    ///
+    /// Valid unit values:
+    ///
+    /// - Years = "y"
+    /// - Quarters = "Q"
+    /// - Months = "M"
+    /// - Weeks = "w"
+    /// - Days = "d"
+    /// - Hours = "H"
+    /// - Minutes = "m"
+    /// - Seconds = "s"
+    ///
+    /// - parameter unit: The name of a TimeUnit value.
+    ///
+    /// - returns: A new Moment instance.
     public func startOf(_ unitName: String) -> Moment {
         if let unit = TimeUnit(rawValue: unitName) {
             return startOf(unit)
@@ -774,10 +930,31 @@ public struct Moment: Comparable {
         return self
     }
 
+    /// Returns a new Moment that is initialized at the end of a specified unit of time.
+    ///
+    /// - parameter unit: A TimeUnit value.
+    ///
+    /// - returns: A new Moment instance.
     public func endOf(_ unit: TimeUnit) -> Moment {
         return startOf(unit).add(1, unit).subtract(1.seconds)
     }
 
+    /// Returns a new Moment that is initialized at the end of a specified unit of time.
+    ///
+    /// Valid unit values:
+    ///
+    /// - Years = "y"
+    /// - Quarters = "Q"
+    /// - Months = "M"
+    /// - Weeks = "w"
+    /// - Days = "d"
+    /// - Hours = "H"
+    /// - Minutes = "m"
+    /// - Seconds = "s"
+    ///
+    /// - parameter unit: The name of a TimeUnit value.
+    ///
+    /// - returns: A new Moment instance.
     public func endOf(_ unitName: String) -> Moment {
         if let unit = TimeUnit(rawValue: unitName) {
             return endOf(unit)
@@ -785,6 +962,9 @@ public struct Moment: Comparable {
         return self
     }
 
+    /// Returns the TimeInterval since the Unix epoch to the current instance.
+    ///
+    /// - returns: A TimeInterval value.
     public func epoch() -> TimeInterval {
         return date.timeIntervalSince1970
     }
@@ -794,19 +974,19 @@ public struct Moment: Comparable {
         case .Seconds:
             return value
         case .Minutes:
-            return value * 60
+            return value * minuteInSeconds
         case .Hours:
-            return value * 3600 // 60 minutes
+            return value * hourInSeconds // 60 minutes
         case .Days:
-            return value * 86400 // 24 hours
+            return value * dayInSeconds // 24 hours
         case .Weeks:
             return value * 605800 // 7 days
         case .Months:
-            return value * 2592000 // 30 days
+            return value * monthInSeconds // 30 days
         case .Quarters:
             return value * 7776000 // 3 months
         case .Years:
-            return value * 31536000 // 365 days
+            return value * yearInSeconds // 365 days
         }
     }
 }

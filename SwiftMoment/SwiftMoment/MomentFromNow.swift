@@ -13,76 +13,88 @@ class MomentBundle: NSObject { }
 
 extension Moment {
     public func fromNow() -> String {
-        let timeDiffDuration = moment(Date()).intervalSince(self)
-        let deltaSeconds = Int(timeDiffDuration.seconds)
+        let timeDiffDuration = moment().intervalSince(self)
+        let deltaSeconds = timeDiffDuration.seconds
 
-        var value: Int!
+        var value: Double!
 
         if deltaSeconds < 5 {
             // Just Now
             return NSDateTimeAgoLocalizedStrings("Just now")
 
-        } else if deltaSeconds < minuteInSeconds {
+        }
+        else if deltaSeconds < minuteInSeconds {
             // Seconds Ago
-            return stringFromFormat("%%d %@seconds ago", withValue: deltaSeconds)
+            return stringFromFormat("%%1.0f %@seconds ago", withValue: deltaSeconds)
 
-        } else if deltaSeconds < (minuteInSeconds * 2) {
+        }
+        else if deltaSeconds < (minuteInSeconds * 2) {
             // A Minute Ago
             return NSDateTimeAgoLocalizedStrings("A minute ago")
 
-        } else if deltaSeconds < hourInSeconds {
+        }
+        else if deltaSeconds < hourInSeconds {
             // Minutes Ago
-            return stringFromFormat("%%d %@minutes ago", withValue: deltaSeconds / minuteInSeconds)
+            return stringFromFormat("%%1.0f %@minutes ago", withValue: deltaSeconds / minuteInSeconds)
 
-        } else if deltaSeconds < (hourInSeconds * 2) {
+        }
+        else if deltaSeconds < (hourInSeconds * 2) {
             // An Hour Ago
             return NSDateTimeAgoLocalizedStrings("An hour ago")
 
-        } else if deltaSeconds < dayInSeconds {
+        }
+        else if deltaSeconds < dayInSeconds {
             // Hours Ago
-            value = Int(floor(Float(deltaSeconds / hourInSeconds)))
-            return stringFromFormat("%%d %@hours ago", withValue: value)
+            value = floor(deltaSeconds / hourInSeconds)
+            return stringFromFormat("%%1.0f %@hours ago", withValue: value)
 
-        } else if deltaSeconds < (dayInSeconds * 2) {
+        }
+        else if deltaSeconds < (dayInSeconds * 2) {
             // Yesterday
             return NSDateTimeAgoLocalizedStrings("Yesterday")
 
-        } else if deltaSeconds < weekInSeconds {
+        }
+        else if deltaSeconds < weekInSeconds {
             // Days Ago
-            value = Int(floor(Float(deltaSeconds / dayInSeconds)))
-            return stringFromFormat("%%d %@days ago", withValue: value)
+            value = floor(deltaSeconds / dayInSeconds)
+            return stringFromFormat("%%1.0f %@days ago", withValue: value)
 
-        } else if deltaSeconds < (weekInSeconds * 2) {
+        }
+        else if deltaSeconds < (weekInSeconds * 2) {
             // Last Week
             return NSDateTimeAgoLocalizedStrings("Last week")
 
-        } else if deltaSeconds < monthInSeconds {
+        }
+        else if deltaSeconds < monthInSeconds {
             // Weeks Ago
-            value = Int(floor(Float(deltaSeconds / weekInSeconds)))
-            return stringFromFormat("%%d %@weeks ago", withValue: value)
+            value = floor(deltaSeconds / weekInSeconds)
+            return stringFromFormat("%%1.0f %@weeks ago", withValue: value)
 
-        } else if deltaSeconds < (dayInSeconds * 61) {
+        }
+        else if deltaSeconds < (dayInSeconds * 61) {
             // Last month
             return NSDateTimeAgoLocalizedStrings("Last month")
 
-        } else if deltaSeconds < yearInSeconds {
+        }
+        else if deltaSeconds < yearInSeconds {
             // Month Ago
-            value = Int(floor(Float(deltaSeconds / monthInSeconds)))
-            return stringFromFormat("%%d %@months ago", withValue: value)
+            value = floor(deltaSeconds / monthInSeconds)
+            return stringFromFormat("%%1.0f %@months ago", withValue: value)
 
-        } else if deltaSeconds < (yearInSeconds * 2) {
+        }
+        else if deltaSeconds < (yearInSeconds * 2) {
             // Last Year
             return NSDateTimeAgoLocalizedStrings("Last year")
         }
 
         // Years Ago
-        value = Int(floor(Float(deltaSeconds / yearInSeconds)))
-        return stringFromFormat("%%d %@years ago", withValue: value)
+        value = floor(deltaSeconds / yearInSeconds)
+        return stringFromFormat("%%1.0f %@years ago", withValue: value)
     }
 
-    fileprivate func stringFromFormat(_ format: String, withValue value: Int) -> String {
+    fileprivate func stringFromFormat(_ format: String, withValue value: Double) -> String {
         let localeFormat = String(format: format,
-                                  getLocaleFormatUnderscoresWithValue(Double(value)))
+                                  getLocaleFormatUnderscoresWithValue(value))
         return String(format: NSDateTimeAgoLocalizedStrings(localeFormat), value)
     }
 

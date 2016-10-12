@@ -292,7 +292,7 @@ class MomentTests: XCTestCase {
         XCTAssertLessThan(1000, duration.years, "The past is really far away")
     }
 
-    func testFormatWithTimeZone() {
+    func testMomentWithTimeZone() {
         let zone = TimeZone(abbreviation: "PST")!
         let birthday = moment("1973-09-04", timeZone: zone)!
         let str = birthday.format("EE QQQQ yyyy/dd/MMMM HH:mm ZZZZ")

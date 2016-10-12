@@ -8,14 +8,14 @@
 
 /// Represents different time units.
 ///
-/// - Years:    Represents year units.
-/// - Quarters: Represents quarter units.
-/// - Months:   Represents month units.
-/// - Weeks:    Represents week units.
-/// - Days:     Represents day units.
-/// - Hours:    Represents hour units.
-/// - Minutes:  Represents minute units.
-/// - Seconds:  Represents second units.
+/// - years:    Represents year units.
+/// - quarters: Represents quarter units.
+/// - months:   Represents month units.
+/// - weeks:    Represents week units.
+/// - days:     Represents day units.
+/// - hours:    Represents hour units.
+/// - minutes:  Represents minute units.
+/// - seconds:  Represents second units.
 public enum TimeUnit: String {
     case years = "y"
     case quarters = "Q"

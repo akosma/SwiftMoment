@@ -7,6 +7,10 @@
 
 import Foundation
 
+/// An enumeration used by the LazyBox class.
+///
+/// - NotYetComputed->T: This value holds a block to be lazily executed.
+/// - Computed:          Indicating that the computation has already happened.
 internal enum LazyValue<T> {
     case NotYetComputed(() -> T)
     case Computed(T)
@@ -25,6 +29,7 @@ internal final class LazyBox<T> {
     /// All reads and writes of `_value` must happen on this queue.
     private let queue = DispatchQueue(label: "LazyBox._value")
 
+    /// Performs the lazy computation, or returns the value stored.
     var value: T {
         var returnValue: T? = nil
         queue.sync {

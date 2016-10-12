@@ -82,4 +82,5 @@ class ExtensionsTests: XCTestCase {
         XCTAssertEqual(3.years, Duration(value: 31536000 * 3),
                        "The Duration instance by three years is returned")
     }
+
 }

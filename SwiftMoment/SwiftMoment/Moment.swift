@@ -40,8 +40,8 @@ public func utc() -> Moment {
 }
 
 
-/// Returns an Optional wrapping a Moment structure, representing the 
-/// current instant in time. If the string passed as parameter is invalid, 
+/// Returns an Optional wrapping a Moment structure, representing the
+/// current instant in time. If the string passed as parameter is invalid,
 /// the Optional wraps a nil value.
 ///
 /// Valid date format strings:
@@ -154,7 +154,7 @@ public func moment(_ stringDate: String,
 }
 
 
-/// Builds a new Moment instance using an array with the following components, 
+/// Builds a new Moment instance using an array with the following components,
 /// in the following order: [ year, month, day, hour, minute, second ]. This means
 /// that the first element of the array will always be taken as the year, the second
 /// as the month, and so on. If any of the parameters is invalid, the function will
@@ -414,13 +414,13 @@ public func minimum(_ moments: Moment...) -> Moment? {
 /// It wraps a Foundation `Date`, a `TimeZone` and a `Locale` value.
 /// To create one of these values, call one of the `moment()` family of functions.
 public struct Moment: Comparable {
-    internal static let minuteInSeconds : Double = 60
-    internal static let hourInSeconds : Double = 3600
-    internal static let dayInSeconds : Double = 86400
-    internal static let weekInSeconds : Double = 604800
-    internal static let monthInSeconds : Double = 2592000
-    internal static let quarterInSeconds : Double = 7776000
-    internal static let yearInSeconds : Double = 31536000
+    internal static let minuteInSeconds: Double = 60
+    internal static let hourInSeconds: Double = 3600
+    internal static let dayInSeconds: Double = 86400
+    internal static let weekInSeconds: Double = 604800
+    internal static let monthInSeconds: Double = 2592000
+    internal static let quarterInSeconds: Double = 7776000
+    internal static let yearInSeconds: Double = 31536000
 
     /// The Date wrapped by this value.
     public let date: Date
@@ -431,12 +431,12 @@ public struct Moment: Comparable {
     // The Locale value wrapped by this instance.
     public let locale: Locale
 
-    private let _formatter = LazyBox<DateFormatter> {
+    private let lazyFormatter = LazyBox<DateFormatter> {
         return DateFormatter()
     }
 
     private var formatter: DateFormatter {
-        return _formatter.value
+        return lazyFormatter.value
     }
 
     /// Initializes a new Moment value.
@@ -458,7 +458,7 @@ public struct Moment: Comparable {
         var cal = Calendar.current
         cal.timeZone = timeZone
         cal.locale = locale
-        let param : Set<Calendar.Component> = [.year]
+        let param: Set<Calendar.Component> = [.year]
         let components = cal.dateComponents(param, from: date)
         return components.year!
     }
@@ -468,7 +468,7 @@ public struct Moment: Comparable {
         var cal = Calendar.current
         cal.timeZone = timeZone
         cal.locale = locale
-        let param : Set<Calendar.Component> = [.month]
+        let param: Set<Calendar.Component> = [.month]
         let components = cal.dateComponents(param, from: date)
         return components.month!
     }
@@ -485,7 +485,7 @@ public struct Moment: Comparable {
         var cal = Calendar.current
         cal.timeZone = timeZone
         cal.locale = locale
-        let param : Set<Calendar.Component> = [.day]
+        let param: Set<Calendar.Component> = [.day]
         let components = cal.dateComponents(param, from: date)
         return components.day!
     }
@@ -495,7 +495,7 @@ public struct Moment: Comparable {
         var cal = Calendar.current
         cal.timeZone = timeZone
         cal.locale = locale
-        let param : Set<Calendar.Component> = [.hour]
+        let param: Set<Calendar.Component> = [.hour]
         let components = cal.dateComponents(param, from: date)
         return components.hour!
     }
@@ -505,7 +505,7 @@ public struct Moment: Comparable {
         var cal = Calendar.current
         cal.timeZone = timeZone
         cal.locale = locale
-        let param : Set<Calendar.Component> = [.minute]
+        let param: Set<Calendar.Component> = [.minute]
         let components = cal.dateComponents(param, from: date)
         return components.minute!
     }
@@ -515,7 +515,7 @@ public struct Moment: Comparable {
         var cal = Calendar.current
         cal.timeZone = timeZone
         cal.locale = locale
-        let param : Set<Calendar.Component> = [.second]
+        let param: Set<Calendar.Component> = [.second]
         let components = cal.dateComponents(param, from: date)
         return components.second!
     }
@@ -525,7 +525,7 @@ public struct Moment: Comparable {
         var cal = Calendar.current
         cal.timeZone = timeZone
         cal.locale = locale
-        let param : Set<Calendar.Component> = [.weekday]
+        let param: Set<Calendar.Component> = [.weekday]
         let components = cal.dateComponents(param, from: date)
         return components.weekday!
     }
@@ -546,7 +546,7 @@ public struct Moment: Comparable {
         var cal = Calendar.current
         cal.locale = locale
         cal.timeZone = timeZone
-        let param : Set<Calendar.Component> = [.weekdayOrdinal]
+        let param: Set<Calendar.Component> = [.weekdayOrdinal]
         let components = cal.dateComponents(param, from: date)
         return components.weekdayOrdinal!
     }
@@ -556,7 +556,7 @@ public struct Moment: Comparable {
         var cal = Calendar.current
         cal.locale = locale
         cal.timeZone = timeZone
-        let param : Set<Calendar.Component> = [.weekOfYear]
+        let param: Set<Calendar.Component> = [.weekOfYear]
         let components = cal.dateComponents(param, from: date)
         return components.weekOfYear!
     }
@@ -566,7 +566,7 @@ public struct Moment: Comparable {
         var cal = Calendar.current
         cal.locale = locale
         cal.timeZone = timeZone
-        let param : Set<Calendar.Component> = [.quarter]
+        let param: Set<Calendar.Component> = [.quarter]
         let components = cal.dateComponents(param, from: date)
         return components.quarter!
     }
@@ -581,21 +581,21 @@ public struct Moment: Comparable {
     /// - returns: A non-optional integer value.
     public func get(_ unit: TimeUnit) -> Int {
         switch unit {
-        case .Seconds:
+        case .seconds:
             return second
-        case .Minutes:
+        case .minutes:
             return minute
-        case .Hours:
+        case .hours:
             return hour
-        case .Days:
+        case .days:
             return day
-        case .Weeks:
+        case .weeks:
             return weekOfYear
-        case .Months:
+        case .months:
             return month
-        case .Quarters:
+        case .quarters:
             return quarter
-        case .Years:
+        case .years:
             return year
         }
     }
@@ -703,24 +703,24 @@ public struct Moment: Comparable {
     public func add(_ value: Int, _ unit: TimeUnit) -> Moment {
         var interval = Double(value)
         switch unit {
-        case .Years:
+        case .years:
             interval = value.years.interval
-        case .Quarters:
+        case .quarters:
             interval = value.quarters.interval
-        case .Months:
+        case .months:
             interval = value.months.interval
-        case .Weeks:
+        case .weeks:
             interval = value.weeks.interval
-        case .Days:
+        case .days:
             interval = value.days.interval
-        case .Hours:
+        case .hours:
             interval = value.hours.interval
-        case .Minutes:
+        case .minutes:
             interval = value.minutes.interval
-        case .Seconds:
+        case .seconds:
             interval = Double(value)
         }
-        return add(TimeInterval(interval), .Seconds)
+        return add(TimeInterval(interval), .seconds)
     }
 
     /// Adds the specified value in the specified TimeInterval to the current
@@ -739,21 +739,21 @@ public struct Moment: Comparable {
 
         func convert(_ value: Double, _ unit: TimeUnit) -> Double {
             switch unit {
-            case .Seconds:
+            case .seconds:
                 return value
-            case .Minutes:
+            case .minutes:
                 return value * Moment.minuteInSeconds
-            case .Hours:
+            case .hours:
                 return value * Moment.hourInSeconds // 60 minutes
-            case .Days:
+            case .days:
                 return value * Moment.dayInSeconds // 24 hours
-            case .Weeks:
+            case .weeks:
                 return value * Moment.weekInSeconds // 7 days
-            case .Months:
+            case .months:
                 return value * Moment.monthInSeconds // 30 days
-            case .Quarters:
+            case .quarters:
                 return value * Moment.quarterInSeconds // 3 months
-            case .Years:
+            case .years:
                 return value * Moment.yearInSeconds // 365 days
             }
         }
@@ -805,7 +805,7 @@ public struct Moment: Comparable {
     ///
     /// - returns: A new Moment instance.
     public func add(_ duration: Duration) -> Moment {
-        return add(duration.interval, .Seconds)
+        return add(duration.interval, .seconds)
     }
 
     /// Substracts the specified value in the specified TimeInterval to the current
@@ -881,7 +881,7 @@ public struct Moment: Comparable {
     ///
     /// - returns: A new Moment instance.
     public func subtract(_ duration: Duration) -> Moment {
-        return subtract(duration.interval, .Seconds)
+        return subtract(duration.interval, .seconds)
     }
 
     /// Decides whether a moment is "close by" another one passed in parameter,
@@ -907,28 +907,28 @@ public struct Moment: Comparable {
         cal.locale = locale
         cal.timeZone = timeZone
         var newDate: Date?
-        let param : Set<Calendar.Component> = [.year, .month, .weekday, .day, .hour, .minute, .second]
+        let param: Set<Calendar.Component> = [.year, .month, .weekday, .day, .hour, .minute, .second]
         var components = cal.dateComponents(param, from: date)
         switch unit {
-        case .Seconds:
+        case .seconds:
             return self
-        case .Years:
+        case .years:
             components.month = 1
             fallthrough
-        case .Quarters, .Months, .Weeks:
-            if unit == .Weeks {
+        case .quarters, .months, .weeks:
+            if unit == .weeks {
                 components.day = components.day! - (components.weekday! - 2)
             } else {
                 components.day = 1
             }
             fallthrough
-        case .Days:
+        case .days:
             components.hour = 0
             fallthrough
-        case .Hours:
+        case .hours:
             components.minute = 0
             fallthrough
-        case .Minutes:
+        case .minutes:
             components.second = 0
         }
         newDate = cal.date(from: components)
@@ -996,6 +996,7 @@ public struct Moment: Comparable {
     public func epoch() -> TimeInterval {
         return date.timeIntervalSince1970
     }
+
 }
 
 extension Moment: CustomStringConvertible {

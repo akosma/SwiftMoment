@@ -17,12 +17,12 @@
 /// - Minutes:  Represents minute units.
 /// - Seconds:  Represents second units.
 public enum TimeUnit: String {
-    case Years = "y"
-    case Quarters = "Q"
-    case Months = "M"
-    case Weeks = "w"
-    case Days = "d"
-    case Hours = "H"
-    case Minutes = "m"
-    case Seconds = "s"
+    case years = "y"
+    case quarters = "Q"
+    case months = "M"
+    case weeks = "w"
+    case days = "d"
+    case hours = "H"
+    case minutes = "m"
+    case seconds = "s"
 }

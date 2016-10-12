@@ -9,7 +9,7 @@
 import Foundation
 
 // needed to dynamically select the bundle below
-class MomentBundle: NSObject { }
+class MomentBundle: NSObject {}
 
 extension Moment {
 
@@ -118,7 +118,7 @@ extension Moment {
         }
 
         let bundleName = "MomentFromNow.bundle"
-        let path = URL(fileURLWithPath:resourcePath).appendingPathComponent(bundleName)
+        let path = URL(fileURLWithPath: resourcePath).appendingPathComponent(bundleName)
         guard let bundle = Bundle(url: path) else {
             return ""
         }
@@ -151,22 +151,23 @@ extension Moment {
         }
 
         if localeCode == "ru" {
-            let XY = Int(floor(value)) % 100
-            let Y = Int(floor(value)) % 10
+            let xy = Int(floor(value)) % 100
+            let y = Int(floor(value)) % 10
 
-            if Y == 0 || Y > 4 || (XY > 10 && XY < 15) {
+            if y == 0 || y > 4 || (xy > 10 && xy < 15) {
                 return ""
             }
 
-            if Y > 1 && Y < 5 && (XY < 10 || XY > 20) {
+            if y > 1 && y < 5 && (xy < 10 || xy > 20) {
                 return "_"
             }
 
-            if Y == 1 && XY != 11 {
+            if y == 1 && xy != 11 {
                 return "__"
             }
         }
 
         return ""
     }
+
 }

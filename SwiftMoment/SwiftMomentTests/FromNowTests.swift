@@ -94,4 +94,5 @@ class FromNowTests: XCTestCase {
                          locale: Locale(identifier: "he"))
     XCTAssertEqual(mom.fromNow(), "ממש עכשיו")
     }
+
 }

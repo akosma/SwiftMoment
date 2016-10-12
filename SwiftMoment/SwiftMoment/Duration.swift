@@ -98,6 +98,7 @@ public struct Duration: Equatable {
     public func isEqualTo(_ duration: Duration) -> Bool {
         return self.interval == duration.interval
     }
+
 }
 
 extension Duration: CustomStringConvertible {

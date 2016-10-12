@@ -58,4 +58,5 @@ class DurationTests: XCTestCase {
         let durationString = "The description of a duration provides quite a bit of info"
         XCTAssertEqual(str, "5m 3w 1d 6:04:00", durationString)
     }
+
 }

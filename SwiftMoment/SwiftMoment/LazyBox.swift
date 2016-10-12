@@ -9,11 +9,11 @@ import Foundation
 
 /// An enumeration used by the LazyBox class.
 ///
-/// - NotYetComputed->T: This value holds a block to be lazily executed.
-/// - Computed:          Indicating that the computation has already happened.
+/// - notYetComputed->T: This value holds a block to be lazily executed.
+/// - computed:          Indicating that the computation has already happened.
 internal enum LazyValue<T> {
-    case NotYetComputed(() -> T)
-    case Computed(T)
+    case notYetComputed(() -> T)
+    case computed(T)
 }
 
 
@@ -21,10 +21,10 @@ internal enum LazyValue<T> {
 /// https://oleb.net/blog/2015/12/lazy-properties-in-structs-swift/
 internal final class LazyBox<T> {
     init(computation: @escaping () -> T) {
-        _value = .NotYetComputed(computation)
+        val = .notYetComputed(computation)
     }
 
-    private var _value: LazyValue<T>
+    private var val: LazyValue<T>
 
     /// All reads and writes of `_value` must happen on this queue.
     private let queue = DispatchQueue(label: "LazyBox._value")
@@ -33,12 +33,12 @@ internal final class LazyBox<T> {
     var value: T {
         var returnValue: T? = nil
         queue.sync {
-            switch self._value {
-            case .NotYetComputed(let computation):
+            switch self.val {
+            case .notYetComputed(let computation):
                 let result = computation()
-                self._value = .Computed(result)
+                self.val = .computed(result)
                 returnValue = result
-            case .Computed(let result):
+            case .computed(let result):
                 returnValue = result
             }
         }

@@ -12,6 +12,11 @@ import Foundation
 class MomentBundle: NSObject { }
 
 extension Moment {
+
+    /// Returns a localized string specifying the time duration between
+    /// the current instance and the present moment.
+    ///
+    /// - returns: A localized string.
     public func fromNow() -> String {
         let timeDiffDuration = moment().intervalSince(self)
         let deltaSeconds = timeDiffDuration.seconds

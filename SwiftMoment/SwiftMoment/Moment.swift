@@ -11,35 +11,73 @@
 
 import Foundation
 
-/**
- Returns a moment representing the current instant in time at the current timezone
 
- - parameter timeZone:   An NSTimeZone object
- - parameter locale:     An NSLocale object
-
- - returns: A moment instance.
- */
+/// Returns a moment representing the current instant in time at the current timezone.
+/// This is the most common way to create a new Moment value:
+///
+///     let today = moment()
+///
+/// - parameter timeZone: An optional TimeZone value, defaulting to the current timezone
+/// - parameter locale:   An optional Locale value, defaulting to the current locale
+///
+/// - returns: A Moment value.
 public func moment(_ timeZone: TimeZone = TimeZone.current,
                    locale: Locale = Locale.autoupdatingCurrent) -> Moment {
     return Moment(timeZone: timeZone, locale: locale)
 }
 
+
+/// Returns a moment representing the current instant in the GMT / UTC timezone:
+///
+///     let greenwich = utc()
+///     let str = greenwich.format("ZZZZ")
+///     // str is "GMT"
+///
+/// - returns: A Moment value with the GMT / UTC timezone.
 public func utc() -> Moment {
     let zone = TimeZone(abbreviation: "UTC")!
     return moment(zone)
 }
 
-/**
- Returns an Optional wrapping a Moment structure, representing the
- current instant in time. If the string passed as parameter cannot be
- parsed by the function, the Optional wraps a nil value.
 
- - parameter stringDate: A string with a date representation.
- - parameter timeZone:   An NSTimeZone object
- - parameter locale:     An NSLocale object
-
- - returns: <#return value description#>
- */
+/// Returns an Optional wrapping a Moment structure, representing the 
+/// current instant in time. If the string passed as parameter is invalid, 
+/// the Optional wraps a nil value.
+///
+/// Valid date format strings:
+///
+/// - "yyyy-MM-dd'T'HH:mm:ssZZZZZ" (ISO)
+/// - "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'",
+/// - "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'SSS'Z'",
+/// - "yyyy-MM-dd'T'HH:mm:ss.SSSZ",
+/// - "yyyy-MM-dd",
+/// - "h:mm:ss A",
+/// - "h:mm A",
+/// - "MM/dd/yyyy",
+/// - "MMMM d, yyyy",
+/// - "MMMM d, yyyy LT",
+/// - "dddd, MMMM D, yyyy LT",
+/// - "yyyyyy-MM-dd",
+/// - "yyyy-MM-dd",
+/// - "GGGG-[W]WW-E",
+/// - "GGGG-[W]WW",
+/// - "yyyy-ddd",
+/// - "HH:mm:ss.SSSS",
+/// - "HH:mm:ss",
+/// - "HH:mm",
+/// - "HH"
+///
+/// Usage:
+///
+///     let dateString = "2016-10-12T10:02:50"
+///     let birthday = moment(dateString)
+///     // birthday is not nil
+///
+/// - parameter stringDate: A string with a valid date format, as required by NSDateFormatter
+/// - parameter timeZone: An optional TimeZone value, defaulting to the current timezone
+/// - parameter locale:   An optional Locale value, defaulting to the current locale
+///
+/// - returns: An optional Moment value.
 public func moment(_ stringDate: String,
                    timeZone: TimeZone = TimeZone.current,
                    locale: Locale = Locale.autoupdatingCurrent) -> Moment? {
@@ -85,7 +123,24 @@ public func moment(_ stringDate: String,
     return nil
 }
 
-public func moment(_ stringDate: String, dateFormat: String,
+
+/// Builds a Moment value using a date in string format, using the second
+/// parameter to know how to parse the values. If any of the parameters is
+/// invalid, the function returns nil.
+///
+///     let date = "2016-10-12T10:02:50"
+///     let format = "yyy-MM-dd'T'HH:mm:ss"
+///     let birthday = moment(date, dateFormat: format)
+///     // birthday is not nil
+///
+/// - parameter stringDate: A string with the date to parse.
+/// - parameter dateFormat: A string with the specification of the format.
+/// - parameter timeZone: An optional TimeZone value, defaulting to the current timezone
+/// - parameter locale:   An optional Locale value, defaulting to the current locale
+///
+/// - returns: An optional Moment value.
+public func moment(_ stringDate: String,
+                   dateFormat: String,
                    timeZone: TimeZone = TimeZone.current,
                    locale: Locale = Locale.autoupdatingCurrent) -> Moment? {
     let formatter = DateFormatter()
@@ -98,17 +153,27 @@ public func moment(_ stringDate: String, dateFormat: String,
     return nil
 }
 
-/**
- Builds a new Moment instance using an array with the following components,
- in the following order: [ year, month, day, hour, minute, second ]
 
- - parameter params:   An array of integer values as date components
- - parameter timeZone: An NSTimeZone object
- - parameter locale:   An NSLocale object
-
- - returns: An optional wrapping a Moment instance
- */
-public func moment(_ params: [Int], timeZone: TimeZone = TimeZone.current,
+/// Builds a new Moment instance using an array with the following components, 
+/// in the following order: [ year, month, day, hour, minute, second ]. This means
+/// that the first element of the array will always be taken as the year, the second
+/// as the month, and so on. If any of the parameters is invalid, the function will
+/// return nil.
+///
+///     let obj = moment([2015, 01, 19, 20, 45, 34])
+///     // obj is not only not nil, it points to January 19th 2015 at 20:45:34
+///     // in the current timezone.
+///
+/// When the array is incomplete, the function will fill the missing parameters with
+/// the first logical value, for example midnight or the first of January.
+///
+/// - parameter params:   An array of integer values as date components
+/// - parameter timeZone: An optional TimeZone value, defaulting to the current timezone
+/// - parameter locale:   An optional Locale value, defaulting to the current locale
+///
+/// - returns: An optional wrapping a Moment instance.
+public func moment(_ params: [Int],
+                   timeZone: TimeZone = TimeZone.current,
                    locale: Locale = Locale.autoupdatingCurrent) -> Moment? {
     if params.count > 0 {
         var calendar = Calendar.current
@@ -139,7 +204,36 @@ public func moment(_ params: [Int], timeZone: TimeZone = TimeZone.current,
     return nil
 }
 
-public func moment(_ dict: [String: Int], timeZone: TimeZone = TimeZone.current,
+
+/// Builds a Moment value using the dictionary of values passed as first parameter:
+/// If all keys in the dictionary are invalid, the function returns nil.
+///
+/// Valid keys:
+///
+/// - "year"
+/// - "month"
+/// - "day"
+/// - "hour"
+/// - "minute"
+/// - "second"
+///
+/// Example:
+///
+///     let obj = moment(["year": 2015,
+///                       "second": 34,
+///                       "month": 01,
+///                       "minute": 45,
+///                       "day": 19,
+///                       "hour": 20,
+///                       "ignoredKey": 2342432])!
+///
+/// - parameter dict:     A Dictionary of string keys and integer values.
+/// - parameter timeZone: An optional TimeZone value, defaulting to the current timezone
+/// - parameter locale:   An optional Locale value, defaulting to the current locale
+///
+/// - returns: An optional Moment value.
+public func moment(_ dict: [String: Int],
+                   timeZone: TimeZone = TimeZone.current,
                    locale: Locale = Locale.autoupdatingCurrent) -> Moment? {
     if dict.count > 0 {
         var params = [Int]()
@@ -166,21 +260,61 @@ public func moment(_ dict: [String: Int], timeZone: TimeZone = TimeZone.current,
     return nil
 }
 
+
+/// Builds a Moment value corresponding to the number of milliseconds since the Unix Epoch.
+///
+///     let epoch = moment(0)
+///     // Represents the origin of Unix time
+///
+/// - parameter milliseconds: An integer value with milliseconds.
+///
+/// - returns: A non-optional Moment value.
 public func moment(_ milliseconds: Int) -> Moment {
     return moment(TimeInterval(milliseconds / 1000))
 }
 
+
+/// Builds a Moment value corresponding to the number of seconds since the Unix Epoch.
+///
+///     let epoch = moment(0.0)
+///     // Represents the origin of Unix time
+///
+/// - parameter milliseconds: A TimeInterval value with seconds.
+///
+/// - returns: A non-optional Moment value.
 public func moment(_ seconds: TimeInterval) -> Moment {
     let interval = TimeInterval(seconds)
     let date = Date(timeIntervalSince1970: interval)
     return Moment(date: date)
 }
 
-public func moment(_ date: Date, timeZone: TimeZone = TimeZone.current,
+
+/// Builds a Moment value using the Date value passed as parameter.
+/// This is another very common way to create new Moment values.
+///
+///     let date = Date()
+///     let now = moment(date)
+///
+/// - parameter date:     A Foundation Date object.
+/// - parameter timeZone: An optional TimeZone value, defaulting to the current timezone
+/// - parameter locale:   An optional Locale value, defaulting to the current locale
+///
+/// - returns: A non-optional Moment value.
+public func moment(_ date: Date,
+                   timeZone: TimeZone = TimeZone.current,
                    locale: Locale = Locale.autoupdatingCurrent) -> Moment {
     return Moment(date: date, timeZone: timeZone, locale: locale)
 }
 
+
+/// Copies a Moment value and returns a new one.
+///
+///     let epoch = moment(0)
+///     let copy = moment(epoch)
+///
+/// - parameter moment: The Moment value to copy.
+///
+/// - returns: A new Moment value, with the same date, timezone and locale as the original.
 public func moment(_ moment: Moment) -> Moment {
     let date = moment.date
     let timeZone = moment.timeZone
@@ -188,18 +322,46 @@ public func moment(_ moment: Moment) -> Moment {
     return Moment(date: date, timeZone: timeZone, locale: locale)
 }
 
+/// Copies a Moment value and returns a new one, with a new timezone.
+///
+///     let timeZone = TimeZone(secondsFromGMT: -10800)!
+///     let locale = Locale(identifier: "en_US_POSIX")
+///     let dateString = "2016-10-12T10:02:50"
+///     let dateFormat = "yyy-MM-dd'T'HH:mm:ss"
+///     let birthday = moment(dateString, dateFormat: dateFormat, timeZone: timeZone, locale: locale)!
+///     let formatted = birthday.format(dateFormat)
+///
+///     let pacific = TimeZone(abbreviation: "PST")!
+///     let birthdayInSF = moment(birthday, timeZone: pacific)
+///
+///     XCTAssertEqual(birthday.hour, 10)
+///     XCTAssertEqual(birthday.minute, 2)
+///     XCTAssertEqual(birthdayInSF.hour, 6)
+///     XCTAssertEqual(birthdayInSF.minute, 2)
+///
+/// - parameter moment: The Moment value to copy.
+///
+/// - returns: A new Moment value, with the same date, timezone and locale as the original.
 public func moment(_ moment: Moment, timeZone: TimeZone) -> Moment {
     let date = moment.date
     let locale = moment.locale
     return Moment(date: date, timeZone: timeZone, locale: locale)
 }
 
+
+/// Returns a Moment value set in the distant past.
+///
+/// - returns: A Moment value set in the distant past.
 public func past() -> Moment {
-    return Moment(date: Date.distantPast )
+    return Moment(date: Date.distantPast)
 }
 
+
+/// Returns a Moment value set in the distant future.
+///
+/// - returns: A Moment value set in the distant future.
 public func future() -> Moment {
-    return Moment(date: Date.distantFuture )
+    return Moment(date: Date.distantFuture)
 }
 
 public func since(_ past: Moment) -> Duration {
@@ -232,12 +394,10 @@ public func minimum(_ moments: Moment...) -> Moment? {
     return nil
 }
 
-/**
- Internal structure used by the family of moment() functions.
- Instead of modifying the native NSDate class, this is a
- wrapper for the NSDate object. To get this wrapper object, simply
- call moment() with one of the supported input types.
- */
+
+/// Internal structure used by the `moment()` family of functions.
+/// It wraps a Foundation `Date`, a `TimeZone` and a `Locale` value.
+/// To create one of these values, call one of the `moment()` family of functions.
 public struct Moment: Comparable {
     public let minuteInSeconds = 60
     public let hourInSeconds = 3600
@@ -250,6 +410,21 @@ public struct Moment: Comparable {
     public let timeZone: TimeZone
     public let locale: Locale
 
+    private let _formatter = LazyBox<DateFormatter> {
+        return DateFormatter()
+    }
+
+    private var formatter: DateFormatter {
+        return _formatter.value
+    }
+
+    /// Initializes a new Moment value.
+    ///
+    /// - parameter date:     The date wrapped by the Moment value.
+    /// - parameter timeZone: A TimeZone value.
+    /// - parameter locale:   A Locale value.
+    ///
+    /// - returns: A new Moment value.
     init(date: Date = Date(), timeZone: TimeZone = TimeZone.current,
          locale: Locale = Locale.autoupdatingCurrent) {
         self.date = date
@@ -257,7 +432,7 @@ public struct Moment: Comparable {
         self.locale = locale
     }
 
-    /// Returns the year of the current instance.
+    /// Year of the current instance.
     public var year: Int {
         var cal = Calendar.current
         cal.timeZone = timeZone
@@ -267,7 +442,7 @@ public struct Moment: Comparable {
         return components.year!
     }
 
-    /// Returns the month (1-12) of the current instance.
+    /// Month (1-12) of the current instance.
     public var month: Int {
         var cal = Calendar.current
         cal.timeZone = timeZone
@@ -277,13 +452,14 @@ public struct Moment: Comparable {
         return components.month!
     }
 
-    /// Returns the name of the month of the current instance, in the current locale.
+    /// Name of the month of the current instance, in the current locale.
     public var monthName: String {
-        let formatter = DateFormatter()
+        formatter.timeZone = timeZone
         formatter.locale = locale
         return formatter.monthSymbols[month - 1]
     }
 
+    /// Day of the month (1-31) of the current instance.
     public var day: Int {
         var cal = Calendar.current
         cal.timeZone = timeZone
@@ -293,6 +469,7 @@ public struct Moment: Comparable {
         return components.day!
     }
 
+    /// Hour (0-23) of the current instance.
     public var hour: Int {
         var cal = Calendar.current
         cal.timeZone = timeZone
@@ -302,6 +479,7 @@ public struct Moment: Comparable {
         return components.hour!
     }
 
+    /// Minutes (0-59) of the current instance.
     public var minute: Int {
         var cal = Calendar.current
         cal.timeZone = timeZone
@@ -311,6 +489,7 @@ public struct Moment: Comparable {
         return components.minute!
     }
 
+    /// Seconds (0-59) of the current instance.
     public var second: Int {
         var cal = Calendar.current
         cal.timeZone = timeZone
@@ -320,6 +499,7 @@ public struct Moment: Comparable {
         return components.second!
     }
 
+    /// Weekday (1-7, Sunday is 1) of the current instance.
     public var weekday: Int {
         var cal = Calendar.current
         cal.timeZone = timeZone
@@ -329,14 +509,18 @@ public struct Moment: Comparable {
         return components.weekday!
     }
 
+    /// Localized name of the day of the current instance.
     public var weekdayName: String {
-        let formatter = DateFormatter()
         formatter.locale = locale
         formatter.dateFormat = "EEEE"
         formatter.timeZone = timeZone
         return formatter.string(from: date)
     }
 
+    /// Weekday ordinal of the current instance. Taken from the `Calendar` documentation:
+    /// "Weekday ordinal units represent the position of the weekday
+    /// within the next larger calendar unit, such as the month.
+    /// For example, 2 is the weekday ordinal unit for the second Friday of the month."
     public var weekdayOrdinal: Int {
         var cal = Calendar.current
         cal.locale = locale
@@ -346,6 +530,7 @@ public struct Moment: Comparable {
         return components.weekdayOrdinal!
     }
 
+    /// Number of the week in the current year of the current instance.
     public var weekOfYear: Int {
         var cal = Calendar.current
         cal.locale = locale
@@ -355,6 +540,7 @@ public struct Moment: Comparable {
         return components.weekOfYear!
     }
 
+    /// Quarter of the year of the current instance.
     public var quarter: Int {
         var cal = Calendar.current
         cal.locale = locale
@@ -364,9 +550,15 @@ public struct Moment: Comparable {
         return components.quarter!
     }
 
-    // Methods
-
-    public func get(_ unit: TimeUnit) -> Int? {
+    /// Gets the specified value of the current instance.
+    ///
+    ///     let today = moment()
+    ///     let hours = today.get(.Hours)
+    ///
+    /// - parameter unit: A TimeUnit value, specifying the element to retrieve.
+    ///
+    /// - returns: A non-optional integer value.
+    public func get(_ unit: TimeUnit) -> Int {
         switch unit {
         case .Seconds:
             return second
@@ -387,6 +579,29 @@ public struct Moment: Comparable {
         }
     }
 
+    /// Gets the specified value of the current instance. If the string
+    /// passed as parameter does not evaluate to a `TimeUnit` instance,
+    /// this method returns nil.
+    ///
+    /// Valid values:
+    ///
+    /// - Years = "y"
+    /// - Quarters = "Q"
+    /// - Months = "M"
+    /// - Weeks = "w"
+    /// - Days = "d"
+    /// - Hours = "H"
+    /// - Minutes = "m"
+    /// - Seconds = "s"
+    ///
+    /// Example:
+    ///
+    ///     let today = moment()
+    ///     let hours = today.get("H")!
+    ///
+    /// - parameter unit: A TimeUnit value, specifying the element to retrieve.
+    ///
+    /// - returns: An optional integer value.
     public func get(_ unitName: String) -> Int? {
         if let unit = TimeUnit(rawValue: unitName) {
             return get(unit)
@@ -394,8 +609,17 @@ public struct Moment: Comparable {
         return nil
     }
 
+    /// Formats the current moment using the string passed as parameter.
+    /// If no format is specified, the default format is `"yyyy-MM-dd HH:mm:ss ZZZZ"`
+    ///
+    ///     let birthday = moment("1973-09-04")
+    ///     let standard = birthday.format()
+    ///     // standard is now "1973-09-04 00:00:00 GMT+01:00"
+    ///
+    /// - parameter dateFormat: A valid format string.
+    ///
+    /// - returns: A string representing the current moment.
     public func format(_ dateFormat: String = "yyyy-MM-dd HH:mm:ss ZZZZ") -> String {
-        let formatter = DateFormatter()
         formatter.dateFormat = dateFormat
         formatter.timeZone = timeZone
         formatter.locale = locale
@@ -404,7 +628,6 @@ public struct Moment: Comparable {
 
     public func format(_ dateFormat: String = "yyyy-MM-dd HH:mm:ss ZZZZ",
                        _ timeZone: TimeZone = TimeZone.current) -> String {
-        let formatter = DateFormatter()
         formatter.dateFormat = dateFormat
         formatter.timeZone = timeZone
         formatter.locale = locale
@@ -542,9 +765,7 @@ public struct Moment: Comparable {
         return date.timeIntervalSince1970
     }
 
-    // Private methods
-
-    func convert(_ value: Double, _ unit: TimeUnit) -> Double {
+    fileprivate func convert(_ value: Double, _ unit: TimeUnit) -> Double {
         switch unit {
         case .Seconds:
             return value
@@ -567,12 +788,16 @@ public struct Moment: Comparable {
 }
 
 extension Moment: CustomStringConvertible {
+
+    /// A textual representation of this instance.
     public var description: String {
         return format()
     }
 }
 
 extension Moment: CustomDebugStringConvertible {
+
+    /// A textual representation of this instance, suitable for debugging.
     public var debugDescription: String {
         return description
     }

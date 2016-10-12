@@ -199,6 +199,29 @@ class MomentTests: XCTestCase {
         XCTAssertTrue(considerLeapYears ~= considerLeapYears2)
     }
 
+    func testAddingOtherValues() {
+        let now = moment()
+        var future = now.add(1.2, .minutes)
+        var nowagain = future.subtract(1.2, .minutes)
+        XCTAssertEqual(now, nowagain)
+
+        future = now.add(1.3, .hours)
+        nowagain = future.subtract(1.3, .hours)
+        XCTAssertEqual(now, nowagain)
+
+        future = now.add(1.3, .days)
+        nowagain = future.subtract(1.3, .days)
+        XCTAssertEqual(now, nowagain)
+
+        future = now.add(1.3, .weeks)
+        nowagain = future.subtract(1.3, .weeks)
+        XCTAssertEqual(now, nowagain)
+
+        future = now.add(1.3, .quarters)
+        nowagain = future.subtract(1.3, .quarters)
+        XCTAssertEqual(now, nowagain)
+    }
+
     func testDurationVSTimeUnitDoesNotMatterForDaysHoursMinutesSeconds() {
         let today = moment()
         let first = moment(today).add(50.days)

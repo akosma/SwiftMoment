@@ -59,4 +59,18 @@ class DurationTests: XCTestCase {
         XCTAssertEqual(str, "5m 3w 1d 6:04:00", durationString)
     }
 
+    func testDurationProperties() {
+        let duration = 4.months + 53.days + 6.hours + 4.minutes
+        let quarters = duration.quarters
+        let months = duration.months
+        let hours = duration.hours
+        let minutes = duration.minutes
+        let days = duration.days
+        XCTAssertEqual(round(quarters), 2)
+        XCTAssertEqual(round(months), 6)
+        XCTAssertEqual(round(hours), 4158)
+        XCTAssertEqual(minutes, 249484)
+        XCTAssertEqual(round(days), 173)
+    }
+
 }

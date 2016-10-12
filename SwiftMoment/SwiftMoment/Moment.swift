@@ -824,23 +824,23 @@ public struct Moment: Comparable {
         return add(-value, unit)
     }
 
-    /// Substracts the specified value in the specified TimeInterval to the current
+    /// Subtracts the specified value in the specified TimeInterval to the current
     /// instance and returns a new Moment instance.
     ///
     ///     let mom1 = moment([2015, 7, 29, 0, 0])!
     ///     let mom3 = moment([2015, 8, 28, 0, 0])!
-    ///     let mom2 = mom3.substract(1.0, .Months)
+    ///     let mom2 = mom3.subtract(1.0, .Months)
     ///     // mom2 is equal to mom1, because duration equals exactly 30 days
     ///
-    /// - parameter value: The amount to substract.
-    /// - parameter unit:  The unit of the amount to substract.
+    /// - parameter value: The amount to subtract.
+    /// - parameter unit:  The unit of the amount to subtract.
     ///
     /// - returns: A new Moment instance.
     public func subtract(_ value: TimeInterval, _ unit: TimeUnit) -> Moment {
         return add(-value, unit)
     }
 
-    /// Substracts the specified value in the specified TimeInterval to the current
+    /// Subtracts the specified value in the specified TimeInterval to the current
     /// instance and returns a new Moment instance.
     ///
     /// Valid unit values:
@@ -856,10 +856,10 @@ public struct Moment: Comparable {
     ///
     ///     let mom1 = moment([2015, 7, 29, 0, 0])!
     ///     let mom3 = moment([2015, 8, 28, 0, 0])!
-    ///     let mom2 = mom3.substract(1, "M")
+    ///     let mom2 = mom3.subtract(1, "M")
     ///     // mom2 is equal to mom1, because duration equals exactly 30 days
     ///
-    /// - parameter value: The amount to substract.
+    /// - parameter value: The amount to subtract.
     /// - parameter unit:  The name of the unit of the amount to substract.
     ///
     /// - returns: A new Moment instance.
@@ -870,14 +870,14 @@ public struct Moment: Comparable {
         return self
     }
 
-    /// Substracts the specified duration to the current instance and returns a new Moment.
+    /// Subtracts the specified duration to the current instance and returns a new Moment.
     ///
     ///     let mom1 = moment([2015, 7, 29, 0, 0])!
     ///     let mom3 = moment([2015, 8, 28, 0, 0])!
     ///     let mom2 = mom3.substract(1.months)
     ///     // mom2 is equal to mom1, because duration equals exactly 30 days
     ///
-    /// - parameter duration: The duration to substract.
+    /// - parameter duration: The duration to subtract.
     ///
     /// - returns: A new Moment instance.
     public func subtract(_ duration: Duration) -> Moment {

@@ -414,15 +414,21 @@ public func minimum(_ moments: Moment...) -> Moment? {
 /// It wraps a Foundation `Date`, a `TimeZone` and a `Locale` value.
 /// To create one of these values, call one of the `moment()` family of functions.
 public struct Moment: Comparable {
-    public let minuteInSeconds : Double = 60
-    public let hourInSeconds : Double = 3600
-    public let dayInSeconds : Double = 86400
-    public let weekInSeconds : Double = 604800
-    public let monthInSeconds : Double = 2592000
-    public let yearInSeconds : Double = 31536000
+    internal static let minuteInSeconds : Double = 60
+    internal static let hourInSeconds : Double = 3600
+    internal static let dayInSeconds : Double = 86400
+    internal static let weekInSeconds : Double = 604800
+    internal static let monthInSeconds : Double = 2592000
+    internal static let quarterInSeconds : Double = 7776000
+    internal static let yearInSeconds : Double = 31536000
 
+    /// The Date wrapped by this value.
     public let date: Date
+
+    // The TimeZone value wrapped by this object.
     public let timeZone: TimeZone
+
+    // The Locale value wrapped by this instance.
     public let locale: Locale
 
     private let _formatter = LazyBox<DateFormatter> {
@@ -969,24 +975,24 @@ public struct Moment: Comparable {
         return date.timeIntervalSince1970
     }
 
-    fileprivate func convert(_ value: Double, _ unit: TimeUnit) -> Double {
+    private func convert(_ value: Double, _ unit: TimeUnit) -> Double {
         switch unit {
         case .Seconds:
             return value
         case .Minutes:
-            return value * minuteInSeconds
+            return value * Moment.minuteInSeconds
         case .Hours:
-            return value * hourInSeconds // 60 minutes
+            return value * Moment.hourInSeconds // 60 minutes
         case .Days:
-            return value * dayInSeconds // 24 hours
+            return value * Moment.dayInSeconds // 24 hours
         case .Weeks:
-            return value * 605800 // 7 days
+            return value * Moment.weekInSeconds // 7 days
         case .Months:
-            return value * monthInSeconds // 30 days
+            return value * Moment.monthInSeconds // 30 days
         case .Quarters:
-            return value * 7776000 // 3 months
+            return value * Moment.quarterInSeconds // 3 months
         case .Years:
-            return value * yearInSeconds // 365 days
+            return value * Moment.yearInSeconds // 365 days
         }
     }
 }

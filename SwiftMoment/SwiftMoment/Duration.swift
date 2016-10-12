@@ -32,32 +32,32 @@ public struct Duration: Equatable {
 
     /// The amount of years of the current instance.
     public var years: Double {
-        return interval / 31536000 // 365 days
+        return interval / Moment.yearInSeconds // 365 days
     }
 
     /// The amount of quarters of the current instance.
     public var quarters: Double {
-        return interval / 7776000 // 3 months
+        return interval / Moment.quarterInSeconds // 3 months
     }
 
     /// The amount of months of the current instance.
     public var months: Double {
-        return interval / 2592000 // 30 days
+        return interval / Moment.monthInSeconds // 30 days
     }
 
     /// The amount of days of the current instance.
     public var days: Double {
-        return interval / 86400 // 24 hours
+        return interval / Moment.dayInSeconds // 24 hours
     }
 
     /// The amount of hours of the current instance.
     public var hours: Double {
-        return interval / 3600 // 60 minutes
+        return interval / Moment.hourInSeconds // 60 minutes
     }
 
     /// The amount of minutes of the current instance.
     public var minutes: Double {
-        return interval / 60
+        return interval / Moment.minuteInSeconds
     }
 
     /// The amount of seconds of the current instance.

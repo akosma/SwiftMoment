@@ -11,9 +11,11 @@ requests, bug submissions, etc:
 - [Anders Klenke](https://github.com/andersklenke)
 - [Andrew Barba](https://github.com/AndrewBarba)
 - [Andrew Branch](https://github.com/andrewbranch)
+- [Burak Akkaş](https://github.com/javasch)
 - [Chris Sloey](https://github.com/chrissloey)
 - [Daniel Cestari](https://github.com/dcestari)
 - [David Harris](https://github.com/toadzky)
+- [Eric Fang](https://github.com/fjhixiuxiu)
 - [Fabio Felici](https://github.com/fabfelici)
 - [Florent Pillet](https://github.com/fpillet)
 - [Hadar Landao](https://github.com/hlandao)
@@ -29,8 +31,10 @@ requests, bug submissions, etc:
 - [Neil](https://github.com/AsFarA)
 - [PG Herveou](https://github.com/pgherveou)
 - [Pine Mizune](https://github.com/pine613)
+- [Robert La Ferla](https://github.com/rlaferla)
 - [Ryan Maxwell](https://github.com/ryanmaxwell)
 - [Ryo Yamada](https://github.com/Liooo)
+- [Tatiana Magdalena](https://github.com/tatimagdalena)
 - [Tomáš Slíž](https://github.com/tomassliz)
 
 Special Thanks

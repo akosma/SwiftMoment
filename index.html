@@ -7,7 +7,7 @@
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/github-light.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -16,7 +16,7 @@
     <div class="wrapper">
       <header>
         <h1>SwiftMoment</h1>
-        <p>A time and calendar manipulation library for iOS 9 and Xcode 7 written in Swift 2</p>
+        <p>A time and calendar manipulation library written in Swift</p>
 
         <p class="view"><a href="https://github.com/akosma/SwiftMoment">View the Project on GitHub <small>akosma/SwiftMoment</small></a></p>
 
@@ -29,7 +29,13 @@
       </header>
       <section>
         <h1>
-<a id="swiftmoment" class="anchor" href="#swiftmoment" aria-hidden="true"><span class="octicon octicon-link"></span></a>SwiftMoment</h1>
+<a id="swiftmoment" class="anchor" href="#swiftmoment" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>SwiftMoment</h1>
+
+<p><a href="https://travis-ci.org/akosma/SwiftMoment"><img src="https://travis-ci.org/akosma/SwiftMoment.svg?branch=master" alt="Build Status"></a>
+<a href="https://img.shields.io/cocoapods/v/SwiftMoment"><img src="https://img.shields.io/cocoapods/v/SwiftMoment.svg" alt="CocoaPods Compatible"></a>
+<a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage Compatible"></a>
+<a href="http://cocoadocs.org/docsets/SwiftMoment"><img src="https://img.shields.io/cocoapods/p/SwiftMoment.svg?style=flat" alt="Platform"></a>
+<a href="https://swift.org/"><img src="https://img.shields.io/badge/pure-swift-ff3f26.svg?style=flat" alt="swiftyness"></a></p>
 
 <p>This framework is inspired by <a href="http://momentjs.com">Moment.js</a>. Its
 objectives are the following:</p>
@@ -42,11 +48,10 @@ objectives are the following:</p>
 time intervals.</li>
 </ul>
 
-<p>Important: This framework targets iOS 9, Xcode 7 and Swift 2.0 and later
-exclusively.</p>
+<p>Important: This framework supports iOS 9+, macOS 10.11+, tvOS 9+, watchOS 2+, Xcode 8 and Swift 3.</p>
 
 <h2>
-<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
 
 <p>SwiftMoment is compatible with
 <a href="http://github.com/Carthage/Carthage">Carthage</a> and
@@ -56,7 +61,17 @@ your Podfile:</p>
 <div class="highlight highlight-source-ruby"><pre>pod <span class="pl-s"><span class="pl-pds">'</span>SwiftMoment<span class="pl-pds">'</span></span></pre></div>
 
 <h2>
-<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Examples</h2>
+<a id="mac-os-x-notes" class="anchor" href="#mac-os-x-notes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Mac OS X Notes</h2>
+
+<ul>
+<li>Drag the created .framework file into the Xcode Project, be sure to tick 'Copy Files to Directory'</li>
+<li>In the containing applications target, add a new 'Copy File Build Phase'</li>
+<li>Set the 'Destination' to 'Frameworks'</li>
+<li>Drag in the created .framework</li>
+</ul>
+
+<h2>
+<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h2>
 
 <p>To use this library, just <code>import SwiftMoment</code> in your application.</p>
 
@@ -95,7 +110,7 @@ other information is ignored.</p>
 <div class="highlight highlight-source-swift"><pre><span class="pl-k">let</span> duration <span class="pl-k">=</span> <span class="pl-c1">5</span><span class="pl-k">.</span>hours <span class="pl-k">+</span> <span class="pl-c1">56</span><span class="pl-k">.</span>minutes</pre></div>
 
 <h2>
-<a id="architecture" class="anchor" href="#architecture" aria-hidden="true"><span class="octicon octicon-link"></span></a>Architecture</h2>
+<a id="architecture" class="anchor" href="#architecture" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Architecture</h2>
 
 <p>The two most important components of this library are the <code>Moment</code> and
 <code>Duration</code> structures. <code>Moment</code> wraps an <code>NSDate</code> instance, while
@@ -109,18 +124,18 @@ be subtracted from one another (which yields a <code>Duration</code>) and
 <p><code>Moments</code> and <code>Durations</code> are made as immutable as possible.</p>
 
 <h2>
-<a id="tests" class="anchor" href="#tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tests</h2>
+<a id="tests" class="anchor" href="#tests" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Tests</h2>
 
 <p>Swift Moment includes a suite of tests showing how to use the different
 functions of the framework.</p>
 
 <h2>
-<a id="playground" class="anchor" href="#playground" aria-hidden="true"><span class="octicon octicon-link"></span></a>Playground</h2>
+<a id="playground" class="anchor" href="#playground" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Playground</h2>
 
 <p>A playground is included in the project to learn how to use the library.</p>
 
 <h2>
-<a id="differences-with-momentjs" class="anchor" href="#differences-with-momentjs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Differences with <a href="http://momentjs.com">Moment.js</a>
+<a id="differences-with-momentjs" class="anchor" href="#differences-with-momentjs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Differences with <a href="http://momentjs.com">Moment.js</a>
 </h2>
 
 <ul>
@@ -128,7 +143,7 @@ functions of the framework.</p>
 </ul>
 
 <h2>
-<a id="contributors" class="anchor" href="#contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributors</h2>
+<a id="contributors" class="anchor" href="#contributors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contributors</h2>
 
 <p>Lots of people are actively helping in the development of this library;
 please check the
@@ -136,7 +151,7 @@ please check the
 file for the full list! Thanks to all :)</p>
 
 <h2>
-<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
 
 <p>This project is distributed under a BSD license. See the LICENSE file
 for details.</p>

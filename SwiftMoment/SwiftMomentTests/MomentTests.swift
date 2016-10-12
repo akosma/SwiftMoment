@@ -302,6 +302,30 @@ class MomentTests: XCTestCase {
                        "A date in San Francisco")
     }
 
+    func testTimeWithGMT() {
+        let gmt = moment("2015-09-30T19:32:25+09:00")
+        XCTAssertNotNil(gmt, "GMT String should not be nil")
+    }
+
+    func testTimeZoneChangesPreserveMomentInGMT() {
+        // Feedback about #75
+        let timeZone = TimeZone(secondsFromGMT: -10800)!
+        let locale = Locale(identifier: "en_US_POSIX")
+        let dateString = "2016-10-12T10:02:50"
+        let dateFormat = "yyy-MM-dd'T'HH:mm:ss"
+        let birthday = moment(dateString, dateFormat: dateFormat, timeZone: timeZone, locale: locale)!
+        let formatted = birthday.format(dateFormat)
+        XCTAssertEqual(formatted, dateString)
+        XCTAssertEqual(birthday.hour, 10)
+        XCTAssertEqual(birthday.minute, 2)
+
+        let displayZone = TimeZone(abbreviation: "PST")!
+        let str = birthday.format("EE QQQQ yyyy/dd/MMMM HH:mm ZZZZ", displayZone)
+        XCTAssertEqual(str, "Wed 4th quarter 2016/12/October 06:02 GMT-07:00",
+                       "A date in San Francisco")
+
+    }
+
     func testUTCMomentSupport() {
         let greenwich = utc()
         let str = greenwich.format("ZZZZ")

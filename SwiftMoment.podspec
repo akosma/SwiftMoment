@@ -11,16 +11,16 @@ Pod::Spec.new do |s|
                     * Simplifying the formatting of date information into strings.
                     * Streamlining getting date components (day, month, etc.) from dates and time intervals.
 
-                    This framework supports iOS 9+, macOS 10.11+, tvOS 9+, watchOS 2+, Xcode 8 and Swift 3.
+                    This framework supports iOS 9+, macOS 10.11+, tvOS 9+, watchOS 3+, Xcode 8 and Swift 3.
                    DESC
   s.homepage     = "http://akosma.github.io/SwiftMoment/"
   s.license      = { :type => "BSD", :file => "LICENSE" }
   s.author             = { "Adrian Kosmaczewski" => "akosma@me.com" }
   s.social_media_url   = "http://twitter.com/akosma"
-  s.ios.deployment_target = "8.0"
-  s.osx.deployment_target = "10.10"
+  s.ios.deployment_target = "9.0"
+  s.osx.deployment_target = "10.11"
   s.tvos.deployment_target = "9.0"
-  s.watchos.deployment_target = "2.0"
+  s.watchos.deployment_target = "3.0"
   s.source       = { :git => "https://github.com/akosma/SwiftMoment.git", :tag => "v0.7" }
   s.source_files  = "SwiftMoment/SwiftMoment"
   s.resource     = "SwiftMoment/SwiftMoment/MomentFromNow.bundle"

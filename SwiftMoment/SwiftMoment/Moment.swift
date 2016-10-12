@@ -386,6 +386,15 @@ public struct Moment: Comparable {
         return formatter.string(from: date)
     }
 
+    public func format(_ dateFormat: String = "yyyy-MM-dd HH:mm:ss ZZZZ",
+                       _ timeZone: TimeZone = TimeZone.current) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = dateFormat
+        formatter.timeZone = timeZone
+        formatter.locale = locale
+        return formatter.string(from: date)
+    }
+
     public func isEqualTo(_ moment: Moment) -> Bool {
         return (date == moment.date)
     }

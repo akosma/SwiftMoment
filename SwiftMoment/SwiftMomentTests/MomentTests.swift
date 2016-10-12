@@ -308,6 +308,15 @@ class MomentTests: XCTestCase {
         XCTAssertEqual(str, "GMT", "The timezone is UTC")
     }
 
+    func testFormatWithTimeZone() {
+        let momentZone = TimeZone(abbreviation: "PST")!
+        let birthday = moment("1973-09-04", timeZone: momentZone)!
+        let displayZone = TimeZone(abbreviation: "CET")!
+        let str = birthday.format("EE QQQQ yyyy/dd/MMMM HH:mm ZZZZ", displayZone)
+        XCTAssertEqual(str, "Tue 3rd quarter 1973/04/September 08:00 GMT+01:00",
+                       "A date in San Francisco")
+    }
+
     func testLocaleSupport() {
         let français = Locale(identifier: "fr_FR")
         let anniversaire = moment("1973-09-04", locale: français)!

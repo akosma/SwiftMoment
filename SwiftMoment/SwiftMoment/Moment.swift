@@ -626,6 +626,19 @@ public struct Moment: Comparable {
         return formatter.string(from: date)
     }
 
+    /// Formats the current moment using the string and timezone passed as parameter.
+    /// If no format is specified, the default format is `"yyyy-MM-dd HH:mm:ss ZZZZ"`
+    ///
+    ///     let cet = TimeZone(abbreviation: "CET")!
+    ///     let birthday = moment("1973-09-04", timeZone: cet)!
+    ///     let pst = TimeZone(abbreviation: "PST")!
+    ///     let str = birthday.format("EE QQQQ yyyy/dd/MMMM HH:mm ZZZZ", pst)
+    ///     // str shows the time in the Pacific time zone for that event
+    ///
+    /// - parameter dateFormat: A valid format string.
+    /// - parameter timeZone: An optional TimeZone value, defaulting to the current timezone
+    ///
+    /// - returns: A string representing the current moment in the specified timezone.
     public func format(_ dateFormat: String = "yyyy-MM-dd HH:mm:ss ZZZZ",
                        _ timeZone: TimeZone = TimeZone.current) -> String {
         formatter.dateFormat = dateFormat
@@ -634,10 +647,21 @@ public struct Moment: Comparable {
         return formatter.string(from: date)
     }
 
+    /// Verifies whether the current Moment is equal to the one passed in parameter.
+    ///
+    /// - parameter moment: The Moment value to compare to.
+    ///
+    /// - returns: A boolean value; true if equal, false otherwise.
     public func isEqualTo(_ moment: Moment) -> Bool {
         return (date == moment.date)
     }
 
+    /// Returns the `Duration` value that represents the time interval between
+    /// the current instance and the one passed in parameter.
+    ///
+    /// - parameter moment: The Moment value to compare to.
+    ///
+    /// - returns: A Duration value.
     public func intervalSince(_ moment: Moment) -> Duration {
         let interval = date.timeIntervalSince(moment.date)
         return Duration(value: Int(interval))

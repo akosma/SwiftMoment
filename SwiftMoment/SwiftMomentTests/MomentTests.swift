@@ -178,24 +178,25 @@ class MomentTests: XCTestCase {
         XCTAssertEqual(exactly_thirty_days, one.add(1.months), "Duration adds exactly 30 days")
         XCTAssertEqual(30.days, exactly_thirty_days - one,
                        "exactly_thirty_days is a difference of 30 days")
-        XCTAssertEqual(one, exactly_thirty_days.subtract(1.months),
+        XCTAssertEqual(one, exactly_thirty_days.subtract(1.0, .Months),
                        "Subtracting back to one is okay")
 
         // adding by a TimeUnit.Month jumps 1 month (not necessarily 30 days)
         let two = moment([2015, 7, 29, 0, 0])!
         let exactly_one_month = moment([2015, 8, 28, 0, 0])!
-        XCTAssertEqual(exactly_one_month, two.add(1, .Months), "Time unit adds exactly one month")
+        XCTAssertEqual(exactly_one_month, two.add(1.0, .Months), "Time unit adds exactly one month")
         XCTAssertEqual(30.days, exactly_one_month - two,
                        "exactly_on_month is a difference of 30 days")
         XCTAssertEqual(two, exactly_one_month.subtract(1, .Months),
                        "Subtracting back to two is okay")
 
-
         // use Duration to always add/subtract 365 days for years,
         // otherwise, use TimeUnit.Year
         let all_years_365 = moment().add(5.years)
         let consider_leap_years = moment().add(5, .Years)
-        XCTAssertNotEqual(all_years_365, consider_leap_years, "5.years is not equal to 5, .Years")
+        let consider_leap_years2 = moment().add(5.0, .Years)
+        XCTAssertTrue(all_years_365 ~= consider_leap_years)
+        XCTAssertTrue(consider_leap_years ~= consider_leap_years2)
     }
 
     func testDurationVSTimeUnitDoesNotMatterForDaysHoursMinutesSeconds() {
@@ -219,7 +220,7 @@ class MomentTests: XCTestCase {
         let format = "EE yyyy/dd--MMMM HH:mm ZZZZ"
         let birthday = moment("Tue 1973/4--September 12:30 GMT-03:00", dateFormat: format)!
         let ninetyFive = moment("1995-12-25")!
-        let max = maximum(today, ninetyFive, birthday)!
+        let max = maximum(ninetyFive, today, birthday)!
         XCTAssertEqual(max, today, "Today is the maximum")
     }
 
@@ -245,11 +246,39 @@ class MomentTests: XCTestCase {
 
     func testCanGetParametersByGetter() {
         let today = moment()
+        let seconds = today.get(.Seconds)
+        let minutes = today.get(.Minutes)
         let hours = today.get(.Hours)
+        let days = today.get(.Days)
+        let months = today.get(.Months)
+        let weeks = today.get(.Weeks)
+        let years = today.get(.Years)
+        let quarters = today.get(.Quarters)
+        XCTAssertEqual(seconds, today.second, "Can use an enum to get properties")
+        XCTAssertEqual(minutes, today.minute, "Can use an enum to get properties")
         XCTAssertEqual(hours, today.hour, "Can use an enum to get properties")
+        XCTAssertEqual(days, today.day, "Can use an enum to get properties")
+        XCTAssertEqual(months, today.month, "Can use an enum to get properties")
+        XCTAssertEqual(weeks, today.weekOfYear, "Can use an enum to get properties")
+        XCTAssertEqual(years, today.year, "Can use an enum to get properties")
+        XCTAssertEqual(quarters, today.quarter, "Can use an enum to get properties")
 
+        let second = today.get("s")!
         let minute = today.get("m")!
-        XCTAssertEqual(minute, today.minute, "Can use a string to get properties")
+        let hour = today.get("H")!
+        let day = today.get("d")!
+        let month = today.get("M")!
+        let week = today.get("w")
+        let year = today.get("y")
+        let quarter = today.get("Q")
+        XCTAssertEqual(second, today.second, "Can use an enum to get properties")
+        XCTAssertEqual(minute, today.minute, "Can use an enum to get properties")
+        XCTAssertEqual(hour, today.hour, "Can use an enum to get properties")
+        XCTAssertEqual(day, today.day, "Can use an enum to get properties")
+        XCTAssertEqual(month, today.month, "Can use an enum to get properties")
+        XCTAssertEqual(week, today.weekOfYear, "Can use an enum to get properties")
+        XCTAssertEqual(year, today.year, "Can use an enum to get properties")
+        XCTAssertEqual(quarter, today.quarter, "Can use an enum to get properties")
     }
 
     func testUsingWrongParameterNameYieldsNil() {
@@ -428,6 +457,16 @@ class MomentTests: XCTestCase {
         XCTAssertEqual(obj.second, 0, "The second should match")
     }
 
+    func testStartOfSecond() {
+        let obj = moment([2015, 10, 19, 20, 45, 34])!.startOf(.Seconds)
+        XCTAssertEqual(obj.year, 2015, "The year should match")
+        XCTAssertEqual(obj.month, 10, "The month should match")
+        XCTAssertEqual(obj.day, 19, "The day should match")
+        XCTAssertEqual(obj.hour, 20, "The day should match")
+        XCTAssertEqual(obj.minute, 45, "The minute should match")
+        XCTAssertEqual(obj.second, 34, "The second should match")
+    }
+
     func testEndOfYear() {
         let obj = moment([2015, 10, 19, 20, 45, 34])!.endOf(.Years)
         XCTAssertEqual(obj.year, 2015, "The year should match")
@@ -514,6 +553,34 @@ class MomentTests: XCTestCase {
         XCTAssertEqual(result, expected)
     }
 
+    func testAddSmallTimeSpans() {
+        let now1 = moment()
+        let now2 = now1.add(1, .Seconds)
+        let now3 = now2.add(1, .Minutes)
+        let now4 = now3.add(1, .Hours)
+
+        let another1 = moment(now1)
+        let another2 = another1.add(1, "s")
+        let another3 = another2.add(1, "m")
+        let another4 = another3.add(1, "H")
+
+        XCTAssertEqual(now4, another4)
+    }
+    
+    func testSubstractSmallTimeSpans() {
+        let now1 = moment()
+        let now2 = now1.subtract(1, .Seconds)
+        let now3 = now2.subtract(1, .Minutes)
+        let now4 = now3.subtract(1, .Hours)
+
+        let another1 = moment(now1)
+        let another2 = another1.subtract(1, "s")
+        let another3 = another2.subtract(1, "m")
+        let another4 = another3.subtract(1, "H")
+
+        XCTAssertEqual(now4, another4)
+    }
+    
     func testTimeZoneChangeAdd() {
         let now = utc()
         let tomorrow = now.add(1, .Days)
@@ -522,7 +589,7 @@ class MomentTests: XCTestCase {
 
     func testTimeZoneChangeSubtract() {
         let now = utc()
-        let yesterday = now.subtract(1, .Days)
+        let yesterday = now.subtract(1, .Quarters)
         XCTAssertEqual(now.timeZone, yesterday.timeZone)
     }
 
@@ -547,5 +614,58 @@ class MomentTests: XCTestCase {
         let startOfDayEdt = nowEdt.startOf(.Days)
         XCTAssertEqual(startOfDayCet.hour, 0)
         XCTAssertEqual(startOfDayEdt.hour, 0)
+    }
+
+    func testWrongFormatParametersReturnNil() {
+        let mom = moment("sdfg32-435-fdg34-2345", dateFormat: "324265;KJ235-56")
+        XCTAssertNil(mom)
+    }
+
+    func testWrongArrayReturnsNil() {
+        let arr = [Int]()
+        let mom1 = moment(arr)
+        XCTAssertNil(mom1)
+
+        let mom2 = moment([])
+        XCTAssertNil(mom2)
+
+        let dict = [String: Int]()
+        let mom3 = moment(dict)
+        XCTAssertNil(mom3)
+
+        let mom4 = moment(["savarasasa": 234656])
+        XCTAssertNil(mom4)
+    }
+
+    func testWrongUnitInAddReturnsSelf() {
+        let now = moment()
+        let another = now.add(1, "whatever")
+        XCTAssertEqual(another, now)
+    }
+
+    func testWrongUnitInSubstractReturnsSelf() {
+        let now = moment()
+        let another = now.subtract(1, "whatever")
+        XCTAssertEqual(another, now)
+    }
+
+    func testWrongUnitInStartOfReturnsSelf() {
+        let now = moment()
+        let another = now.startOf("whatever")
+        XCTAssertEqual(another, now)
+    }
+
+    func testWrongUnitInEndOfReturnsSelf() {
+        let now = moment()
+        let another = now.endOf("whatever")
+        XCTAssertEqual(another, now)
+    }
+
+    func testDescriptions() {
+        let now = moment()
+        let str1 = now.description
+        let str2 = now.debugDescription
+        XCTAssertEqual(now.format(), str1)
+        XCTAssertEqual(now.format(), str2)
     }
 }

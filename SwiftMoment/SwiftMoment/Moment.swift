@@ -736,10 +736,32 @@ public struct Moment: Comparable {
     ///
     /// - returns: A new Moment instance.
     public func add(_ value: TimeInterval, _ unit: TimeUnit) -> Moment {
+
+        func convert(_ value: Double, _ unit: TimeUnit) -> Double {
+            switch unit {
+            case .Seconds:
+                return value
+            case .Minutes:
+                return value * Moment.minuteInSeconds
+            case .Hours:
+                return value * Moment.hourInSeconds // 60 minutes
+            case .Days:
+                return value * Moment.dayInSeconds // 24 hours
+            case .Weeks:
+                return value * Moment.weekInSeconds // 7 days
+            case .Months:
+                return value * Moment.monthInSeconds // 30 days
+            case .Quarters:
+                return value * Moment.quarterInSeconds // 3 months
+            case .Years:
+                return value * Moment.yearInSeconds // 365 days
+            }
+        }
+
         let seconds = convert(value, unit)
         let interval = TimeInterval(seconds)
         let newDate = date.addingTimeInterval(interval)
-        return Moment(date: newDate, timeZone: timeZone)
+        return Moment(date: newDate, timeZone: timeZone, locale: locale)
     }
 
     /// Adds the specified value in the specified TimeInterval to the current
@@ -973,27 +995,6 @@ public struct Moment: Comparable {
     /// - returns: A TimeInterval value.
     public func epoch() -> TimeInterval {
         return date.timeIntervalSince1970
-    }
-
-    private func convert(_ value: Double, _ unit: TimeUnit) -> Double {
-        switch unit {
-        case .Seconds:
-            return value
-        case .Minutes:
-            return value * Moment.minuteInSeconds
-        case .Hours:
-            return value * Moment.hourInSeconds // 60 minutes
-        case .Days:
-            return value * Moment.dayInSeconds // 24 hours
-        case .Weeks:
-            return value * Moment.weekInSeconds // 7 days
-        case .Months:
-            return value * Moment.monthInSeconds // 30 days
-        case .Quarters:
-            return value * Moment.quarterInSeconds // 3 months
-        case .Years:
-            return value * Moment.yearInSeconds // 365 days
-        }
     }
 }
 

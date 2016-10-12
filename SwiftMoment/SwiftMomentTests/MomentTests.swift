@@ -326,6 +326,24 @@ class MomentTests: XCTestCase {
 
     }
 
+    func testTransformTimeZone() {
+        // Does this fix #75?
+        let timeZone = TimeZone(secondsFromGMT: -10800)!
+        let locale = Locale(identifier: "en_US_POSIX")
+        let dateString = "2016-10-12T10:02:50"
+        let dateFormat = "yyy-MM-dd'T'HH:mm:ss"
+        let birthday = moment(dateString, dateFormat: dateFormat, timeZone: timeZone, locale: locale)!
+        let formatted = birthday.format(dateFormat)
+        XCTAssertEqual(formatted, dateString)
+        XCTAssertEqual(birthday.hour, 10)
+        XCTAssertEqual(birthday.minute, 2)
+
+        let displayZone = TimeZone(abbreviation: "PST")!
+        let birthdayInSF = moment(birthday, timeZone: displayZone)
+        XCTAssertEqual(birthdayInSF.hour, 6)
+        XCTAssertEqual(birthdayInSF.minute, 2)
+    }
+
     func testUTCMomentSupport() {
         let greenwich = utc()
         let str = greenwich.format("ZZZZ")

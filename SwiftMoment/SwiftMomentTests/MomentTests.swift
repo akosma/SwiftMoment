@@ -26,11 +26,9 @@ class MomentTests: XCTestCase {
         let date = Date()
         var cal = Calendar.current
         cal.timeZone = TimeZone.current
-        let components = (cal as NSCalendar).components(
-          [.year, .month, .day, .hour, .minute, .second, .weekday,
-          .weekdayOrdinal, .weekOfYear, .quarter],
-          from: date
-        )
+        let params : Set<Calendar.Component> = [.year, .month, .day, .hour, .minute, .second, .weekday,
+                                                .weekdayOrdinal, .weekOfYear, .quarter]
+        let components = cal.dateComponents(params, from: date)
 
         XCTAssertEqual(today.year, components.year, "The moment contains the current year")
         XCTAssertEqual(today.month, components.month, "The moment contains the current month")
@@ -247,7 +245,7 @@ class MomentTests: XCTestCase {
 
     func testCanGetParametersByGetter() {
         let today = moment()
-        let hours = today.get(.Hours)!
+        let hours = today.get(.Hours)
         XCTAssertEqual(hours, today.hour, "Can use an enum to get properties")
 
         let minute = today.get("m")!
@@ -302,11 +300,6 @@ class MomentTests: XCTestCase {
                        "A date in San Francisco")
     }
 
-    func testTimeWithGMT() {
-        let gmt = moment("2015-09-30T19:32:25+09:00")
-        XCTAssertNotNil(gmt, "GMT String should not be nil")
-    }
-
     func testTimeZoneChangesPreserveMomentInGMT() {
         // Feedback about #75
         let timeZone = TimeZone(secondsFromGMT: -10800)!
@@ -327,7 +320,7 @@ class MomentTests: XCTestCase {
     }
 
     func testTransformTimeZone() {
-        // Does this fix #75?
+        // Fixes #75
         let timeZone = TimeZone(secondsFromGMT: -10800)!
         let locale = Locale(identifier: "en_US_POSIX")
         let dateString = "2016-10-12T10:02:50"
@@ -522,25 +515,25 @@ class MomentTests: XCTestCase {
     }
 
     func testTimeZoneChangeAdd() {
-        let now = moment(TimeZone(abbreviation: "UTC")!)
+        let now = utc()
         let tomorrow = now.add(1, .Days)
         XCTAssertEqual(now.timeZone, tomorrow.timeZone)
     }
 
     func testTimeZoneChangeSubtract() {
-        let now = moment(TimeZone(abbreviation: "UTC")!)
+        let now = utc()
         let yesterday = now.subtract(1, .Days)
         XCTAssertEqual(now.timeZone, yesterday.timeZone)
     }
 
     func testTimeZoneChangeStartOf() {
-        let now = moment(TimeZone(abbreviation: "UTC")!)
+        let now = utc()
         let startOfDay = now.startOf(.Days)
         XCTAssertEqual(now.timeZone, startOfDay.timeZone)
     }
 
     func testTimeZoneChangeEndOf() {
-        let now = moment(TimeZone(abbreviation: "UTC")!)
+        let now = utc()
         let endOfDay = now.endOf(.Days)
         XCTAssertEqual(now.timeZone, endOfDay.timeZone)
     }

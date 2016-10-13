@@ -1,0 +1,19 @@
+require 'fileutils'
+
+BOOK = "SwiftMoment.playgroundbook"
+
+task default: %w[clean book]
+
+task :clean do
+    FileUtils.rm_rf(BOOK) if File.exist?(BOOK)
+end
+
+task :book do
+    ruby "generator.rb --in SwiftMoment.md --out #{BOOK} --verbose"
+    FileUtils.cp_r '../SwiftMoment/SwiftMoment', BOOK + '/Contents/Sources'
+end
+
+task :test do
+  ruby "test.rb"
+end
+

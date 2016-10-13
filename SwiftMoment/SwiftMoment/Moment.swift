@@ -47,24 +47,24 @@ public func utc() -> Moment {
 /// Valid date format strings:
 ///
 /// - "yyyy-MM-dd'T'HH:mm:ssZZZZZ" (ISO)
-/// - "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'",
-/// - "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'SSS'Z'",
-/// - "yyyy-MM-dd'T'HH:mm:ss.SSSZ",
-/// - "yyyy-MM-dd",
-/// - "h:mm:ss A",
-/// - "h:mm A",
-/// - "MM/dd/yyyy",
-/// - "MMMM d, yyyy",
-/// - "MMMM d, yyyy LT",
-/// - "dddd, MMMM D, yyyy LT",
-/// - "yyyyyy-MM-dd",
-/// - "yyyy-MM-dd",
-/// - "GGGG-[W]WW-E",
-/// - "GGGG-[W]WW",
-/// - "yyyy-ddd",
-/// - "HH:mm:ss.SSSS",
-/// - "HH:mm:ss",
-/// - "HH:mm",
+/// - "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"
+/// - "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'SSS'Z'"
+/// - "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+/// - "yyyy-MM-dd"
+/// - "h:mm:ss A"
+/// - "h:mm A"
+/// - "MM/dd/yyyy"
+/// - "MMMM d, yyyy"
+/// - "MMMM d, yyyy LT"
+/// - "dddd, MMMM D, yyyy LT"
+/// - "yyyyyy-MM-dd"
+/// - "yyyy-MM-dd"
+/// - "GGGG-[W]WW-E"
+/// - "GGGG-[W]WW"
+/// - "yyyy-ddd"
+/// - "HH:mm:ss.SSSS"
+/// - "HH:mm:ss"
+/// - "HH:mm"
 /// - "HH"
 ///
 /// Usage:
@@ -606,14 +606,14 @@ public struct Moment: Comparable {
     ///
     /// Valid values:
     ///
-    /// - Years = "y"
-    /// - Quarters = "Q"
-    /// - Months = "M"
-    /// - Weeks = "w"
-    /// - Days = "d"
-    /// - Hours = "H"
-    /// - Minutes = "m"
-    /// - Seconds = "s"
+    /// - `.years` = "y"
+    /// - `.quarters` = "Q"
+    /// - `.months` = "M"
+    /// - `.weeks` = "w"
+    /// - `.days` = "d"
+    /// - `.hours` = "H"
+    /// - `.minutes` = "m"
+    /// - `.seconds` = "s"
     ///
     /// Example:
     ///
@@ -769,14 +769,14 @@ public struct Moment: Comparable {
     ///
     /// Valid unit values:
     ///
-    /// - Years = "y"
-    /// - Quarters = "Q"
-    /// - Months = "M"
-    /// - Weeks = "w"
-    /// - Days = "d"
-    /// - Hours = "H"
-    /// - Minutes = "m"
-    /// - Seconds = "s"
+    /// - `.years` = "y"
+    /// - `.quarters` = "Q"
+    /// - `.months` = "M"
+    /// - `.weeks` = "w"
+    /// - `.days` = "d"
+    /// - `.hours` = "H"
+    /// - `.minutes` = "m"
+    /// - `.seconds` = "s"
     ///
     ///     let mom1 = moment([2015, 7, 29, 0, 0])!
     ///     let mom2 = mom1.add(1, "M")
@@ -845,14 +845,14 @@ public struct Moment: Comparable {
     ///
     /// Valid unit values:
     ///
-    /// - Years = "y"
-    /// - Quarters = "Q"
-    /// - Months = "M"
-    /// - Weeks = "w"
-    /// - Days = "d"
-    /// - Hours = "H"
-    /// - Minutes = "m"
-    /// - Seconds = "s"
+    /// - `.years` = "y"
+    /// - `.quarters` = "Q"
+    /// - `.months` = "M"
+    /// - `.weeks` = "w"
+    /// - `.days` = "d"
+    /// - `.hours` = "H"
+    /// - `.minutes` = "m"
+    /// - `.seconds` = "s"
     ///
     ///     let mom1 = moment([2015, 7, 29, 0, 0])!
     ///     let mom3 = moment([2015, 8, 28, 0, 0])!
@@ -939,14 +939,14 @@ public struct Moment: Comparable {
     ///
     /// Valid unit values:
     ///
-    /// - Years = "y"
-    /// - Quarters = "Q"
-    /// - Months = "M"
-    /// - Weeks = "w"
-    /// - Days = "d"
-    /// - Hours = "H"
-    /// - Minutes = "m"
-    /// - Seconds = "s"
+    /// - `.years` = "y"
+    /// - `.quarters` = "Q"
+    /// - `.months` = "M"
+    /// - `.weeks` = "w"
+    /// - `.days` = "d"
+    /// - `.hours` = "H"
+    /// - `.minutes` = "m"
+    /// - `.seconds` = "s"
     ///
     /// - parameter unit: The name of a TimeUnit value.
     ///
@@ -971,14 +971,14 @@ public struct Moment: Comparable {
     ///
     /// Valid unit values:
     ///
-    /// - Years = "y"
-    /// - Quarters = "Q"
-    /// - Months = "M"
-    /// - Weeks = "w"
-    /// - Days = "d"
-    /// - Hours = "H"
-    /// - Minutes = "m"
-    /// - Seconds = "s"
+    /// - `.years` = "y"
+    /// - `.quarters` = "Q"
+    /// - `.months` = "M"
+    /// - `.weeks` = "w"
+    /// - `.days` = "d"
+    /// - `.hours` = "H"
+    /// - `.minutes` = "m"
+    /// - `.seconds` = "s"
     ///
     /// - parameter unit: The name of a TimeUnit value.
     ///

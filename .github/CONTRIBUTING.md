@@ -6,10 +6,11 @@ collaboration guidelines:
 
 ## Pull Requests > Issues
 
-Whenever possible, try to provide us with [pull requests][pr] instead of
-simply creating an issue. Pull requests help us move forward faster, and
-we will be glad to review and eventually include it in the master
-branch.
+Whenever possible, try to provide us with [pull
+requests](https://help.github.com/articles/creating-a-pull-request/)
+instead of simply creating an issue. Pull requests help us move forward
+faster, and we will be glad to review and eventually include it in the
+master branch.
 
 ## Issues
 
@@ -30,16 +31,15 @@ Before sending a pull request, make sure that:
 
 1. Your code compiles without warnings of any kind.
 2. Your code runs without runtime warnings.
-3. You have checked your code with either [SwiftLint][swiftlint] or
-   [Tailor][tailor] and you have removed any warnings shown by either of
-      these tools.
-      4. You have included unit tests for your feature, if required.
-      5. All previous unit tests pass.
-      6. You have included and/or updated API documentation in the
-         public
-            methods, structs and classes that are referenced by your
-            pull
-               request.
+3. You have checked your code with either
+   [SwiftLint](https://github.com/realm/SwiftLint) or
+   [Tailor](https://tailor.sh) and you have removed any warnings shown
+   by either of these tools.
+4. You have included unit tests for your feature, if required.
+5. All previous unit tests pass.
+6. You have included and/or updated API documentation in the public
+   methods, structs and classes that are referenced by your pull
+   request.
 
 ## Behaviour
 

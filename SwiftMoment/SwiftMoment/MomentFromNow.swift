@@ -30,7 +30,7 @@ extension Moment {
         }
         else if deltaSeconds < Moment.minuteInSeconds {
             // Seconds Ago
-            return stringFromFormat("%%1.0f %@seconds ago", withValue: deltaSeconds)
+            return stringFromFormat("%%d %@seconds ago", withValue: Int(deltaSeconds))
 
         }
         else if deltaSeconds < (Moment.minuteInSeconds * 2) {
@@ -40,7 +40,7 @@ extension Moment {
         }
         else if deltaSeconds < Moment.hourInSeconds {
             // Minutes Ago
-            return stringFromFormat("%%1.0f %@minutes ago", withValue: deltaSeconds / Moment.minuteInSeconds)
+            return stringFromFormat("%%d %@minutes ago", withValue: Int(deltaSeconds / Moment.minuteInSeconds))
 
         }
         else if deltaSeconds < (Moment.hourInSeconds * 2) {
@@ -51,7 +51,7 @@ extension Moment {
         else if deltaSeconds < Moment.dayInSeconds {
             // Hours Ago
             value = floor(deltaSeconds / Moment.hourInSeconds)
-            return stringFromFormat("%%1.0f %@hours ago", withValue: value)
+            return stringFromFormat("%%d %@hours ago", withValue: Int(value))
 
         }
         else if deltaSeconds < (Moment.dayInSeconds * 2) {
@@ -62,7 +62,7 @@ extension Moment {
         else if deltaSeconds < Moment.weekInSeconds {
             // Days Ago
             value = floor(deltaSeconds / Moment.dayInSeconds)
-            return stringFromFormat("%%1.0f %@days ago", withValue: value)
+            return stringFromFormat("%%d %@days ago", withValue: Int(value))
 
         }
         else if deltaSeconds < (Moment.weekInSeconds * 2) {
@@ -73,7 +73,7 @@ extension Moment {
         else if deltaSeconds < Moment.monthInSeconds {
             // Weeks Ago
             value = floor(deltaSeconds / Moment.weekInSeconds)
-            return stringFromFormat("%%1.0f %@weeks ago", withValue: value)
+            return stringFromFormat("%%d %@weeks ago", withValue: Int(value))
 
         }
         else if deltaSeconds < (Moment.dayInSeconds * 61) {
@@ -84,7 +84,7 @@ extension Moment {
         else if deltaSeconds < Moment.yearInSeconds {
             // Month Ago
             value = floor(deltaSeconds / Moment.monthInSeconds)
-            return stringFromFormat("%%1.0f %@months ago", withValue: value)
+            return stringFromFormat("%%d %@months ago", withValue: Int(value))
 
         }
         else if deltaSeconds < (Moment.yearInSeconds * 2) {
@@ -94,12 +94,12 @@ extension Moment {
 
         // Years Ago
         value = floor(deltaSeconds / Moment.yearInSeconds)
-        return stringFromFormat("%%1.0f %@years ago", withValue: value)
+        return stringFromFormat("%%d %@years ago", withValue: Int(value))
     }
 
-    private func stringFromFormat(_ format: String, withValue value: Double) -> String {
+    private func stringFromFormat(_ format: String, withValue value: Int) -> String {
         let localeFormat = String(format: format,
-                                  getLocaleFormatUnderscoresWithValue(value))
+                                  getLocaleFormatUnderscoresWithValue(Double(value)))
         return String(format: NSDateTimeAgoLocalizedStrings(localeFormat), value)
     }
 

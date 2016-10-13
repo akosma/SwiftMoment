@@ -11,7 +11,7 @@ obj.format("YYYY MMMM dd")
 
 obj.fromNow()
 
-var yesterday = moment(locale: Locale(identifier: "ES")) - 1.days
+var yesterday = moment(locale: Locale(identifier: "ES")) - 2.days
 yesterday.fromNow()
 
 let today = moment()

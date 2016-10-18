@@ -1,5 +1,7 @@
 # SwiftMoment
 
+[![Join the chat at https://gitter.im/SwiftMoment/Lobby](https://badges.gitter.im/SwiftMoment/Lobby.svg)](https://gitter.im/SwiftMoment/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Build Status](https://travis-ci.org/akosma/SwiftMoment.svg?branch=master)](https://travis-ci.org/akosma/SwiftMoment)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/SwiftMoment.svg)](https://img.shields.io/cocoapods/v/SwiftMoment)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)

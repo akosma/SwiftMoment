@@ -537,6 +537,13 @@ public struct Moment: Comparable {
         formatter.timeZone = timeZone
         return formatter.string(from: date)
     }
+    
+    /// Localized short weekday name of the current instance.
+    public var shortWeekdayName: String {
+        formatter.timeZone = timeZone
+        formatter.locale = locale
+        return formatter.shortWeekdaySymbols[weekday - 1]
+    }
 
     /// Weekday ordinal of the current instance. Taken from the `Calendar` documentation:
     /// "Weekday ordinal units represent the position of the weekday

@@ -11,7 +11,6 @@
 
 import Foundation
 
-
 /// Returns a moment representing the current instant in time at the current timezone.
 /// This is the most common way to create a new Moment value:
 ///
@@ -176,8 +175,7 @@ public func moment(_ params: [Int],
                    timeZone: TimeZone = TimeZone.current,
                    locale: Locale = Locale.autoupdatingCurrent) -> Moment? {
     if params.count > 0 {
-        var calendar = Calendar.current
-        calendar.timeZone = timeZone
+        let calendar = MomentCache.calendar(timeZone: timeZone, locale: locale)
         var components = DateComponents()
         components.year = params[0]
 
@@ -455,9 +453,7 @@ public struct Moment: Comparable {
 
     /// Year of the current instance.
     public var year: Int {
-        var cal = Calendar.current
-        cal.timeZone = timeZone
-        cal.locale = locale
+        let cal = MomentCache.calendar(timeZone: timeZone, locale: locale)
         let param: Set<Calendar.Component> = [.year]
         let components = cal.dateComponents(param, from: date)
         return components.year!
@@ -465,9 +461,7 @@ public struct Moment: Comparable {
 
     /// Month (1-12) of the current instance.
     public var month: Int {
-        var cal = Calendar.current
-        cal.timeZone = timeZone
-        cal.locale = locale
+		let cal = MomentCache.calendar(timeZone: timeZone, locale: locale)
         let param: Set<Calendar.Component> = [.month]
         let components = cal.dateComponents(param, from: date)
         return components.month!
@@ -482,9 +476,7 @@ public struct Moment: Comparable {
 
     /// Day of the month (1-31) of the current instance.
     public var day: Int {
-        var cal = Calendar.current
-        cal.timeZone = timeZone
-        cal.locale = locale
+		let cal = MomentCache.calendar(timeZone: timeZone, locale: locale)
         let param: Set<Calendar.Component> = [.day]
         let components = cal.dateComponents(param, from: date)
         return components.day!
@@ -492,9 +484,7 @@ public struct Moment: Comparable {
 
     /// Hour (0-23) of the current instance.
     public var hour: Int {
-        var cal = Calendar.current
-        cal.timeZone = timeZone
-        cal.locale = locale
+		let cal = MomentCache.calendar(timeZone: timeZone, locale: locale)
         let param: Set<Calendar.Component> = [.hour]
         let components = cal.dateComponents(param, from: date)
         return components.hour!
@@ -502,9 +492,7 @@ public struct Moment: Comparable {
 
     /// Minutes (0-59) of the current instance.
     public var minute: Int {
-        var cal = Calendar.current
-        cal.timeZone = timeZone
-        cal.locale = locale
+		let cal = MomentCache.calendar(timeZone: timeZone, locale: locale)
         let param: Set<Calendar.Component> = [.minute]
         let components = cal.dateComponents(param, from: date)
         return components.minute!
@@ -512,9 +500,7 @@ public struct Moment: Comparable {
 
     /// Seconds (0-59) of the current instance.
     public var second: Int {
-        var cal = Calendar.current
-        cal.timeZone = timeZone
-        cal.locale = locale
+		let cal = MomentCache.calendar(timeZone: timeZone, locale: locale)
         let param: Set<Calendar.Component> = [.second]
         let components = cal.dateComponents(param, from: date)
         return components.second!
@@ -522,9 +508,7 @@ public struct Moment: Comparable {
 
     /// Weekday (1-7, Sunday is 1) of the current instance.
     public var weekday: Int {
-        var cal = Calendar.current
-        cal.timeZone = timeZone
-        cal.locale = locale
+		let cal = MomentCache.calendar(timeZone: timeZone, locale: locale)
         let param: Set<Calendar.Component> = [.weekday]
         let components = cal.dateComponents(param, from: date)
         return components.weekday!
@@ -543,9 +527,7 @@ public struct Moment: Comparable {
     /// within the next larger calendar unit, such as the month.
     /// For example, 2 is the weekday ordinal unit for the second Friday of the month."
     public var weekdayOrdinal: Int {
-        var cal = Calendar.current
-        cal.locale = locale
-        cal.timeZone = timeZone
+		let cal = MomentCache.calendar(timeZone: timeZone, locale: locale)
         let param: Set<Calendar.Component> = [.weekdayOrdinal]
         let components = cal.dateComponents(param, from: date)
         return components.weekdayOrdinal!
@@ -553,9 +535,7 @@ public struct Moment: Comparable {
 
     /// Number of the week in the current year of the current instance.
     public var weekOfYear: Int {
-        var cal = Calendar.current
-        cal.locale = locale
-        cal.timeZone = timeZone
+		let cal = MomentCache.calendar(timeZone: timeZone, locale: locale)
         let param: Set<Calendar.Component> = [.weekOfYear]
         let components = cal.dateComponents(param, from: date)
         return components.weekOfYear!
@@ -563,9 +543,7 @@ public struct Moment: Comparable {
 
     /// Quarter of the year of the current instance.
     public var quarter: Int {
-        var cal = Calendar.current
-        cal.locale = locale
-        cal.timeZone = timeZone
+		let cal = MomentCache.calendar(timeZone: timeZone, locale: locale)
         let param: Set<Calendar.Component> = [.quarter]
         let components = cal.dateComponents(param, from: date)
         return components.quarter!
@@ -903,9 +881,7 @@ public struct Moment: Comparable {
     ///
     /// - returns: A new Moment instance.
     public func startOf(_ unit: TimeUnit) -> Moment {
-        var cal = Calendar.current
-        cal.locale = locale
-        cal.timeZone = timeZone
+		let cal = MomentCache.calendar(timeZone: timeZone, locale: locale)
         var newDate: Date?
         let param: Set<Calendar.Component> = [.year, .month, .weekday, .day, .hour, .minute, .second]
         var components = cal.dateComponents(param, from: date)

@@ -52,6 +52,7 @@
 		3AFB8ABE1DAE395000356653 /* LazyBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFB8AB91DAE395000356653 /* LazyBox.swift */; };
 		3AFB8ABF1DAE395000356653 /* LazyBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFB8AB91DAE395000356653 /* LazyBox.swift */; };
 		3AFB8AC01DAE395000356653 /* LazyBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFB8AB91DAE395000356653 /* LazyBox.swift */; };
+		3D7559231DF9B03B00397CBF /* MomentCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7559221DF9B03B00397CBF /* MomentCache.swift */; };
 		53C2DA3B1C99956E00604118 /* MomentFromNow.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 53CB62721C919E8000BA62E9 /* MomentFromNow.bundle */; };
 		53C2DA3C1C99957E00604118 /* MomentFromNow.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 53CB62721C919E8000BA62E9 /* MomentFromNow.bundle */; };
 		53CB62741C919E8000BA62E9 /* MomentFromNow.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 53CB62721C919E8000BA62E9 /* MomentFromNow.bundle */; };
@@ -111,6 +112,7 @@
 		3AB0FB8A1A6D1629006449DB /* TimeUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUnit.swift; sourceTree = "<group>"; };
 		3AB0FB8C1A6D1644006449DB /* Duration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Duration.swift; sourceTree = "<group>"; };
 		3AFB8AB91DAE395000356653 /* LazyBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LazyBox.swift; sourceTree = "<group>"; };
+		3D7559221DF9B03B00397CBF /* MomentCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentCache.swift; sourceTree = "<group>"; };
 		53CB62721C919E8000BA62E9 /* MomentFromNow.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MomentFromNow.bundle; sourceTree = "<group>"; };
 		E2532BEC1C358B4E00392471 /* SwiftMoment macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftMoment macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2F6254B1C357BC00057AE1D /* SwiftMoment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftMoment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -209,6 +211,7 @@
 				3A6429C31A6D2C8700B10310 /* Operators.swift */,
 				3A6429C51A6D33FA00B10310 /* Extensions.swift */,
 				3AFB8AB91DAE395000356653 /* LazyBox.swift */,
+				3D7559221DF9B03B00397CBF /* MomentCache.swift */,
 			);
 			path = SwiftMoment;
 			sourceTree = "<group>";
@@ -572,6 +575,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D7559231DF9B03B00397CBF /* MomentCache.swift in Sources */,
 				3A6429C61A6D33FA00B10310 /* Extensions.swift in Sources */,
 				3AB0FB8D1A6D1644006449DB /* Duration.swift in Sources */,
 				3A6429C41A6D2C8700B10310 /* Operators.swift in Sources */,

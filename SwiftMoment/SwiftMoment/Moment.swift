@@ -972,6 +972,123 @@ public struct Moment: Comparable {
     public func epoch() -> TimeInterval {
         return date.timeIntervalSince1970
     }
+    
+    
+    
+    //**************************************
+    
+    // METHOD ADDITIONS TO PREVIOUS MOMENT CLASS.
+    
+    //**************************************
+    
+    
+    // 1.) DAYS IN MONTH
+    
+    // Method on the class which returns the number of days in the month captured inside the moment instance. Leap year checking included to account for differing February day potentials.
+    
+    public func daysInMonth() -> Int {
+        let monthName = self.monthName
+        var days: Int
+        
+        switch monthName {
+        case "September", "April", "June", "November":
+            days = 30
+        case "February":
+            
+            // Do leap year testing
+            let leapYearTester = isLeapYear()
+            if leapYearTester == true {
+                days = 29
+            } else {
+                days = 28
+            }
+        default:
+            days = 31
+        }
+        
+        print(days)
+        return days
+    }
+    
+    
+    
+    // 2.) DAYS IN YEAR
+    
+    // Method on the class which returns the number of days in the year captured inside the moment. Leap year checking is included.
+    
+    public func daysInYear() -> Int {
+        let year = self.year
+        var days: Int
+        
+        // ** Leap year checking **
+        
+        if year % 4 == 0 {
+            // We can proceed...
+            
+            if year % 100 != 0 {
+                // Year is a leap year...
+                days = 366
+            } else {
+                // Try another condition...
+                if year % 400 == 0 {
+                    // Year is a leap year...
+                    days = 366
+                } else {
+                    // Not a leap year...
+                    days = 365
+                }
+            }
+        } else {
+            // Not a leap year...
+            days = 365
+        }
+        
+        print(days)
+        return days
+    }
+    
+    
+    
+    // 3.) IS YEAR A LEAP YEAR?
+    
+    // Method on the class which specifies whether or not the year captured in the moment is a leap year.
+    
+    public func isLeapYear() -> Bool {
+        var result: Bool
+        let daysInYearTest = daysInYear()
+        
+        
+        if daysInYearTest == 366 {
+            print("\(self.year) IS a leap year.")
+            result = true
+        } else {
+            print("\(self.year) is NOT a leap year.")
+            result = false
+        }
+        
+        return result
+    }
+    
+    
+    
+    
+    // 4.) DAYS LEFT TILL THE END OF THE MONTH
+    
+    // Method on the class which calculates how many days are left in the month captured in the moment. This also accounts for leap years and the differing outcomes for February as a result.
+    
+    public func daysTillEndOfMonth() -> Int {
+        let dayInMonth = self.day
+        let daysInTheMonth = daysInMonth()
+        
+        let daysLeftInMonth = daysInTheMonth - dayInMonth
+        
+        return daysLeftInMonth
+    }
+    
+    
+    
+    //********************** END ADDITIONS ******************************
+    
 
 }
 

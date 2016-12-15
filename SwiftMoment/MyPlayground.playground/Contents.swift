@@ -11,6 +11,11 @@ obj.format("YYYY MMMM dd")
 
 obj.fromNow()
 
+obj.daysInMonth()
+obj.isLeapYear()
+obj.daysTillEndOfMonth()
+obj.daysInYear()
+
 var yesterday = moment(locale: Locale(identifier: "ES")) - 2.days
 yesterday.fromNow()
 

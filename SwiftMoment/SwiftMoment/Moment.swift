@@ -982,10 +982,12 @@ public struct Moment: Comparable {
     //**************************************
     
     
-    // 1.) DAYS IN MONTH
     
-    // Method on the class which returns the number of days in the month captured inside the moment instance. Leap year checking included to account for differing February day potentials.
-    
+    /// Returns an Integer value equal to the number of days in the month captured in the moment's instance value.
+    ///
+    /// - parameter unit: None.
+    ///
+    /// - returns: An Integer Value
     public func daysInMonth() -> Int {
         let monthName = self.monthName
         var days: Int
@@ -994,8 +996,6 @@ public struct Moment: Comparable {
         case "September", "April", "June", "November":
             days = 30
         case "February":
-            
-            // Do leap year testing
             let leapYearTester = isLeapYear()
             if leapYearTester == true {
                 days = 29
@@ -1006,76 +1006,73 @@ public struct Moment: Comparable {
             days = 31
         }
         
-        print(days)
+        // Uncomment to print result.
+        //print(days)
+        
         return days
     }
     
     
-    
-    // 2.) DAYS IN YEAR
-    
-    // Method on the class which returns the number of days in the year captured inside the moment. Leap year checking is included.
-    
+    /// Returns an Integer value equal to the number of days in the year captured in the moment's instance value.
+    ///
+    /// - parameter unit: None.
+    ///
+    /// - returns: An Integer Value
     public func daysInYear() -> Int {
         let year = self.year
         var days: Int
         
-        // ** Leap year checking **
-        
         if year % 4 == 0 {
-            // We can proceed...
-            
             if year % 100 != 0 {
-                // Year is a leap year...
                 days = 366
             } else {
-                // Try another condition...
                 if year % 400 == 0 {
-                    // Year is a leap year...
                     days = 366
                 } else {
-                    // Not a leap year...
                     days = 365
                 }
             }
         } else {
-            // Not a leap year...
             days = 365
         }
         
-        print(days)
+        //// Uncomment to print result.
+        //print(days)
+        
         return days
     }
     
     
-    
-    // 3.) IS YEAR A LEAP YEAR?
-    
-    // Method on the class which specifies whether or not the year captured in the moment is a leap year.
-    
+    /// Returns a Boolean value based on whether the year captured in the moment's instance is or is not a leap year.
+    ///
+    /// - parameter unit: None.
+    ///
+    /// - returns: A Boolean Value
     public func isLeapYear() -> Bool {
         var result: Bool
         let daysInYearTest = daysInYear()
         
-        
         if daysInYearTest == 366 {
-            print("\(self.year) IS a leap year.")
             result = true
+            
+            // Uncomment to get a string outcome printed
+            //print("\(self.year) IS a leap year.")
         } else {
-            print("\(self.year) is NOT a leap year.")
             result = false
+            
+            // Uncomment to get a string outcome printed
+            //print("\(self.year) is NOT a leap year.")
         }
-        
         return result
     }
     
     
     
-    
-    // 4.) DAYS LEFT TILL THE END OF THE MONTH
-    
-    // Method on the class which calculates how many days are left in the month captured in the moment. This also accounts for leap years and the differing outcomes for February as a result.
-    
+    /// Returns an Integer value equal to the number of days left in the captured instance's month, based on the day in which the moment was captured.
+    ///
+    /// - parameter unit: None.
+    ///
+    /// - returns: An Integer Value
     public func daysTillEndOfMonth() -> Int {
         let dayInMonth = self.day
         let daysInTheMonth = daysInMonth()
@@ -1084,11 +1081,6 @@ public struct Moment: Comparable {
         
         return daysLeftInMonth
     }
-    
-    
-    
-    //********************** END ADDITIONS ******************************
-    
 
 }
 

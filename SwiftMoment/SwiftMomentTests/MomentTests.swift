@@ -538,6 +538,52 @@ class MomentTests: XCTestCase {
                        "The non zero epoch should match")
         XCTAssertEqual(jst.epoch(), gmt.epoch(), "The JST epoch should match GMT epoch")
     }
+    
+    
+    func testDaysInMonth() {
+        let februaryInRegularYear = moment("2015-02-01")
+        let februaryInLeapYear = moment("2016-02-01")
+        
+        let numberOfDaysInLeapYearFebruary = 29
+        let numberOfDaysInRegularYearFebruary = 28
+        
+        XCTAssertEqual(februaryInRegularYear?.daysInMonth(), numberOfDaysInRegularYearFebruary, "The days in month method should return same value as numberOfDaysInRegularFebruary constant.")
+        XCTAssertEqual(februaryInLeapYear?.daysInMonth(), numberOfDaysInLeapYearFebruary, "The days in month method should return same value as numberOfDaysInLeapYearFebruary constant.")
+        
+    }
+    
+    
+    func testDaysInYear() {
+        let regularYear = moment("2015-01-01")
+        let leapYear = moment("2016-01-01")
+        
+        let numberOfDaysInRegularYear = 365
+        let numberOfDaysInLeapYear = 366
+        
+        XCTAssertEqual(regularYear?.daysInYear(), numberOfDaysInRegularYear, "The days in year method should return same value as the regularYear constant")
+        XCTAssertEqual(leapYear?.daysInYear(), numberOfDaysInLeapYear, "The days in year method should return same value as the leapYear constant")
+        
+    }
+    
+    
+    func testIsALeapYear() {
+        let leapYear = moment("2016-01-01")
+        let regularYear = moment("2015-01-01")
+        
+        XCTAssertTrue((leapYear?.isLeapYear())!, "The isLeapYear method should return a true value when checking whether leapYear is infact a leap year.")
+        XCTAssertFalse((regularYear?.isLeapYear())!, "The isLeapYear method should return a false value when checking whether regularYear is infact a leap year.")
+    }
+    
+    
+    func testNumberOfDaysTillEndOfMonth() {
+        let now = moment()
+        let numberOfDaysLeftInMonthFromCurrentMoment = 15
+
+        XCTAssertEqual(now.daysTillEndOfMonth(), numberOfDaysLeftInMonthFromCurrentMoment, "The number returned from the numberOfDaysTillEndOfMonth method should return the same value as theb numberOfDaysLeftInMonthFromCurrentMonth constant.")
+    }
+    
+    
+    
 
 	func testPublicDate() {
 		let date = Date()

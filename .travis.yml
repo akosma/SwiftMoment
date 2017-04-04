@@ -23,7 +23,6 @@ env:
     - DESTINATION="arch=x86_64"                    SCHEME="$OSX_FRAMEWORK_SCHEME"     SDK="$OSX_SDK"     RUN_TESTS="YES" POD_LINT="NO"
 script:
   - set -o pipefail
-  - swiftlint
   - xcodebuild -version
   - xcodebuild -showsdks
 

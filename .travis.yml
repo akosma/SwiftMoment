@@ -13,13 +13,12 @@ env:
   - OSX_FRAMEWORK_SCHEME="SwiftMoment macOS"
   - TVOS_FRAMEWORK_SCHEME="SwiftMoment tvOS"
   - WATCHOS_FRAMEWORK_SCHEME="SwiftMoment watchOS"
-  - IOS_SDK=iphonesimulator10.0
-  - WATCHOS_SDK=watchsimulator3.0
-  - TVOS_SDK=appletvsimulator10.0
+  - IOS_SDK=iphonesimulator10.3
+  - TVOS_SDK=appletvsimulator10.2
   - OSX_SDK=macosx10.12
   matrix:
-    - DESTINATION="OS=10.0,name=iPhone 7 Plus"     SCHEME="$IOS_FRAMEWORK_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="YES" POD_LINT="YES"
-    - DESTINATION="OS=10.0,name=Apple TV 1080p"     SCHEME="$TVOS_FRAMEWORK_SCHEME"    SDK="$TVOS_SDK"    RUN_TESTS="YES" POD_LINT="NO"
+    - DESTINATION="OS=10.3,name=iPhone 7 Plus"     SCHEME="$IOS_FRAMEWORK_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="YES" POD_LINT="YES"
+    - DESTINATION="OS=10.2,name=Apple TV 1080p"     SCHEME="$TVOS_FRAMEWORK_SCHEME"    SDK="$TVOS_SDK"    RUN_TESTS="YES" POD_LINT="NO"
     - DESTINATION="arch=x86_64"                    SCHEME="$OSX_FRAMEWORK_SCHEME"     SDK="$OSX_SDK"     RUN_TESTS="YES" POD_LINT="NO"
 script:
   - set -o pipefail

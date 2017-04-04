@@ -36,6 +36,9 @@
 		28C0DBCD1D057E4000279645 /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0FB8C1A6D1644006449DB /* Duration.swift */; };
 		28C0DBCE1D057E4000279645 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6429C31A6D2C8700B10310 /* Operators.swift */; };
 		28C0DBCF1D057E4000279645 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6429C51A6D33FA00B10310 /* Extensions.swift */; };
+		28FE15261E93903E00773F39 /* MomentCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7559221DF9B03B00397CBF /* MomentCache.swift */; };
+		28FE15271E93903F00773F39 /* MomentCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7559221DF9B03B00397CBF /* MomentCache.swift */; };
+		28FE15281E93903F00773F39 /* MomentCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7559221DF9B03B00397CBF /* MomentCache.swift */; };
 		3A6429C41A6D2C8700B10310 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6429C31A6D2C8700B10310 /* Operators.swift */; };
 		3A6429C61A6D33FA00B10310 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6429C51A6D33FA00B10310 /* Extensions.swift */; };
 		3A6429C81A6D345500B10310 /* DurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6429C71A6D345500B10310 /* DurationTests.swift */; };
@@ -535,6 +538,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28FE15271E93903F00773F39 /* MomentCache.swift in Sources */,
 				285B8B6D1D057979008A6AD6 /* Extensions.swift in Sources */,
 				285B8B6B1D057979008A6AD6 /* Duration.swift in Sources */,
 				285B8B6C1D057979008A6AD6 /* Operators.swift in Sources */,
@@ -561,6 +565,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28FE15281E93903F00773F39 /* MomentCache.swift in Sources */,
 				28C0DBCF1D057E4000279645 /* Extensions.swift in Sources */,
 				28C0DBCD1D057E4000279645 /* Duration.swift in Sources */,
 				28C0DBCE1D057E4000279645 /* Operators.swift in Sources */,
@@ -614,6 +619,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28FE15261E93903E00773F39 /* MomentCache.swift in Sources */,
 				E2F6253F1C357BC00057AE1D /* Extensions.swift in Sources */,
 				E2F625401C357BC00057AE1D /* Duration.swift in Sources */,
 				E2F625411C357BC00057AE1D /* Operators.swift in Sources */,

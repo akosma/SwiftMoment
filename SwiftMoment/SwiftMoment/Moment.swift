@@ -663,7 +663,7 @@ public struct Moment: Comparable {
     /// - returns: A Duration value.
     public func intervalSince(_ moment: Moment) -> Duration {
         let interval = date.timeIntervalSince(moment.date)
-        return Duration(value: Int(interval))
+        return Duration(value: interval)
     }
 
     /// Adds the specified value in the specified time unit to the current

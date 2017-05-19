@@ -441,13 +441,54 @@ class MomentTests: XCTestCase {
     }
 
     func testStartOfWeek() {
-        let obj = moment([2016, 01, 02, 20, 45, 34])!.startOf(.weeks)
-        XCTAssertEqual(obj.year, 2015, "The year should match")
-        XCTAssertEqual(obj.month, 12, "The month should match")
-        XCTAssertEqual(obj.day, 28, "The day should match")
-        XCTAssertEqual(obj.hour, 0, "The hour should match")
-        XCTAssertEqual(obj.minute, 0, "The minute should match")
-        XCTAssertEqual(obj.second, 0, "The second should match")
+		// test for year change in EU timezone (first day of week: monday)
+		let w0 = moment([2016, 01, 02, 20, 45, 34], timeZone: TimeZone(identifier: "Europe/Paris")!, locale: Locale(identifier: "fr_FR"))!
+			.startOf(.weeks)
+		XCTAssertEqual(w0.year, 2015, "The year should match")
+		XCTAssertEqual(w0.month, 12, "The month should match")
+		XCTAssertEqual(w0.day, 28, "The day should match")
+		XCTAssertEqual(w0.hour, 0, "The hour should match")
+		XCTAssertEqual(w0.minute, 0, "The minute should match")
+		XCTAssertEqual(w0.second, 0, "The second should match")
+
+		// test for year change in US timezone (first day of week: sunday)
+        let w1 = moment([2016, 01, 02, 20, 45, 34], timeZone: TimeZone(identifier: "US/Eastern")!, locale: Locale(identifier: "en_US"))!
+			.startOf(.weeks)
+        XCTAssertEqual(w1.year, 2015, "The year should match")
+        XCTAssertEqual(w1.month, 12, "The month should match")
+        XCTAssertEqual(w1.day, 27, "The day should match")
+        XCTAssertEqual(w1.hour, 0, "The hour should match")
+        XCTAssertEqual(w1.minute, 0, "The minute should match")
+        XCTAssertEqual(w1.second, 0, "The second should match")
+		
+		// test for region with first day of week = monday
+		let w2 = moment([2017, 05, 21, 00, 00], timeZone: TimeZone(identifier: "Europe/Paris")!, locale: Locale(identifier: "fr_FR"))!
+			.startOf(.weeks)
+		XCTAssertEqual(w2.year, 2017, "The year should match")
+		XCTAssertEqual(w2.month, 05, "The month should match")
+		XCTAssertEqual(w2.day, 15, "The day should match")
+		XCTAssertEqual(w2.hour, 0, "The hour should match")
+		XCTAssertEqual(w2.minute, 0, "The minute should match")
+		XCTAssertEqual(w2.second, 0, "The second should match")
+
+		// tests for region with first day of week = monday
+		let w3 = moment([2017, 05, 20, 00, 00], timeZone: TimeZone(identifier: "US/Eastern")!, locale: Locale(identifier: "en_US"))!
+			.startOf(.weeks)
+		XCTAssertEqual(w3.year, 2017, "The year should match")
+		XCTAssertEqual(w3.month, 05, "The month should match")
+		XCTAssertEqual(w3.day, 14, "The day should match")
+		XCTAssertEqual(w3.hour, 0, "The hour should match")
+		XCTAssertEqual(w3.minute, 0, "The minute should match")
+		XCTAssertEqual(w3.second, 0, "The second should match")
+
+		let w4 = moment([2017, 05, 21, 00, 00], timeZone: TimeZone(identifier: "US/Eastern")!, locale: Locale(identifier: "en_US"))!
+			.startOf(.weeks)
+		XCTAssertEqual(w4.year, 2017, "The year should match")
+		XCTAssertEqual(w4.month, 05, "The month should match")
+		XCTAssertEqual(w4.day, 21, "The day should match")
+		XCTAssertEqual(w4.hour, 0, "The hour should match")
+		XCTAssertEqual(w4.minute, 0, "The minute should match")
+		XCTAssertEqual(w4.second, 0, "The second should match")
     }
 
     func testStartOfDay() {
@@ -511,13 +552,54 @@ class MomentTests: XCTestCase {
     }
 
     func testEndOfWeek() {
-        let obj = moment([2015, 12, 29, 20, 45, 34])!.endOf(.weeks)
-        XCTAssertEqual(obj.year, 2016, "The year should match")
-        XCTAssertEqual(obj.month, 01, "The month should match")
-        XCTAssertEqual(obj.day, 03, "The day should match")
-        XCTAssertEqual(obj.hour, 23, "The hour should match")
-        XCTAssertEqual(obj.minute, 59, "The minute should match")
-        XCTAssertEqual(obj.second, 59, "The second should match")
+		// test for year change in EU timezone (first day of week: monday)
+		let w0 = moment([2015, 12, 29, 20, 45, 34], timeZone: TimeZone(identifier: "Europe/Paris")!, locale: Locale(identifier: "fr_FR"))!
+			.endOf(.weeks)
+		XCTAssertEqual(w0.year, 2016, "The year should match")
+		XCTAssertEqual(w0.month, 01, "The month should match")
+		XCTAssertEqual(w0.day, 03, "The day should match")
+		XCTAssertEqual(w0.hour, 23, "The hour should match")
+		XCTAssertEqual(w0.minute, 59, "The minute should match")
+		XCTAssertEqual(w0.second, 59, "The second should match")
+
+		// test for year change in US timezone (first day of week: sunday)
+		let w1 = moment([2015, 12, 29, 20, 45, 34], timeZone: TimeZone(identifier: "US/Eastern")!, locale: Locale(identifier: "en_US"))!
+			.endOf(.weeks)
+		XCTAssertEqual(w1.year, 2016, "The year should match")
+		XCTAssertEqual(w1.month, 01, "The month should match")
+		XCTAssertEqual(w1.day, 02, "The day should match")
+		XCTAssertEqual(w1.hour, 23, "The hour should match")
+		XCTAssertEqual(w1.minute, 59, "The minute should match")
+		XCTAssertEqual(w1.second, 59, "The second should match")
+		
+		// test for region with first day of week = monday
+		let w2 = moment([2017, 05, 21, 00, 00], timeZone: TimeZone(identifier: "Europe/Paris")!, locale: Locale(identifier: "fr_FR"))!
+			.endOf(.weeks)
+		XCTAssertEqual(w2.year, 2017, "The year should match")
+		XCTAssertEqual(w2.month, 05, "The month should match")
+		XCTAssertEqual(w2.day, 21, "The day should match")
+		XCTAssertEqual(w2.hour, 23, "The hour should match")
+		XCTAssertEqual(w2.minute, 59, "The minute should match")
+		XCTAssertEqual(w2.second, 59, "The second should match")
+		
+		// tests for region with first day of week = monday
+		let w3 = moment([2017, 05, 21, 00, 00], timeZone: TimeZone(identifier: "US/Eastern")!, locale: Locale(identifier: "en_US"))!
+			.endOf(.weeks)
+		XCTAssertEqual(w3.year, 2017, "The year should match")
+		XCTAssertEqual(w3.month, 05, "The month should match")
+		XCTAssertEqual(w3.day, 27, "The day should match")
+		XCTAssertEqual(w3.hour, 23, "The hour should match")
+		XCTAssertEqual(w3.minute, 59, "The minute should match")
+		XCTAssertEqual(w3.second, 59, "The second should match")
+		
+		let w4 = moment([2017, 05, 20, 00, 00], timeZone: TimeZone(identifier: "US/Eastern")!, locale: Locale(identifier: "en_US"))!
+			.endOf(.weeks)
+		XCTAssertEqual(w4.year, 2017, "The year should match")
+		XCTAssertEqual(w4.month, 05, "The month should match")
+		XCTAssertEqual(w4.day, 20, "The day should match")
+		XCTAssertEqual(w4.hour, 23, "The hour should match")
+		XCTAssertEqual(w4.minute, 59, "The minute should match")
+		XCTAssertEqual(w4.second, 59, "The second should match")
     }
 
     func testEndOfDay() {

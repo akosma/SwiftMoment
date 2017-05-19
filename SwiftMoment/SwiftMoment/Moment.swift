@@ -893,7 +893,7 @@ public struct Moment: Comparable {
             fallthrough
         case .quarters, .months, .weeks:
             if unit == .weeks {
-                components.day = components.day! - (components.weekday! - 2)
+                components.day = components.day! - ((components.weekday! - cal.firstWeekday) + 7) % 7
             } else {
                 components.day = 1
             }

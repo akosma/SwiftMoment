@@ -714,7 +714,7 @@ public struct Moment: Comparable {
     ///
     /// - returns: A new Moment instance.
     public func add(_ value: TimeInterval, _ unit: TimeUnit) -> Moment {
-
+		guard value != 0 else { return self }
         func convert(_ value: Double, _ unit: TimeUnit) -> Double {
             switch unit {
             case .seconds:
@@ -766,10 +766,9 @@ public struct Moment: Comparable {
     ///
     /// - returns: A new Moment instance.
     public func add(_ value: Int, _ unitName: String) -> Moment {
-        if let unit = TimeUnit(rawValue: unitName) {
-            return add(value, unit)
-        }
-        return self
+		guard value != 0 else { return self }
+		guard let unit = TimeUnit(rawValue: unitName) else { return self }
+		return add(value, unit)
     }
 
     /// Adds the specified duration to the current instance and returns a new Moment.
@@ -842,10 +841,9 @@ public struct Moment: Comparable {
     ///
     /// - returns: A new Moment instance.
     public func subtract(_ value: Int, _ unitName: String) -> Moment {
-        if let unit = TimeUnit(rawValue: unitName) {
-            return subtract(value, unit)
-        }
-        return self
+		guard value != 0 else { return self }
+		guard let unit = TimeUnit(rawValue: unitName) else { return self }
+		return subtract(value, unit)
     }
 
     /// Subtracts the specified duration to the current instance and returns a new Moment.

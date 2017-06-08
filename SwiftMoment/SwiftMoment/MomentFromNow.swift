@@ -146,11 +146,11 @@ extension Moment {
     }
 
     private func getLocaleFormatUnderscoresWithValue(_ value: Double) -> String {
-        guard let localeCode = Locale.preferredLanguages.first else {
+        guard let languageCode = self.locale.languageCode else {
             return ""
         }
 
-        if localeCode == "ru" {
+        if languageCode == "ru" {
             let xy = Int(floor(value)) % 100
             let y = Int(floor(value)) % 10
 

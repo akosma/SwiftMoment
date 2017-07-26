@@ -31,7 +31,7 @@ github "akosma/SwiftMoment" "0.8"
 ```
 
 ### CocoaPods
-Just add this to your `Podfile:`
+Add this to your `Podfile:`
 
 ```ruby
 pod 'SwiftMoment'

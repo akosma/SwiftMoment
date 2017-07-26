@@ -23,17 +23,18 @@ SwiftMoment is compatible with
 [Carthage](http://github.com/Carthage/Carthage),
 [CocoaPods](http://cocoapods.org/) and [Swift Package Manager](https://swift.org/package-manager/).
 
-### CocoaPods
-Just add this to your `Podfile:`
-
-```ruby
-pod 'SwiftMoment'
-```
 
 ### Carthage:
 Add this to your `Cartfile`
 ```
 github "akosma/SwiftMoment" "0.8"
+```
+
+### CocoaPods
+Just add this to your `Podfile:`
+
+```ruby
+pod 'SwiftMoment'
 ```
 
 ### Swift Package Manager:

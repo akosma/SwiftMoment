@@ -96,6 +96,7 @@
 
 /* Begin PBXFileReference section */
 		091118FF1F235E8C00FA596A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0942BB941F286C5200936A59 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = MyPlayground.playground; path = Example/MyPlayground.playground; sourceTree = "<group>"; };
 		0962090F1F24E96700C43A61 /* MomentFromNow.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MomentFromNow.bundle; sourceTree = "<group>"; };
 		16DF56A41C3A7D7900ED9292 /* ExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionsTests.swift; sourceTree = "<group>"; };
 		285B8B4A1D057575008A6AD6 /* SwiftMoment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftMoment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,7 +107,6 @@
 		3A6429C31A6D2C8700B10310 /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
 		3A6429C51A6D33FA00B10310 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3A6429C71A6D345500B10310 /* DurationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationTests.swift; sourceTree = "<group>"; };
-		3A6CADA61AD9B48D00482995 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3AB0FB6C1A6D15F8006449DB /* SwiftMoment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftMoment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AB0FB711A6D15F8006449DB /* SwiftMoment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftMoment.h; sourceTree = "<group>"; };
 		3AB0FB771A6D15F8006449DB /* SwiftMoment iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftMoment iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -180,7 +180,7 @@
 		0962090E1F24E8B200C43A61 /* Example */ = {
 			isa = PBXGroup;
 			children = (
-				3A6CADA61AD9B48D00482995 /* MyPlayground.playground */,
+				0942BB941F286C5200936A59 /* MyPlayground.playground */,
 			);
 			name = Example;
 			sourceTree = "<group>";

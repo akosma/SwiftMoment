@@ -20,12 +20,28 @@ Important: This framework supports iOS 9+, macOS 10.11+, tvOS 9+, watchOS 2+, Xc
 ## Installation
 
 SwiftMoment is compatible with
-[Carthage](http://github.com/Carthage/Carthage) and
-[CocoaPods](http://cocoapods.org/). With CocoaPods, just add this to
-your Podfile:
+[Carthage](http://github.com/Carthage/Carthage),
+[CocoaPods](http://cocoapods.org/) and [Swift Package Manager](https://swift.org/package-manager/).
+
+### CocoaPods
+Just add this to your `Podfile:`
 
 ```ruby
 pod 'SwiftMoment'
+```
+
+### Carthage:
+Add this to your `Cartfile`
+```
+github "akosma/SwiftMoment" "0.8"
+```
+
+### Swift Package Manager:
+Add this to your `Package.swift` file
+```swift
+dependencies: [
+    .Package(url: "https://github.com/akosma/SwiftMoment.git", majorVersion: 0, minor: 8)
+]
 ```
 
 ## Mac OS X Notes

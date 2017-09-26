@@ -1,0 +1,32 @@
+default_platform :ios
+
+platform :ios do
+  desc "Test Lane"
+  lane :testLane do
+	xcbuild(
+	  workspace: "SwiftMoment.xcworkspace",
+	  scheme: "SwiftMoment macOS",
+	  clean: true
+	)
+
+	xcbuild(
+	  workspace: "SwiftMoment.xcworkspace",
+	  scheme: "SwiftMoment watchOS",
+	  clean: true
+	)
+
+	scan(
+	  workspace: "SwiftMoment.xcworkspace",
+	  scheme: "SwiftMoment iOS",
+	  clean: true,
+	  device: "iPhone X"
+	)
+
+	scan(
+	  workspace: "SwiftMoment.xcworkspace",
+	  scheme: "SwiftMoment tvOS",
+	  clean: true,
+	  device: "Apple TV 4K"
+	)
+  end
+end

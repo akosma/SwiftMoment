@@ -652,7 +652,10 @@ public struct Moment: Comparable {
     ///
     /// - returns: A boolean value; true if equal, false otherwise.
     public func isEqualTo(_ moment: Moment) -> Bool {
-        return (date == moment.date)
+        //return date == moment.date // this is occasionally failing in the tests even though the timeIntervalSince1970 and description are matching
+        // Try printing the comparison and running testAddingOtherValues multiple times
+        // print("should be equal? \(date == moment.date)")
+        return date.timeIntervalSince1970 == moment.date.timeIntervalSince1970
     }
 
     /// Returns the `Duration` value that represents the time interval between

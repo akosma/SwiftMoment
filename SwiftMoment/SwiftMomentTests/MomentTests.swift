@@ -109,6 +109,18 @@ class MomentTests: XCTestCase {
         XCTAssertEqual(obj.minute, 0, "The minute should be zero")
         XCTAssertEqual(obj.second, 0, "The second should be zero")
     }
+    
+    func testCanCreateMomentsWithISO8601WithMilliseconds() {
+        let timeZone = TimeZone(abbreviation: "GMT+03")!
+        let stringWithMilliseconds    = "2017-11-28T13:25:43.123Z"
+        let obj = moment(stringWithMilliseconds, timeZone:timeZone)!
+        XCTAssertEqual(obj.year, 2017, "The year should match")
+        XCTAssertEqual(obj.month, 11, "The month should match")
+        XCTAssertEqual(obj.day, 28, "The day should match")
+        XCTAssertEqual(obj.hour, 16, "The hour should be 16")
+        XCTAssertEqual(obj.minute, 25, "The minute should match")
+        XCTAssertEqual(obj.second, 43, "The second should match")
+    }
 
     func testCanCreateWeirdDateFromComponents() {
         let timeZone = TimeZone(abbreviation: "GMT+01")!

@@ -91,9 +91,9 @@ public func moment(_ stringDate: String,
     // https://github.com/moment/moment/blob/develop/moment.js
     let formats = [
         isoFormat,
+        "yyyy-MM-dd'T'HH:mm:ss.SSSZ",
         "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'",
         "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'SSS'Z'",
-        "yyyy-MM-dd'T'HH:mm:ss.SSSZ",
         "yyyy-MM-dd",
         "h:mm:ss A",
         "h:mm A",

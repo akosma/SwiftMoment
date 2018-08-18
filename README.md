@@ -28,6 +28,21 @@ your Podfile:
 pod 'SwiftMoment'
 ```
 
+SwiftMoment can also be used via the [Swift Package Manager](https://swift.org/package-manager/). 
+Just add it to the dependencies in your Package.swift file:
+
+```Swift
+let package = Package(
+    name: "MyPackage",
+    dependencies: [
+        ...
+        .package(url: "https://github.com/akosma/SwiftMoment.git", from: "0.7.1"),
+    ],
+    ...
+)
+```
+
+
 ## Mac OS X Notes
 
 - Drag the created .framework file into the Xcode Project, be sure to tick 'Copy Files to Directory'
@@ -100,6 +115,13 @@ be subtracted from one another (which yields a `Duration`) and
 
 Swift Moment includes a suite of tests showing how to use the different
 functions of the framework.
+
+To run the Linux tests in a macOS environment, please use the included Dockerfile:
+
+```
+docker build --tag swiftmoment .
+docker run --rm swiftmoment
+```
 
 ## Playground
 
